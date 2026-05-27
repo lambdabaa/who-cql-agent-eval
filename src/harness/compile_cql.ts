@@ -102,6 +102,13 @@ export function compileCql(options: CompileOptions): CompileResult {
     for (const cqlPath of cqlFiles) {
       writeFileSync(join(inputDir, basename(cqlPath)), readFileSync(cqlPath));
     }
+    // Stage bundled FHIRHelpers (it must land alongside the WHO .cql files
+    // so the translator picks it up as a regular input). The translator's
+    // built-in classpath finds FHIRHelpers on its own at compile time, but
+    // it does not *emit* ELM for libraries it didn't see as inputs — so any
+    // retrieve that goes through `FHIRHelpers.ToString(...)` etc. fails at
+    // exec time with "Cannot read properties of undefined".
+    extractBundledHelpers(jarPath, inputDir);
     try {
       runTranslator(jarPath, inputDir, elmDir, options.extraArgs ?? []);
       result.cacheMisses = cqlFiles.length;
@@ -159,6 +166,33 @@ export function compileCqlString(
     return { error: err?.stderr ?? 'translator produced no output' };
   }
   return { elm: lib.elm, elmPath: lib.elmPath };
+}
+
+/**
+ * Pull `org/hl7/fhir/FHIRHelpers-<v>.cql` out of the translator jar into the
+ * staging dir as `FHIRHelpers.cql`. Picks the highest available version so
+ * downstream `include FHIRHelpers version '4.0.1'` resolves. Silent no-op if
+ * the jar doesn't bundle a FHIRHelpers source.
+ */
+function extractBundledHelpers(jarPath: string, stageDir: string) {
+  // Try the known FHIR R4 variants in preference order. We don't enumerate
+  // the whole jar (its listing exceeds the default execFileSync buffer);
+  // attempting a specific path is cheap and fails quickly when absent.
+  const candidates = ['org/hl7/fhir/FHIRHelpers-4.0.1.cql', 'org/hl7/fhir/FHIRHelpers-4.0.0.cql'];
+  for (const entry of candidates) {
+    try {
+      const cql = execFileSync('unzip', ['-p', jarPath, entry], {
+        stdio: ['ignore', 'pipe', 'pipe'],
+        maxBuffer: 32 * 1024 * 1024,
+      });
+      if (cql && cql.length > 0) {
+        writeFileSync(join(stageDir, 'FHIRHelpers.cql'), cql);
+        return;
+      }
+    } catch {
+      // try next candidate
+    }
+  }
 }
 
 function runTranslator(jarPath: string, inputDir: string, outputDir: string, extraArgs: string[]) {

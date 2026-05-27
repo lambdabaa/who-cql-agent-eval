@@ -7,6 +7,37 @@ WHO SMART Guidelines CQL. The v0 slice targets the
 
 See [`docs/PLAN.md`](docs/PLAN.md) for the design document and rationale.
 
+## Overview
+
+WHO SMART Guidelines publish clinical recommendations as a layered stack: L1
+narrative, L2 decision tables and data dictionaries, and L3 computable
+artifacts (FHIR R4 profiles, ValueSets, PlanDefinitions, Measures, and CQL
+libraries). The L3 CQL layer is the executable expression of each decision
+table — and the layer AI agents are increasingly asked to author, modify, or
+reason about. This harness grades agents against WHO's own conformance
+expectations by **executing** their CQL against curated patient panels,
+rather than scoring it by string similarity.
+
+Background reading:
+
+- **WHO SMART Guidelines L3 CQL SOP** — naming, tagging, and library-role
+  conventions every WHO CQL library must follow:
+  [v1.0.0](https://smart.who.int/ig-starter-kit/v1.0.0/l3_cql.html) ·
+  [current](https://smart.who.int/ig-starter-kit/l3_cql.html)
+- **`smart-immunizations`** — the production WHO immunizations DAK this v0
+  slice targets:
+  <https://github.com/WorldHealthOrganization/smart-immunizations>
+  (vendored at `vendor/smart-immunizations/`, pinned to SHA `b16245f71`)
+- **HL7 *Using CQL with FHIR* IG** — how CQL libraries bind to FHIR R4
+  models: <https://build.fhir.org/ig/HL7/cql-ig/using-cql.html>
+- **`cqframework/cql-execution`** — the in-memory JS CQL engine the Tier-3
+  grader runs: <https://github.com/cqframework/cql-execution>
+- **`cqframework/cql-to-elm`** — the Java translator the harness drives to
+  produce ELM: built via `scripts/fetch_cql_to_elm.sh`
+- **AHRQ CQL Testing Framework** — prior art for execution-based CQL
+  testing (Karate-based, FHIR-server-backed):
+  <https://github.com/AHRQ-CDS/CQL-Testing-Framework>
+
 ## Prerequisites
 
 | Tool | Why | Install |
