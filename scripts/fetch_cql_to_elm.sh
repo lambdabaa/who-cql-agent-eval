@@ -169,10 +169,15 @@ echo "built ${DEST_PATH}"
 # flag, so we trigger a "missing required argument" error path: that surfaces
 # the joptsimple parser, proving classes link correctly. ClassNotFoundError
 # would happen earlier.
-if java -jar "${DEST_PATH}" 2>&1 | grep -q 'required option'; then
+#
+# Capture into a variable rather than piping. With `set -o pipefail`, a
+# `java | grep` pipeline propagates java's non-zero exit (joptsimple exits 1
+# on the missing-argument error) regardless of whether grep matched.
+SMOKE_OUTPUT="$(java -jar "${DEST_PATH}" 2>&1 || true)"
+if printf '%s' "${SMOKE_OUTPUT}" | grep -q 'required option'; then
   echo "smoke test: ok"
 else
   echo "smoke test: failed — translator did not produce the expected 'missing --input' error" >&2
-  java -jar "${DEST_PATH}" 2>&1 | head -10 >&2
+  printf '%s\n' "${SMOKE_OUTPUT}" | head -10 >&2
   exit 1
 fi
