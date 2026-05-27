@@ -1,33 +1,44 @@
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
-import { basename, dirname, join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 
 /**
  * Thin wrapper around the `cql-to-elm` translator jar from
- * `cqframework/clinical_quality_language`.
+ * `cqframework/clinical_quality_language` (org.cqframework.cql.cql2elm.cli.Main).
  *
- * The jar is not bundled with this repo (license-clean, but large). Drop it at
- * `tools/cql-to-elm/cql-to-elm.jar` or pass `jarPath` directly. The accompanying
- * `scripts/fetch_cql_to_elm.sh` script downloads a pinned release.
+ * The jar is not bundled with this repo. Build it with
+ * `./scripts/fetch_cql_to_elm.sh` (requires Java + Maven). The script produces
+ * a runnable fat jar at `tools/cql-to-elm/cql-to-elm.jar`; override the
+ * location via `$CQL_TO_ELM_JAR`.
  *
- * Output ELM JSON is content-addressed: a (cql source SHA-256) + (jar SHA-256)
- * tuple keys the cache, so a rerun against unchanged source on the same jar
- * is instant.
+ * Output ELM JSON is content-addressed by the SHA-256 of (jar bytes + every
+ * .cql file in every search dir), so a rerun against an unchanged corpus on
+ * the same jar is instant.
+ *
+ * CLI shape (from cql-to-elm-cli v3.26 Main):
+ *   --input <file-or-dir>   CQL source (recursed when dir)
+ *   --output <file-or-dir>  ELM destination (mirrors input shape)
+ *   --format JSON|XML|COFFEE
+ *
+ * There is no `--library-path` flag; `include` resolution happens across all
+ * .cql files under `--input` when the input is a directory. To pull in
+ * cross-package dependencies (e.g. WHO smart-base) we copy/symlink their
+ * .cql into a unified staging dir.
  */
 
 export interface CompileOptions {
   /**
-   * Directories containing .cql sources. The first dir is the "subject" — its
-   * .cql files are compiled. Subsequent dirs are library search paths (used for
-   * resolving `include` references — e.g. WHO smart-base).
+   * Directories containing .cql sources. All .cql files in all dirs are
+   * compiled together so cross-dir `include`s resolve. The first dir is
+   * canonical (its identifier is reported back in `result.libraries`).
    */
   sourceDirs: string[];
   /** Path to cql-to-elm jar. Defaults to env CQL_TO_ELM_JAR. */
   jarPath?: string;
   /** Output dir for ELM JSON. Defaults to `.cache/elm`. */
   outDir?: string;
-  /** Pass-through translator options (`--format=JSON`, etc.). */
+  /** Pass-through translator options. */
   extraArgs?: string[];
 }
 
@@ -51,62 +62,75 @@ export interface CompileResult {
 }
 
 /**
- * Compile every .cql file under `sourceDirs[0]` (recursively). Library
- * dependencies are resolved by passing every `sourceDirs` entry on the
- * translator's `-mp` (model path) flag.
+ * Compile every .cql file under every `sourceDirs` entry. The dirs are
+ * staged into a single working dir so cross-dir `include`s resolve, then a
+ * single translator invocation produces ELM for the whole set.
  */
 export function compileCql(options: CompileOptions): CompileResult {
   const jarPath = options.jarPath ?? process.env.CQL_TO_ELM_JAR ?? defaultJarPath();
   if (!existsSync(jarPath)) {
     throw new Error(
       `cql-to-elm jar not found at ${jarPath}.\n` +
-        `Set CQL_TO_ELM_JAR or run scripts/fetch_cql_to_elm.sh to download it.`,
+        `Set CQL_TO_ELM_JAR or run scripts/fetch_cql_to_elm.sh to build it.`,
     );
   }
 
-  const outDir = options.outDir ?? join(process.cwd(), '.cache', 'elm');
-  mkdirSync(outDir, { recursive: true });
+  if (options.sourceDirs.length === 0) throw new Error('compileCql requires at least one source dir');
 
-  const subjectDir = options.sourceDirs[0];
-  if (!subjectDir) throw new Error('compileCql requires at least one source dir');
-  const cqlFiles = listCqlFiles(subjectDir);
+  const cqlFiles = options.sourceDirs.flatMap((d) => listCqlFiles(d));
+  if (cqlFiles.length === 0) {
+    return { libraries: [], errors: [], cacheHits: 0, cacheMisses: 0 };
+  }
 
   const jarHash = sha256File(jarPath);
+  // Cache key covers the jar + every input .cql byte. Cheap because the WHO
+  // CQL corpus is ~tens of files.
+  const corpusHash = sha256(
+    `${jarHash}\n` + cqlFiles.map((p) => `${p}:${sha256(readFileSync(p, 'utf8'))}`).join('\n'),
+  );
+
+  const cacheRoot = options.outDir ?? join(process.cwd(), '.cache', 'elm');
+  const stageDir = join(cacheRoot, corpusHash.slice(0, 12));
+  const elmDir = join(stageDir, 'out');
+  mkdirSync(elmDir, { recursive: true });
   const result: CompileResult = { libraries: [], errors: [], cacheHits: 0, cacheMisses: 0 };
 
-  for (const cqlPath of cqlFiles) {
-    const cqlSource = readFileSync(cqlPath, 'utf8');
-    const key = sha256(`${jarHash}\n${cqlSource}`);
-    const elmPath = join(outDir, `${basename(cqlPath, '.cql')}.${key.slice(0, 12)}.elm.json`);
-
-    if (existsSync(elmPath)) {
-      try {
-        const elm = JSON.parse(readFileSync(elmPath, 'utf8'));
-        result.libraries.push({
-          identifier: extractLibraryIdentifier(cqlSource) ?? basename(cqlPath, '.cql'),
-          cqlPath,
-          elmPath,
-          elm,
-        });
-        result.cacheHits++;
-        continue;
-      } catch {
-        // fall through to recompile if cache file is corrupt
-      }
+  const cached = existsSync(stageDir) && readdirSync(elmDir).filter((f) => f.endsWith('.json')).length > 0;
+  if (!cached) {
+    const inputDir = join(stageDir, 'in');
+    mkdirSync(inputDir, { recursive: true });
+    for (const cqlPath of cqlFiles) {
+      writeFileSync(join(inputDir, basename(cqlPath)), readFileSync(cqlPath));
     }
-
     try {
-      runTranslator(jarPath, cqlPath, options.sourceDirs, elmPath, options.extraArgs ?? []);
+      runTranslator(jarPath, inputDir, elmDir, options.extraArgs ?? []);
+      result.cacheMisses = cqlFiles.length;
+    } catch (e) {
+      result.errors.push({ cqlPath: '<batch>', stderr: (e as Error).message });
+      return result;
+    }
+  } else {
+    result.cacheHits = cqlFiles.length;
+  }
+
+  for (const cqlPath of cqlFiles) {
+    const stem = basename(cqlPath, '.cql');
+    const elmPath = join(elmDir, `${stem}.json`);
+    if (!existsSync(elmPath)) {
+      result.errors.push({ cqlPath, stderr: `translator did not produce ${elmPath}` });
+      continue;
+    }
+    try {
       const elm = JSON.parse(readFileSync(elmPath, 'utf8'));
+      const cqlSource = readFileSync(cqlPath, 'utf8');
       result.libraries.push({
-        identifier: extractLibraryIdentifier(cqlSource) ?? basename(cqlPath, '.cql'),
+        identifier: extractLibraryIdentifier(cqlSource) ?? stem,
         cqlPath,
         elmPath,
         elm,
       });
-      result.cacheMisses++;
     } catch (e) {
-      result.errors.push({ cqlPath, stderr: (e as Error).message });
+      result.errors.push({ cqlPath, stderr: `corrupt ELM JSON at ${elmPath}: ${(e as Error).message}` });
     }
   }
 
@@ -137,30 +161,13 @@ export function compileCqlString(
   return { elm: lib.elm, elmPath: lib.elmPath };
 }
 
-function runTranslator(
-  jarPath: string,
-  cqlPath: string,
-  searchDirs: string[],
-  outPath: string,
-  extraArgs: string[],
-) {
-  // The standalone cql-to-elm CLI flags:
-  //   --input / -i  CQL source (file or dir)
-  //   --output / -o output (file or dir)
-  //   --model-info  …
-  //   --format JSON|XML
-  //   --library-path / -lp library search path
-  const args = [
-    '-jar',
-    jarPath,
-    '--input',
-    cqlPath,
-    '--output',
-    outPath,
-    '--format=JSON',
-    ...searchDirs.flatMap((d) => ['--library-path', resolve(d)]),
-    ...extraArgs,
-  ];
+function runTranslator(jarPath: string, inputDir: string, outputDir: string, extraArgs: string[]) {
+  // cql-to-elm-cli (org.cqframework.cql.cql2elm.cli.Main) jOpt-Simple flags:
+  //   --input <file|dir>   CQL source (recursed when dir)
+  //   --output <file|dir>  ELM destination (mirrors input)
+  //   --format JSON|XML|COFFEE
+  // No --library-path: includes are resolved among siblings of --input.
+  const args = ['-jar', jarPath, '--input', resolve(inputDir), '--output', resolve(outputDir), '--format', 'JSON', ...extraArgs];
   try {
     execFileSync('java', args, { stdio: ['ignore', 'pipe', 'pipe'] });
   } catch (e) {
@@ -201,7 +208,4 @@ function defaultJarPath(): string {
   return join(process.cwd(), 'tools', 'cql-to-elm', 'cql-to-elm.jar');
 }
 
-// re-export for the fetch script to read
 export const DEFAULT_JAR_RELATIVE_PATH = 'tools/cql-to-elm/cql-to-elm.jar';
-// avoid an unused dirname import warning while keeping the import grouped
-void dirname;
