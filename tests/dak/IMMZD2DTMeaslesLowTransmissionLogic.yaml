@@ -1,0 +1,239 @@
+# Augmented test patients for `IMMZD2DTMeaslesLowTransmissionLogic`.
+#
+# Source: vendor/smart-immunizations (b16245f71) at
+#   input/tests/plandefinition/IMMZD18SMeaslesLowTransmissionLogic/IMMZD2DTMeaslesLowTransmissionLogic.yaml
+#
+# Each document is a verbatim copy of the upstream YAML plus an `expected:`
+# block derived from:
+#   - the `### …` natural-language outcomes already present in the WHO file
+#   - the `Test Validation` case-statement in IMMZD2DTMeaslesLowTransmissionLogic.cql
+#
+# The intent is that this file (or its `expected:` blocks merged into the
+# upstream file) is what we propose upstream as PR-1 of the workplan.
+#
+# Harness-wide `today` defaults to 2026-01-15 for this overlay; rerun with
+# a different `today` only after re-deriving the relative dates by hand.
+---
+# Client's age is less than 12 months → Today's date − "Date of birth" < 12 months
+### Client is not due for MCV1
+### "Immunization recommendation status" = "Not due"
+id: Measles22.1
+birth: -1d
+patient:
+  fhir:
+    gender: female
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R1
+  defines:
+    "Client is not due for MCV1 Case 1": true
+    "Client is not due for MCV1": true
+    "Client is due for MCV1": false
+    "Client is not due for MCV2": false
+    "Client is due for MCV2": false
+    "Measles primary series is complete": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Should not vaccinate client with MCV1 as client's age is less than 12 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+---
+# No measles primary series doses; age ≥ 12 months; no recent live vaccine
+### Client is due for MCV1
+### "Immunization recommendation status" = "Due"
+id: Measles23.3
+birth: -12m
+patient:
+  fhir:
+    gender: female
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R2
+  defines:
+    "Client is due for MCV1": true
+    "Client is not due for MCV1": false
+    "Client is not due for MCV1 Case 1": false
+    "Client is not due for MCV1 Case 2": false
+    "Measles primary series is complete": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.\nCheck for contraindications."
+---
+# No MCV doses; age ≥ 12 months; live (flu) vaccine in last 4 weeks
+### Client is not due for MCV1
+### "Immunization recommendation status" = "Not due"
+id: Measles24.3
+birth: -12m
+patient:
+  fhir:
+    gender: female
+immunization:
+  flu:
+    vaccine:
+      code: XM5V64
+      system: http://id.who.int/icd/release/11/mms
+      display: Influenza vaccines, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: -2w
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R3
+  defines:
+    "Client is not due for MCV1 Case 2": true
+    "Client is not due for MCV1": true
+    "Client is due for MCV1": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+---
+# MCV1 administered; age < 15 months
+### Client is not due for MCV2
+### "Immunization recommendation status" = "Not due"
+id: Measles25.2
+birth: -13m
+patient:
+  fhir:
+    gender: female
+immunization:
+  measles1:
+    vaccine:
+      code: XM8TF3
+      system: http://id.who.int/icd/release/11/mms
+      display: Measles, combinations with mumps and rubella, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+12m
+      protocolApplied:
+        - doseNumberString: "1"
+          seriesDosesString: "2"
+          series: Primary series
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R4
+  defines:
+    "Client is not due for MCV2 Case 1": true
+    "Client is not due for MCV2": true
+    "Client is due for MCV2": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Should not vaccinate client with MCV2 as client's age is less than 15 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+---
+# MCV1 administered; age ≥ 15 months; no recent live vaccine
+### Client is due for MCV2
+### "Immunization recommendation status" = "Due"
+id: Measles26.3
+birth: -15m
+patient:
+  fhir:
+    gender: female
+immunization:
+  flu:
+    vaccine:
+      code: XM5V64
+      system: http://id.who.int/icd/release/11/mms
+      display: Influenza vaccines, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: -6w
+  measles1:
+    vaccine:
+      code: XM8TF3
+      system: http://id.who.int/icd/release/11/mms
+      display: Measles, combinations with mumps and rubella, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+12m
+      protocolApplied:
+        - doseNumberString: "1"
+          seriesDosesString: "2"
+          series: Primary series
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R5
+  defines:
+    "Client is due for MCV2": true
+    "Client is not due for MCV2": false
+    "Client is not due for MCV2 Case 1": false
+    "Client is not due for MCV2 Case 2": false
+    "Measles primary series is complete": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.\nCheck for contraindications."
+---
+# MCV1 administered; age ≥ 15 months; live vaccine in last 4 weeks
+### Client is not due for MCV2
+### "Immunization recommendation status" = "Not due"
+id: Measles27.3
+birth: -15m
+patient:
+  fhir:
+    gender: female
+immunization:
+  flu:
+    vaccine:
+      code: XM5V64
+      system: http://id.who.int/icd/release/11/mms
+      display: Influenza vaccines, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: -2w
+  measles1:
+    vaccine:
+      code: XM8TF3
+      system: http://id.who.int/icd/release/11/mms
+      display: Measles, combinations with mumps and rubella, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+12m
+      protocolApplied:
+        - doseNumberString: "1"
+          seriesDosesString: "2"
+          series: Primary series
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R6
+  defines:
+    "Client is not due for MCV2 Case 2": true
+    "Client is not due for MCV2": true
+    "Client is due for MCV2": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+---
+# Both MCV1 and MCV2 administered
+### Measles primary series is complete
+### "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles-containing vaccines")
+id: Measles28.1
+birth: -20m
+patient:
+  fhir:
+    gender: female
+immunization:
+  measles1:
+    vaccine:
+      code: XM8TF3
+      system: http://id.who.int/icd/release/11/mms
+      display: Measles, combinations with mumps and rubella, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+12m
+      protocolApplied:
+        - doseNumberString: "1"
+          seriesDosesString: "2"
+          series: Primary series
+  measles2:
+    vaccine:
+      code: XM8TF3
+      system: http://id.who.int/icd/release/11/mms
+      display: Measles, combinations with mumps and rubella, live attenuated
+    fhir:
+      expirationDate: 1y
+      occurrenceDateTime: b+15m
+      protocolApplied:
+        - doseNumberString: "2"
+          seriesDosesString: "2"
+          series: Primary series
+expected:
+  row: IMMZ.D2.DT.Measles.LowTransmission.R7
+  defines:
+    "Measles primary series is complete": true
+    "Client is due for MCV1": false
+    "Client is due for MCV2": false
+    "Client is not due for MCV1": false
+    "Client is not due for MCV2": false
+    "Has Guidance": true
+    "Guidance":
+      equals: "Measles primary series is complete. Two measles primary series doses were administered.\nCheck if a measles supplementary dose is appropriate for the client."
