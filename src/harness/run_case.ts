@@ -1,4 +1,4 @@
-import { Executor, Library, PatientContext, Repository, Results } from 'cql-execution';
+import { Date as CqlDate, DateTime, Executor, Library, PatientContext, Repository, Results } from 'cql-execution';
 import { PatientSource } from 'cql-exec-fhir';
 import type { CompiledLibrary } from './compile_cql.js';
 import type { FhirBundle } from './yaml_to_bundle.js';
@@ -67,7 +67,7 @@ export interface RunCaseResult {
  * each call builds a fresh PatientSource so cases are independently
  * reproducible.
  */
-export function runCase(options: RunCaseOptions): RunCaseResult {
+export async function runCase(options: RunCaseOptions): Promise<RunCaseResult> {
   const today = options.expected?.today ?? options.today;
   const encounterId = options.expected?.encounterId;
   const errors: string[] = [];
@@ -104,16 +104,7 @@ export function runCase(options: RunCaseOptions): RunCaseResult {
 
   let raw: Results | undefined;
   try {
-    const result = executor.exec(patientSource);
-    // cql-execution typings declare exec() returns Promise<Results>, but the
-    // current JS implementation returns sync Results when given a non-async
-    // PatientSource. Handle both.
-    raw = (result instanceof Promise ? undefined : (result as Results));
-    if (result instanceof Promise) {
-      // Caller is in a sync code path; fall back to errors[] rather than
-      // breaking the surface. The eval CLI awaits the wrapping call.
-      errors.push('executor.exec returned a Promise; async path not yet wired');
-    }
+    raw = await executor.exec(patientSource);
   } catch (e) {
     errors.push((e as Error).message);
   }
@@ -157,16 +148,17 @@ interface ElmShape {
 }
 
 /**
- * Build a cql-execution `Date` from `YYYY-MM-DD`. The constructor accepts
- * (year, month, day) — note month is 1-based here (unlike JS Date).
+ * Build a cql-execution `Date` from `YYYY-MM-DD`. The WHO Logic libraries
+ * declare `parameter Today Date default Today()` — a CQL `Date`, not a
+ * `DateTime` — and cql-execution type-checks the parameter on the way in.
  */
-function parseCqlDate(yyyyMmDd: string): unknown {
-  // late-bind via runtime require to avoid top-level type drama
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  const { DateTime } = require('cql-execution');
+function parseCqlDate(yyyyMmDd: string): CqlDate {
   const [y, m, d] = yyyyMmDd.split('-').map((n) => parseInt(n, 10));
-  return DateTime.fromJSDate(new Date(Date.UTC(y!, (m ?? 1) - 1, d ?? 1)));
+  return new CqlDate(y!, m ?? 1, d ?? 1);
 }
+
+// keep DateTime import alive for downstream call sites once we wire DateTime params
+void DateTime;
 
 // avoid unused-import warning until PatientContext is wired in for
 // encounter-context libraries (Phase 1).

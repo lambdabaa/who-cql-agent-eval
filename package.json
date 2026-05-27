@@ -16,8 +16,8 @@
     "typecheck": "tsc -p tsconfig.json",
     "test": "vitest run",
     "test:watch": "vitest",
-    "eval": "tsx src/cli.ts",
-    "eval:measles": "tsx src/cli.ts --dak smart-immunizations --table IMMZD2DTMeaslesLowTransmissionLogic"
+    "eval": "tsx src/cli.ts run",
+    "eval:measles": "tsx src/cli.ts run --dak smart-immunizations --table IMMZD2DTMeaslesLowTransmissionLogic"
   },
   "dependencies": {
     "cql-execution": "^3.2.0",

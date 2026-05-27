@@ -66,15 +66,17 @@ program
       }
     }
 
-    const cases = parsed.cases.map((c) =>
-      runCase({
-        libraries,
-        logicLibraryId: opts.table,
-        bundle: c.bundle,
-        patientId: c.patientId,
-        today,
-        ...(c.expected ? { expected: c.expected } : {}),
-      }),
+    const cases = await Promise.all(
+      parsed.cases.map((c) =>
+        runCase({
+          libraries,
+          logicLibraryId: opts.table,
+          bundle: c.bundle,
+          patientId: c.patientId,
+          today,
+          ...(c.expected ? { expected: c.expected } : {}),
+        }),
+      ),
     );
 
     const task = summarizeTask({

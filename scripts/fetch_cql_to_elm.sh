@@ -59,6 +59,13 @@ echo "building cql-to-elm-cli v${VERSION} fat jar..."
 BUILD_DIR="$(mktemp -d)"
 trap 'rm -rf "${BUILD_DIR}"' EXIT
 
+HAPI_BOM_VERSION="${HAPI_BOM_VERSION:-8.2.0}"
+
+# Why these explicit deps: cqframework 3.x publishes via Gradle and the .pom
+# fallback drops dependencies Gradle metadata expresses but Maven cannot
+# (constraints, BOM imports, etc.). Resolved against the Gradle module
+# metadata for cql-to-elm-cli 3.26.0 at runtime — see scripts/README notes.
+
 cat > "${BUILD_DIR}/pom.xml" <<POM
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0">
@@ -71,12 +78,49 @@ cat > "${BUILD_DIR}/pom.xml" <<POM
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>ca.uhn.hapi.fhir</groupId>
+        <artifactId>hapi-fhir-bom</artifactId>
+        <version>${HAPI_BOM_VERSION}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>info.cqframework</groupId>
       <artifactId>cql-to-elm-cli</artifactId>
       <version>${VERSION}</version>
     </dependency>
+    <!-- cqframework deps. The cqframework pom files publish runtime-scope
+         transitive deps but also ship Gradle metadata, which causes Maven
+         to skip the runtime-scope transitives in practice. -->
+    <dependency><groupId>info.cqframework</groupId><artifactId>cql</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>cql-to-elm</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>model</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>model-jaxb</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>elm</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>elm-jaxb</artifactId><version>${VERSION}</version></dependency>
+    <!-- Do NOT include model-jackson or elm-jackson here: shipping both jaxb
+         and jackson ModelInfoReaderProvider impls puts two services on the
+         classpath, and cql-to-elm refuses to pick one. The jaxb pair is
+         what the cqframework CLI itself uses. -->
+    <dependency><groupId>info.cqframework</groupId><artifactId>elm-fhir</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>cql-parsetree</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>cqf-fhir</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>cqf-fhir-npm</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>quick</artifactId><version>${VERSION}</version></dependency>
+    <dependency><groupId>info.cqframework</groupId><artifactId>qdm</artifactId><version>${VERSION}</version></dependency>
+    <!-- runtime libs the cqframework CLI relies on -->
+    <dependency><groupId>net.sf.jopt-simple</groupId><artifactId>jopt-simple</artifactId><version>4.7</version></dependency>
+    <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-simple</artifactId><version>2.0.13</version></dependency>
+    <dependency><groupId>org.glassfish.jaxb</groupId><artifactId>jaxb-runtime</artifactId><version>4.0.5</version></dependency>
+    <dependency><groupId>org.eclipse.persistence</groupId><artifactId>org.eclipse.persistence.moxy</artifactId><version>4.0.2</version></dependency>
+    <dependency><groupId>ca.uhn.hapi.fhir</groupId><artifactId>hapi-fhir-structures-r5</artifactId></dependency>
+    <dependency><groupId>ca.uhn.hapi.fhir</groupId><artifactId>hapi-fhir-structures-r4</artifactId></dependency>
   </dependencies>
   <build>
     <finalName>cql-to-elm</finalName>
@@ -120,4 +164,15 @@ POM
 
 cp "${BUILD_DIR}/target/cql-to-elm.jar" "${DEST_PATH}"
 echo "built ${DEST_PATH}"
-java -jar "${DEST_PATH}" --help 2>&1 | head -8 || true
+
+# Smoke-test that the jar is runnable. cql-to-elm-cli has no --help/--version
+# flag, so we trigger a "missing required argument" error path: that surfaces
+# the joptsimple parser, proving classes link correctly. ClassNotFoundError
+# would happen earlier.
+if java -jar "${DEST_PATH}" 2>&1 | grep -q 'required option'; then
+  echo "smoke test: ok"
+else
+  echo "smoke test: failed — translator did not produce the expected 'missing --input' error" >&2
+  java -jar "${DEST_PATH}" 2>&1 | head -10 >&2
+  exit 1
+fi
