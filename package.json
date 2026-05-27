@@ -17,15 +17,20 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "eval": "tsx src/cli.ts run",
-    "eval:measles": "tsx src/cli.ts run --dak smart-immunizations --table IMMZD2DTMeaslesLowTransmissionLogic"
+    "eval:measles": "tsx src/cli.ts run --dak smart-immunizations --table IMMZD2DTMeaslesLowTransmissionLogic",
+    "baseline:build": "tsx src/cli.ts baseline build",
+    "baseline:run": "tsx src/cli.ts baseline run",
+    "baseline:grade": "tsx src/cli.ts baseline grade"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.32.1",
     "cql-execution": "^3.2.0",
     "cql-exec-fhir": "^2.1.5",
     "yaml": "^2.6.0",
     "zod": "^3.23.8",
     "commander": "^12.1.0",
-    "date-fns": "^3.6.0"
+    "date-fns": "^3.6.0",
+    "openai": "^4.73.0"
   },
   "devDependencies": {
     "@types/node": "^22.7.0",

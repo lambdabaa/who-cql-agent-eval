@@ -113,6 +113,20 @@ npx tsx src/cli.ts run \
     --today 2026-01-15
 ```
 
+Expected output on a clean run:
+
+```
+> tsx src/cli.ts run --dak smart-immunizations --table IMMZD2DTMeaslesLowTransmissionLogic
+
+loaded 192 ValueSets from FSH
+compiled 280 libraries (hits=0 misses=279)
+wrote reports/report.json
+wrote reports/junit.xml
+
+T3 execute: pass
+cases: 7/7 passed
+```
+
 Flags:
 
 | Flag | Default | Meaning |
