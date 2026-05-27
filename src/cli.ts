@@ -7,6 +7,7 @@ import { compileCql } from './harness/compile_cql.js';
 import { runCase } from './harness/run_case.js';
 import { summarizeTask, aggregateRun, writeJsonReport, writeJunitReport } from './harness/report.js';
 import { backfillFromPaths, renderExpectedBlock } from './harness/backfill_expected.js';
+import { buildCodeServiceFromFsh } from './harness/code_service.js';
 
 /**
  * `who-eval` — top-level CLI for the harness.
@@ -47,6 +48,10 @@ program
     const yamlText = readFileSync(yamlPath, 'utf8');
     const parsed = yamlToBundles(yamlText, { today });
 
+    const codeServiceResult = buildCodeServiceFromFsh({ dakInputDir: join(dakRoot, 'input') });
+    const valueSetCount = Object.keys(codeServiceResult.map).length;
+    if (valueSetCount > 0) console.log(`loaded ${valueSetCount} ValueSets from FSH`);
+
     let libraries: ReturnType<typeof compileCql>['libraries'] = [];
     if (!opts.skipCompile) {
       const cqlDir = join(dakRoot, 'input', 'cql');
@@ -74,6 +79,7 @@ program
           bundle: c.bundle,
           patientId: c.patientId,
           today,
+          codeService: codeServiceResult.service,
           ...(c.expected ? { expected: c.expected } : {}),
         }),
       ),

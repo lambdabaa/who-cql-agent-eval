@@ -1,4 +1,4 @@
-import { Date as CqlDate, DateTime, Executor, Library, PatientContext, Repository, Results } from 'cql-execution';
+import { Date as CqlDate, DateTime, Executor, Library, PatientContext, Repository, Results, CodeService } from 'cql-execution';
 import { PatientSource } from 'cql-exec-fhir';
 import type { CompiledLibrary } from './compile_cql.js';
 import type { FhirBundle } from './yaml_to_bundle.js';
@@ -43,6 +43,13 @@ export interface RunCaseOptions {
    * Logic library are evaluated.
    */
   defines?: string[];
+  /**
+   * Optional CodeService for resolving ValueSet retrieves
+   * (`[Immunization: Concepts."Measles-containing vaccines"]`). When unset,
+   * cql-execution still runs; retrieves that need value-set resolution will
+   * fail at exec time with a clear error.
+   */
+  codeService?: CodeService;
 }
 
 export interface RunCaseResult {
@@ -94,7 +101,7 @@ export async function runCase(options: RunCaseOptions): Promise<RunCaseResult> {
   }
 
   const library = new Library(subject, new Repository(repoMap));
-  const executor = new Executor(library, undefined, {
+  const executor = new Executor(library, options.codeService, {
     Today: parseCqlDate(today),
     EncounterId: encounterId ?? null,
   });

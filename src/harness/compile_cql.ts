@@ -120,16 +120,21 @@ export function compileCql(options: CompileOptions): CompileResult {
     result.cacheHits = cqlFiles.length;
   }
 
-  for (const cqlPath of cqlFiles) {
-    const stem = basename(cqlPath, '.cql');
-    const elmPath = join(elmDir, `${stem}.json`);
-    if (!existsSync(elmPath)) {
-      result.errors.push({ cqlPath, stderr: `translator did not produce ${elmPath}` });
-      continue;
-    }
+  // Load every .json the translator produced — that's the canonical set the
+  // executor needs at runtime. We pair each ELM back to its source .cql when
+  // we can find it under sourceDirs, but bundled helpers staged inline
+  // (FHIRHelpers, etc.) don't have an upstream cqlPath; they still need to
+  // ride along so the Repository can resolve `include FHIRHelpers`.
+  const cqlByStem = new Map<string, string>();
+  for (const cqlPath of cqlFiles) cqlByStem.set(basename(cqlPath, '.cql'), cqlPath);
+  const elmFiles = readdirSync(elmDir).filter((f) => f.endsWith('.json'));
+  for (const f of elmFiles) {
+    const elmPath = join(elmDir, f);
+    const stem = basename(f, '.json');
     try {
       const elm = JSON.parse(readFileSync(elmPath, 'utf8'));
-      const cqlSource = readFileSync(cqlPath, 'utf8');
+      const cqlPath = cqlByStem.get(stem) ?? join(stageDir, 'in', `${stem}.cql`);
+      const cqlSource = existsSync(cqlPath) ? readFileSync(cqlPath, 'utf8') : '';
       result.libraries.push({
         identifier: extractLibraryIdentifier(cqlSource) ?? stem,
         cqlPath,
@@ -137,7 +142,15 @@ export function compileCql(options: CompileOptions): CompileResult {
         elm,
       });
     } catch (e) {
-      result.errors.push({ cqlPath, stderr: `corrupt ELM JSON at ${elmPath}: ${(e as Error).message}` });
+      result.errors.push({ cqlPath: elmPath, stderr: `corrupt ELM JSON: ${(e as Error).message}` });
+    }
+  }
+
+  // Surface any source files the translator declined to emit ELM for.
+  for (const cqlPath of cqlFiles) {
+    const stem = basename(cqlPath, '.cql');
+    if (!elmFiles.some((f) => f === `${stem}.json`)) {
+      result.errors.push({ cqlPath, stderr: `translator did not emit ${stem}.json` });
     }
   }
 
