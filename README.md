@@ -1,5 +1,7 @@
 # who-cql-agent-eval
 
+[![CI](https://github.com/lambdabaa/who-cql-agent-eval/actions/workflows/ci.yml/badge.svg)](https://github.com/lambdabaa/who-cql-agent-eval/actions/workflows/ci.yml)
+
 Evaluation harness for AI agents that author, modify, or reason about
 WHO SMART Guidelines CQL. The v0 slice targets the
 `IMMZD2DTMeaslesLowTransmissionLogic` decision table in

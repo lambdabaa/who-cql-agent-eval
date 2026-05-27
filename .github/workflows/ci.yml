@@ -1,0 +1,91 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  # Cancel in-progress runs for the same branch / PR when a new push arrives.
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  CQL_TO_ELM_VERSION: '3.26.0'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Setup Java (Temurin 17)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      # ubuntu-latest already ships Maven preinstalled, but log versions so
+      # CI failures from tooling drift are obvious in the run header.
+      - name: Show toolchain versions
+        run: |
+          node --version
+          npm --version
+          java -version
+          mvn --version | head -1
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      # --- Cached: the cql-to-elm fat jar -------------------------------
+      # The script writes the jar to a fixed path and exits early on hit, so
+      # we cache the path itself. The cache key bakes in the translator
+      # version env var + the build-script bytes — any change to either is a
+      # forced rebuild.
+      - name: Restore cql-to-elm jar
+        id: jar-cache
+        uses: actions/cache@v4
+        with:
+          path: tools/cql-to-elm/cql-to-elm.jar
+          key: cql-to-elm-${{ env.CQL_TO_ELM_VERSION }}-${{ hashFiles('scripts/fetch_cql_to_elm.sh') }}
+
+      - name: Build cql-to-elm jar (skipped on cache hit)
+        if: steps.jar-cache.outputs.cache-hit != 'true'
+        run: ./scripts/fetch_cql_to_elm.sh
+
+      # --- Cached: compiled ELM corpus ----------------------------------
+      # Invalidate whenever the jar, the WHO CQL sources, or the harness's
+      # compile path itself changes. The harness's own content-hash cache
+      # under .cache/elm/ then makes recompiles instant on warm hits.
+      - name: Restore compiled ELM
+        uses: actions/cache@v4
+        with:
+          path: .cache/elm
+          key: elm-${{ env.CQL_TO_ELM_VERSION }}-${{ hashFiles('tools/cql-to-elm/cql-to-elm.jar', 'vendor/smart-immunizations/input/cql/**', 'src/harness/compile_cql.ts') }}
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Tests (vitest, includes T3 end-to-end against WHO CQL)
+        run: npm test
+
+      # Useful when CI fails: attach the JUnit + JSON reports the harness
+      # emits, so we can diagnose regressions from the Actions UI.
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reports
+          path: reports/
+          if-no-files-found: ignore
+          retention-days: 14
