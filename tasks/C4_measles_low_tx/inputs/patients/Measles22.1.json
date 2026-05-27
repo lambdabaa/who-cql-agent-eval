@@ -1,0 +1,21 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:Patient/Measles22.1",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "Measles22.1",
+        "name": [
+          {
+            "text": "Measles22.1",
+            "use": "official"
+          }
+        ],
+        "birthDate": "2026-01-14",
+        "gender": "female"
+      }
+    }
+  ]
+}

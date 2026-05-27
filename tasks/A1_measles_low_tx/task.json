@@ -1,0 +1,11 @@
+{
+  "id": "A1_measles_low_tx",
+  "kind": "authoring",
+  "dak": "smart-immunizations",
+  "logicLibraryId": "IMMZD2DTMeaslesLowTransmissionLogic",
+  "outputFiles": [
+    "IMMZD2DTMeaslesLowTransmissionLogic.cql"
+  ],
+  "patientPanelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
+  "today": "2026-01-15"
+}

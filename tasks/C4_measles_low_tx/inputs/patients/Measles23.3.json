@@ -1,0 +1,21 @@
+{
+  "resourceType": "Bundle",
+  "type": "collection",
+  "entry": [
+    {
+      "fullUrl": "urn:uuid:Patient/Measles23.3",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "Measles23.3",
+        "name": [
+          {
+            "text": "Measles23.3",
+            "use": "official"
+          }
+        ],
+        "birthDate": "2025-01-15",
+        "gender": "female"
+      }
+    }
+  ]
+}

@@ -8,6 +8,14 @@ import { runCase } from './harness/run_case.js';
 import { summarizeTask, aggregateRun, writeJsonReport, writeJunitReport } from './harness/report.js';
 import { backfillFromPaths, renderExpectedBlock } from './harness/backfill_expected.js';
 import { buildCodeServiceFromFsh } from './harness/code_service.js';
+import {
+  buildTaskFixtures,
+  defaultBaselinePaths,
+  freezeBaseline,
+  gradeAllRuns,
+  runAgentOnAllTasks,
+  runnerFromId,
+} from './agent_tasks/baseline.js';
 
 /**
  * `who-eval` — top-level CLI for the harness.
@@ -139,5 +147,67 @@ function extractDefines(cqlPath: string): string[] {
   for (const m of src.matchAll(/^define\s+"([^"]+)"\s*:/gm)) names.add(m[1]!);
   return [...names];
 }
+
+// ---------------------------------------------------------------------------
+// baseline — orchestrate (build → run → grade → freeze) for the v0 frontier-
+// agent baseline. Each subcommand is independently runnable.
+// ---------------------------------------------------------------------------
+
+const baseline = program.command('baseline').description('Build, run, and freeze the v0 agent baseline');
+
+baseline
+  .command('build')
+  .description('Regenerate canonical task fixtures under tasks/')
+  .option('--jar <path>', 'cql-to-elm.jar path (else CQL_TO_ELM_JAR env)')
+  .action(async (opts) => {
+    const paths = defaultBaselinePaths();
+    await buildTaskFixtures(paths, opts.jar ? { jarPath: opts.jar } : {});
+    console.log(`built fixtures under ${paths.tasksRoot}`);
+  });
+
+baseline
+  .command('run')
+  .description('Run one or more agents against every task fixture')
+  .requiredOption('--agent <spec...>', 'Agent spec(s) like anthropic:claude-opus-4-7 or openai:gpt-5.5')
+  .option('--force', 'Re-run even if outputs/ already exist', false)
+  .action(async (opts) => {
+    const paths = defaultBaselinePaths();
+    const agents: string[] = opts.agent;
+    for (const a of agents) {
+      const runner = runnerFromId(a);
+      await runAgentOnAllTasks(paths, runner, { force: opts.force });
+    }
+  });
+
+baseline
+  .command('grade')
+  .description('Grade every agent run under runs/, write per-run grade.json')
+  .option('--jar <path>', 'cql-to-elm.jar path (else CQL_TO_ELM_JAR env)')
+  .action(async (opts) => {
+    const paths = defaultBaselinePaths();
+    const graded = await gradeAllRuns(paths, opts.jar ? { jarPath: opts.jar } : {});
+    for (const g of graded) {
+      const r = g.result;
+      if ('t1' in r) {
+        const t3 = r.t3 ? ` · T3: ${r.t3.casesPassed}/${r.t3.casesTotal}` : '';
+        console.log(`${g.agentId}/${g.taskId}: T1=${r.t1}${t3}`);
+      } else {
+        console.log(`${g.agentId}/${g.taskId}: ${r.correctCells}/${r.totalCells}`);
+      }
+    }
+  });
+
+baseline
+  .command('freeze')
+  .description('Roll up all grade.json files into baselines/<date>/summary.json')
+  .option('--date <iso-day>', 'Date folder (defaults to today)')
+  .option('--jar <path>', 'cql-to-elm.jar path (else CQL_TO_ELM_JAR env)')
+  .action(async (opts) => {
+    const paths = defaultBaselinePaths();
+    const date = opts.date ?? new Date().toISOString().slice(0, 10);
+    const graded = await gradeAllRuns(paths, opts.jar ? { jarPath: opts.jar } : {});
+    const out = freezeBaseline(paths, graded, date);
+    console.log(`wrote ${out}`);
+  });
 
 program.parseAsync(process.argv);

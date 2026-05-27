@@ -14,3 +14,7 @@ tools/cql-to-elm/*.jar
 # generated bundles + reports
 bundles/
 reports/
+
+# per-agent baseline runs are transient; the frozen summary in baselines/
+# is what gets committed.
+runs/

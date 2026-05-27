@@ -1,0 +1,32 @@
+{
+  "id": "C4_measles_low_tx",
+  "kind": "prediction",
+  "dak": "smart-immunizations",
+  "logicLibraryId": "IMMZD2DTMeaslesLowTransmissionLogic",
+  "defines": [
+    "Client is not due for MCV1 Case 1",
+    "Client is not due for MCV1 Case 2",
+    "Client is not due for MCV1",
+    "Client is due for MCV1",
+    "Client is not due for MCV2 Case 1",
+    "Client is not due for MCV2 Case 2",
+    "Client is not due for MCV2",
+    "Client is due for MCV2",
+    "Measles primary series is complete",
+    "Has Guidance",
+    "Guidance"
+  ],
+  "patientIds": [
+    "Measles22.1",
+    "Measles23.3",
+    "Measles24.3",
+    "Measles25.2",
+    "Measles26.3",
+    "Measles27.3",
+    "Measles28.1"
+  ],
+  "outputFiles": [
+    "predictions.json"
+  ],
+  "today": "2026-01-15"
+}
