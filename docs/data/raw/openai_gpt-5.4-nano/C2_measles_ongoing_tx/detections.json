@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 63,
+    "mutationKind": "boolean_op_flip",
+    "description": "In 'Client is due for MCV2', 'or' is used between age check and live-vaccine condition, rather than requiring all AND conditions."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+    "approximateLine": 55,
+    "mutationKind": "reference_rename",
+    "description": "Condition uses 'MCV1 was administered or Client's age is less than 15 months' instead of the canonical 'MCV1 was administered and age is less than 15 months'—changes dependency combination leading to incorrect not-due classification."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 42,
+    "mutationKind": "comparator_flip",
+    "description": "In 'Client is due for MCV1', live-vaccine condition is flipped to 'Live vaccine was administered in the last 4 weeks' (should be 'No live vaccine...')."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 77,
+    "mutationKind": "reference_rename",
+    "description": "In 'Client is due for MCV2', the first conjuncts are swapped so it requires 'MCV2 was administered' rather than 'MCV1 was administered'."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 42,
+    "mutationKind": "threshold_change",
+    "description": "In 'Client is due for MCV1', age threshold is changed from '>= 9 months' to '>= 12 months'."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Guidance",
+    "approximateLine": 118,
+    "mutationKind": "comparator_flip",
+    "description": "In 'Client is not due for MCV2', the live-vaccine age check uses '>= 12 months' instead of canonical '>= 15 months' (threshold mismatch)."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 109,
+    "mutationKind": "precondition_drop",
+    "description": "In the 'Client is not due for MCV2' path, the conjunct that ensures 'Live vaccine was administered in the last 4 weeks' is missing/incorrectly omitted."
+  },
+  "v08": {
+    "hasBug": false
+  },
+  "v09": {
+    "hasBug": false
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 214,
+    "mutationKind": "comparator_flip",
+    "description": "In Test Validation, condition 'when Patient.id != 'Measles11.2'' should be 'when Patient.id = 'Measles11.2''."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is due for MCV2 Guidance",
+    "approximateLine": 127,
+    "mutationKind": "guidance_text_swap",
+    "description": "The 'Client is due for MCV2 Guidance' guidance literal is wrong (points to 'not due' text for MCV2)."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Guidance",
+    "approximateLine": 121,
+    "mutationKind": "guidance_text_swap",
+    "description": "The 'Client is not due for MCV1 Guidance' literal is replaced with 'Measles primary series is complete...' guidance."
+  },
+  "v13": {
+    "hasBug": true,
+    "define": "Client is due for MCV2 Guidance",
+    "approximateLine": 151,
+    "mutationKind": "guidance_text_swap",
+    "description": "The MCV2-due guidance includes incorrect guidance (uses 'due for MCV2' but should match canonical guidance; string mismatch)."
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 42,
+    "mutationKind": "comparator_flip",
+    "description": "Age due logic uses 'Client's age is more than or equal to 9 months\"' but with a malformed trailing quote and live-vaccine branch swapped compared to canonical."
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

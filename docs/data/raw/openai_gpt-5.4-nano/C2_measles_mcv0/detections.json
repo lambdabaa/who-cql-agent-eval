@@ -1,0 +1,118 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 46,
+    "mutationKind": "boolean_op_flip",
+    "description": "Condition for Case 2 uses 'or' with missing parentheses, effectively flipping logic so Case 2 can be true without all conjuncts."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 48,
+    "mutationKind": "boolean_op_flip",
+    "description": "Case 2 uses 'and ... and ... or ...' without parentheses, causing Case 2 to be true when 'Live vaccine was administered in the last 4 weeks' regardless of other conjuncts."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0",
+    "approximateLine": 82,
+    "mutationKind": "boolean_op_flip",
+    "description": "Top-level aggregation mixes 'and'/'or' without parentheses, changing precedence from the L2 'or across cases' into a different boolean condition."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 4",
+    "approximateLine": 76,
+    "mutationKind": "reference_rename",
+    "description": "Case 4 checks 'MCV0 was not administered' instead of 'MCV0 was administered' (polarity reversal)."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 46,
+    "mutationKind": "reference_rename",
+    "description": "Case 2 checks 'MCV0 was administered' but L2 requires 'MCV0 was not administered' for Case 2."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 1",
+    "approximateLine": 40,
+    "mutationKind": "threshold_change",
+    "description": "Case 1 uses 'Client's age is less than 9 months' but L2 requires 'less than 6 months'."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 3",
+    "approximateLine": 60,
+    "mutationKind": "threshold_change",
+    "description": "Case 3 uses 'Client's age is more than or equal to 12 months' but L2 requires '>= 9 months'."
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 50,
+    "mutationKind": "reference_rename",
+    "description": "Case 2 omits the 'MCV0 was not administered' conjunct; it only requires age between 6 and 9 months and live vaccine in last 4 weeks."
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Consider MCV0.",
+    "approximateLine": 116,
+    "mutationKind": "precondition_drop",
+    "description": "Consider logic requires MCV0 not administered, age between 6-9 months, and No live vaccine in last 4 weeks, but Case 2/Case 3 output coverage differs (Case 2/3 guidance expects Case 3 text while code changes Consider/Case3 boundary); indicates an inconsistency in Case3 threshold/coverage."
+  },
+  "v10": {
+    "hasBug": false
+  },
+  "v11": {
+    "hasBug": false
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 239,
+    "mutationKind": "precondition_drop",
+    "description": "Test assertion uses 'Patient.id != 'Measles37.3'' for Case 2 expectations, which diverges from the deterministic L2-aligned test cases (logic inconsistency in guidance/define mapping)."
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 3",
+    "approximateLine": 83,
+    "mutationKind": "threshold_change",
+    "description": "Case 3 guidance block indicates case 3 threshold 'more than 9 months', but code uses '>= 9 months' (inconsistent boundary text vs predicate; L2 expects 'more than or equal to 9 months' with matching guidance)."
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

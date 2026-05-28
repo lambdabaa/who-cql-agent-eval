@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 23,
+    "mutationKind": "boolean_op_flip",
+    "description": "in Should Conduct HIV test 2, the conjunction between the first and second conjuncts is effectively changed from AND to OR"
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 23,
+    "mutationKind": "boolean_op_flip",
+    "description": "in Should Conduct HIV test 2, 'Population prevalence ... >= 5%' is combined with other conditions using 'or' where 'and' is required"
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 33,
+    "mutationKind": "precondition_drop",
+    "description": "in Should Conduct HIV test 2, the 'HIV status in HIV negative choices' precondition is missing"
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 16,
+    "mutationKind": "precondition_drop",
+    "description": "in Should Conduct HIV test, the 'ANC contact number = 1' precondition is missing"
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Should HIV test is optional",
+    "approximateLine": 55,
+    "mutationKind": "reference_rename",
+    "description": "in Should HIV test is optional, the threshold comparator is changed from '< 5 %' to '<= 5 %'"
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 16,
+    "mutationKind": "comparator_flip",
+    "description": "in Should Conduct HIV test, 'ANC contact number = 1' is changed to 'ANC contact number != 1'"
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 16,
+    "mutationKind": "comparator_flip",
+    "description": "in Should Conduct HIV test, the '>= 5 %' condition is changed to '> 5 %'"
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Should HIV test is not required",
+    "approximateLine": 62,
+    "mutationKind": "reference_rename",
+    "description": "in Should HIV test is not required, the HIV status value set used is 'HIV negative choices' instead of 'HIV positive choices'"
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 33,
+    "mutationKind": "reference_rename",
+    "description": "in Should Conduct HIV test 2, the HIV status value set is changed from 'HIV negative choices' to 'HIV positive choices'"
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 16,
+    "mutationKind": "threshold_change",
+    "description": "in Should Conduct HIV test, the HIV prevalence threshold is changed from '>= 5 %' to '>= 6 %'"
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Should HIV test is optional",
+    "approximateLine": 55,
+    "mutationKind": "threshold_change",
+    "description": "in Should HIV test is optional, the HIV prevalence cutoff is changed from '< 5 %' to '< 6 %'"
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 33,
+    "mutationKind": "threshold_change",
+    "description": "in Should Conduct HIV test 2, the HIV prevalence threshold is changed from '>= 5 %' to '>= 6 %'"
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

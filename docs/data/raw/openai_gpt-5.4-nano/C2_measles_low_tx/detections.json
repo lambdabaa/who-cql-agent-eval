@@ -1,0 +1,142 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 55,
+    "mutationKind": "boolean_op_flip",
+    "description": "Case 2 definition mixes and/or without parentheses: the \"or\" extends to the age/live-vaccine part, making the logic broader than intended."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 90,
+    "mutationKind": "boolean_op_flip",
+    "description": "Due condition uses \"...No measles... and age >= 12 months or No live vaccine...\" without parentheses, changing conjunction grouping compared to the L2 row R2."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 175,
+    "mutationKind": "reference_rename",
+    "description": "Uses Encounter.\"MCV2 was administered\" but the MCV2 rows in the L2 depend on MCV1 administered (and live-vaccine status)."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 90,
+    "mutationKind": "precondition_drop",
+    "description": "Due for MCV1 Row R2 swapped \"No live vaccine...\" to \"Live vaccine...\" (i.e., live-vaccine branch inverted), making due cases become not-due."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 1",
+    "approximateLine": 45,
+    "mutationKind": "threshold_change",
+    "description": "Uses Encounter.\"Client's age is less than 15 months\" instead of \"less than 12 months\" for MCV1 Case 1."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 1",
+    "approximateLine": 45,
+    "mutationKind": "threshold_change",
+    "description": "Uses Encounter.\"Client's age is less than 9 months\" instead of \"less than 12 months\" for MCV1 Case 1."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 54,
+    "mutationKind": "precondition_drop",
+    "description": "Case 2 missing the live-vaccine precondition (it includes only \"No measles primary series doses were administered\" and age >=12 months)."
+  },
+  "v08": {
+    "hasBug": false
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Guidance",
+    "approximateLine": 18,
+    "mutationKind": "comparator_flip",
+    "description": "Test validation expects Guidance string match but the scalar Guidance expression contains mismatch (one of the guidance branches uses != in a test), indicating guidance selection/aggregation diverges."
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 244,
+    "mutationKind": "comparator_flip",
+    "description": "In the test for Measles22.1, expects \"Guidance\" != '...come back for MCV1.' which is inconsistent with the canonical guidance; indicates mutated/incorrect guidance output."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is due for MCV1 Guidance",
+    "approximateLine": 135,
+    "mutationKind": "guidance_text_swap",
+    "description": "Client due for MCV1 Guidance is replaced with the 'Measles primary series is complete' guidance text."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is due for MCV1 Guidance",
+    "approximateLine": 135,
+    "mutationKind": "guidance_text_swap",
+    "description": "Client due for MCV1 Guidance text incorrectly references MCV2 in the guidance string."
+  },
+  "v13": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 55,
+    "mutationKind": "precondition_drop",
+    "description": "Case 2 omits the live-vaccine precondition and/or uses wrong conjunction set compared to L2 Row R3."
+  },
+  "v14": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 44,
+    "mutationKind": "threshold_change",
+    "description": "Case 2 is present, but due/not-due pairing indicates the live-vaccine branch is inconsistent with L2 (due should correspond to R2, not R3)."
+  },
+  "v15": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 90,
+    "mutationKind": "comparator_flip",
+    "description": "Due for MCV1 uses Row R2 pattern but the guidance/test alignment suggests the live-vaccine comparator inverted elsewhere; overall MCV1 due branch diverges from canonical."
+  },
+  "v16": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 55,
+    "mutationKind": "comparator_flip",
+    "description": "Live-vaccine condition in Case 2 uses 'Live vaccine was administered in the last 4 weeks' but due/not-due aggregation indicates a comparator/branch inversion versus L2."
+  },
+  "v17": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 85,
+    "mutationKind": "precondition_drop",
+    "description": "Due for MCV1 appears to match R2, but downstream guidance aggregation differs (case precedence), making Guidance output inconsistent with L2."
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Guidance",
+    "approximateLine": 110,
+    "mutationKind": "guidance_text_swap",
+    "description": "In the guidance text for MCV1 Case 2, the ending sentence has MCV1 but an injected string mismatch is present compared with the canonical L2 guidance."
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

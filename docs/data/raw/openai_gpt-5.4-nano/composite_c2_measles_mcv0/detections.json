@@ -1,0 +1,362 @@
+{
+  "v01": {
+    "findings": []
+  },
+  "v02": {
+    "findings": []
+  },
+  "v03": {
+    "findings": []
+  },
+  "v04": {
+    "findings": []
+  },
+  "v05": {
+    "findings": []
+  },
+  "v06": {
+    "findings": []
+  },
+  "v07": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 99,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' replaced/combined with 'or' due to precedence error (missing parentheses) causing logic mismatch with canonical AND conjunctions"
+      }
+    ]
+  },
+  "v08": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 78,
+        "mutationKind": "reference_rename",
+        "description": "\"MCV0 was administered\" used instead of canonical \"MCV0 was not administered\" in the Consider MCV0 precondition"
+      }
+    ]
+  },
+  "v09": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 70,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is less than 6 months\" changed to \"less than 9 months\""
+      }
+    ]
+  },
+  "v10": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 80,
+        "mutationKind": "reference_rename",
+        "description": "No canonical difference injected; however this variant matches canonical for all defines shown. No inconsistency flagged."
+      }
+    ]
+  },
+  "v11": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 47,
+        "mutationKind": "comparator_flip",
+        "description": "\"Guidance\" is not null and \"Guidance\" != '' replaced by an incorrect empty-check condition"
+      }
+    ]
+  },
+  "v12": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "boolean_op_flip",
+        "description": "Missing parentheses in AND/OR expression: canonical requires AND of three preconditions; this variant uses OR with one term leading to mismatch"
+      }
+    ]
+  },
+  "v13": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 98,
+        "mutationKind": "boolean_op_flip",
+        "description": "Operator precedence/logic mismatch: canonical is OR across four cases; this variant mixes OR and AND without parentheses causing incorrect aggregation"
+      }
+    ]
+  },
+  "v14": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 79,
+        "mutationKind": "reference_rename",
+        "description": "\"Consider MCV0.\" case 2 precondition should include \"Client's age is between 6 months and 9 months\" AND \"MCV0 was not administered\" AND \"No live vaccine was administered in the last 4 weeks\"; variant is missing the third conjunct"
+      }
+    ]
+  },
+  "v15": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 98,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is more than or equal to 9 months\" changed to \"more than or equal to 12 months\""
+      }
+    ]
+  },
+  "v16": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 98,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is more than or equal to 9 months\" changed to \"more than or equal to 12 months\""
+      }
+    ]
+  },
+  "v17": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "boolean_op_flip",
+        "description": "Case 2 should require AND of three preconditions; this variant uses OR between \"MCV0 was not administered\" and \"Live vaccine was administered...\""
+      }
+    ]
+  },
+  "v18": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 98,
+        "mutationKind": "boolean_op_flip",
+        "description": "Aggregated 'Client is not due' expression has AND/OR precedence mismatch (uses OR/AND without parentheses)"
+      }
+    ]
+  },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 88,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is more than or equal to 9 months\" changed to \"more than or equal to 12 months\""
+      }
+    ]
+  },
+  "v20": {
+    "findings": [
+      {
+        "define": "Guidance",
+        "approximateLine": 123,
+        "mutationKind": "guidance_text_swap",
+        "description": "Test Validation guidance assertion differs from canonical for case 4 (Guidance != instead of exact match), indicating guidance text mismatch"
+      }
+    ]
+  },
+  "v21": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "boolean_op_flip",
+        "description": "Case 2 should be conjunction of three conditions; this variant uses OR with live vaccine term causing mismatch"
+      }
+    ]
+  },
+  "v22": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 70,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is less than 6 months\" changed to \"less than 9 months\""
+      }
+    ]
+  },
+  "v23": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "reference_rename",
+        "description": "\"MCV0 was not administered\" changed to \"MCV0 was administered\" in Case 2"
+      }
+    ]
+  },
+  "v24": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 109,
+        "mutationKind": "boolean_op_flip",
+        "description": "Aggregation of cases uses mixed OR/AND without parentheses; canonical is pure OR across four cases"
+      }
+    ]
+  },
+  "v25": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 105,
+        "mutationKind": "boolean_op_flip",
+        "description": "Client is not due aggregation uses AND/OR precedence inconsistent with canonical OR chain"
+      }
+    ]
+  },
+  "v26": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 95,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is more than or equal to 9 months\" changed to \"more than or equal to 12 months\""
+      }
+    ]
+  },
+  "v27": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 70,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is less than 6 months\" changed to \"less than 9 months\""
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "precondition_drop",
+        "description": "Case 2 preconditions are not all required together (OR used between two conjuncts)"
+      }
+    ]
+  },
+  "v28": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 48,
+        "mutationKind": "comparator_flip",
+        "description": "\"Guidance\" is null check inverted vs canonical (should be non-null and non-empty)"
+      }
+    ]
+  },
+  "v29": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 70,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is less than 6 months\" changed to \"less than 9 months\""
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 115,
+        "mutationKind": "reference_rename",
+        "description": "Test Validation indicates Case 4 guidance check using else/inequality; implies guidance/define mismatch for Case 4"
+      }
+    ]
+  },
+  "v30": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 47,
+        "mutationKind": "comparator_flip",
+        "description": "\"Has Guidance\" condition uses \"Guidance\" is null and != '' which is inconsistent with canonical non-null/non-empty"
+      }
+    ]
+  },
+  "v31": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 70,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is less than 6 months\" changed to \"less than 9 months\""
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "precondition_drop",
+        "description": "Case 2 uses OR between age precondition and live vaccine precondition, dropping required 'MCV0 was not administered' conjunct"
+      }
+    ]
+  },
+  "v32": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 95,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is more than or equal to 9 months\" changed to \"more than or equal to 12 months\""
+      }
+    ]
+  },
+  "v33": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "precondition_drop",
+        "description": "Case 2 uses OR instead of required AND combination for all three preconditions"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 115,
+        "mutationKind": "reference_rename",
+        "description": "Consider MCV0 should require no live vaccine in last 4 weeks; this variant uses live vaccine in last 4 weeks in Consider conditions"
+      }
+    ]
+  },
+  "v34": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 48,
+        "mutationKind": "comparator_flip",
+        "description": "\"Has Guidance\" condition uses \"Guidance\" is not null and Guidance = '' (should be non-empty and non-null)"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 112,
+        "mutationKind": "boolean_op_flip",
+        "description": "Consider MCV0 precondition uses OR instead of required AND (age and no-live-vaccine not jointly required)"
+      }
+    ]
+  },
+  "v35": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 104,
+        "mutationKind": "precondition_drop",
+        "description": "Aggregated define omits Case 4 term; client not due should OR across Case 1-4"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 110,
+        "mutationKind": "reference_rename",
+        "description": "Consider MCV0 uses 'No live vaccine...' mismatch (uses live vaccine term) making scenario inconsistent"
+      }
+    ]
+  },
+  "v36": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 73,
+        "mutationKind": "reference_rename",
+        "description": "Case 2 uses \"MCV0 was administered\" instead of canonical \"MCV0 was not administered\""
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 88,
+        "mutationKind": "threshold_change",
+        "description": "\"Client's age is more than or equal to 9 months\" changed to \"more than or equal to 12 months\""
+      }
+    ]
+  }
+}

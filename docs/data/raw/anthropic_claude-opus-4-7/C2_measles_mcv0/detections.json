@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 43,
+    "mutationKind": "boolean_op_flip",
+    "description": "First connector is 'or' instead of 'and' between MCV0 not administered and age range"
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 44,
+    "mutationKind": "boolean_op_flip",
+    "description": "Third conjunct connector is 'or' instead of 'and'"
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0",
+    "approximateLine": 64,
+    "mutationKind": "boolean_op_flip",
+    "description": "Aggregator uses 'and' instead of 'or' between Case 1 and Case 2"
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 4",
+    "approximateLine": 57,
+    "mutationKind": "reference_rename",
+    "description": "Case 4 references 'MCV0 was not administered' instead of 'MCV0 was administered'"
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 42,
+    "mutationKind": "reference_rename",
+    "description": "Case 2 first precondition uses 'MCV0 was administered' instead of 'MCV0 was not administered'"
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 1",
+    "approximateLine": 36,
+    "mutationKind": "threshold_change",
+    "description": "Case 1 uses 'less than 9 months' instead of 'less than 6 months'"
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 3",
+    "approximateLine": 50,
+    "mutationKind": "threshold_change",
+    "description": "Case 3 uses 'more than or equal to 12 months' instead of '9 months'"
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 43,
+    "mutationKind": "precondition_drop",
+    "description": "Missing 'Client's age is between 6 months and 9 months' conjunct"
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Consider MCV0.",
+    "approximateLine": 110,
+    "mutationKind": "precondition_drop",
+    "description": "Missing 'No live vaccine was administered in the last 4 weeks' conjunct"
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Consider MCV0.",
+    "approximateLine": 110,
+    "mutationKind": "precondition_drop",
+    "description": "Missing 'Client's age is between 6 months and 9 months' conjunct"
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 130,
+    "mutationKind": "comparator_flip",
+    "description": "Patient.id != 'Measles39.1' instead of ="
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 128,
+    "mutationKind": "comparator_flip",
+    "description": "Patient.id != 'Measles37.3' instead of ="
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

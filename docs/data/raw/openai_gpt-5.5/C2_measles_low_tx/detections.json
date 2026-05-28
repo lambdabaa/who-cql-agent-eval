@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 49,
+    "mutationKind": "boolean_op_flip",
+    "description": "The final precondition is joined with 'or' instead of the required 'and'."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 81,
+    "mutationKind": "boolean_op_flip",
+    "description": "The final precondition is joined with 'or' instead of the required 'and'."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 139,
+    "mutationKind": "reference_rename",
+    "description": "Uses Encounter.\"MCV2 was administered\" instead of the required Encounter.\"MCV1 was administered\"."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 81,
+    "mutationKind": "reference_rename",
+    "description": "Uses Encounter.\"Live vaccine was administered in the last 4 weeks\" instead of the required no-live-vaccine precondition."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 1",
+    "approximateLine": 40,
+    "mutationKind": "threshold_change",
+    "description": "Uses age less than 15 months instead of the low-transmission MCV1 threshold of less than 12 months."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 1",
+    "approximateLine": 40,
+    "mutationKind": "threshold_change",
+    "description": "Uses age less than 9 months instead of the low-transmission MCV1 threshold of less than 12 months."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 49,
+    "mutationKind": "precondition_drop",
+    "description": "Drops the required Encounter.\"Live vaccine was administered in the last 4 weeks\" conjunct."
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 140,
+    "mutationKind": "precondition_drop",
+    "description": "Drops the required Encounter.\"Client's age is more than or equal to 15 months\" conjunct."
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 184,
+    "mutationKind": "comparator_flip",
+    "description": "The Measles26.3 guidance assertion uses '!=' instead of '='."
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 176,
+    "mutationKind": "comparator_flip",
+    "description": "The Measles22.1 guidance assertion uses '!=' instead of '='."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is due for MCV1 Guidance",
+    "approximateLine": 90,
+    "mutationKind": "guidance_text_swap",
+    "description": "The due-for-MCV1 guidance text is swapped with the primary-series-complete guidance text."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is due for MCV1 Guidance",
+    "approximateLine": 90,
+    "mutationKind": "guidance_text_swap",
+    "description": "The due-for-MCV1 guidance text is swapped with the due-for-MCV2 guidance text."
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

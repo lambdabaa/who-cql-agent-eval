@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 62,
+    "mutationKind": "boolean_op_flip",
+    "description": "The final row precondition is joined with 'or' instead of the required 'and'."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 40,
+    "mutationKind": "boolean_op_flip",
+    "description": "The first continuation operator is 'or' instead of the required 'and'."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 60,
+    "mutationKind": "boolean_op_flip",
+    "description": "The first continuation operator is 'or' instead of the required 'and'."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 39,
+    "mutationKind": "reference_rename",
+    "description": "The precondition uses Encounter.\"Measles supplementary dose was administered\" instead of Encounter.\"Measles supplementary dose was not administered\"."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 62,
+    "mutationKind": "reference_rename",
+    "description": "The third precondition uses live vaccine was administered, but the L2 row requires no live vaccine was administered in the past 4 weeks."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 38,
+    "mutationKind": "precondition_drop",
+    "description": "The required Encounter.\"Measles routine immunization schedule is complete\" conjunct is missing."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 58,
+    "mutationKind": "precondition_drop",
+    "description": "The required Encounter.\"No live vaccine was administered in the past 4 weeks\" conjunct is missing."
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 58,
+    "mutationKind": "precondition_drop",
+    "description": "The required Encounter.\"Measles routine immunization schedule is complete\" conjunct is missing."
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 99,
+    "mutationKind": "comparator_flip",
+    "description": "The test assertion for patient Measles49.3 compares Guidance with '!=' instead of '='."
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 101,
+    "mutationKind": "comparator_flip",
+    "description": "The test case condition uses Patient.id != 'Measles50.1' instead of Patient.id = 'Measles50.1'."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "approximateLine": 50,
+    "mutationKind": "guidance_text_swap",
+    "description": "The not-due guidance text is swapped with the schedule-complete guidance text."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "approximateLine": 50,
+    "mutationKind": "guidance_text_swap",
+    "description": "The not-due guidance text is swapped with the consider-supplementary-dose guidance text."
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

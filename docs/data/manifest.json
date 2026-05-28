@@ -1,13 +1,15 @@
 {
-  "generatedAt": "2026-05-28T22:33:59.398Z",
+  "generatedAt": "2026-05-28T22:47:00.282Z",
   "baselines": [
     {
       "date": "2026-05-27",
-      "file": "2026-05-27.json"
+      "file": "2026-05-27.json",
+      "rawIndex": "2026-05-27.raw-index.json"
     },
     {
       "date": "2026-05-28",
-      "file": "2026-05-28.json"
+      "file": "2026-05-28.json",
+      "rawIndex": "2026-05-28.raw-index.json"
     }
   ],
   "latest": "2026-05-28"

@@ -1,0 +1,488 @@
+{
+  "v01": { "findings": [] },
+  "v02": { "findings": [] },
+  "v03": { "findings": [] },
+  "v04": { "findings": [] },
+  "v05": { "findings": [] },
+  "v06": { "findings": [] },
+  "v07": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' on continuation line"
+      }
+    ]
+  },
+  "v08": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was not administered' changed to 'MCV0 was administered'"
+      }
+    ]
+  },
+  "v09": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      }
+    ]
+  },
+  "v10": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "precondition_drop",
+        "description": "'Client's age is between 6 months and 9 months' precondition missing"
+      }
+    ]
+  },
+  "v11": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 43,
+        "mutationKind": "comparator_flip",
+        "description": "'!=' flipped to '='"
+      }
+    ]
+  },
+  "v12": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' on continuation line"
+      }
+    ]
+  },
+  "v13": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' on continuation line"
+      }
+    ]
+  },
+  "v14": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 75,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was administered' changed to 'MCV0 was not administered'"
+      }
+    ]
+  },
+  "v15": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 43,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      }
+    ]
+  },
+  "v16": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 75,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was administered' changed to 'MCV0 was not administered'"
+      }
+    ]
+  },
+  "v17": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v18": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' on continuation line"
+      }
+    ]
+  },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' on continuation line"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "reference_rename",
+        "description": "'No live vaccine was administered in the last 4 weeks' changed to 'Live vaccine was administered in the last 4 weeks'"
+      }
+    ]
+  },
+  "v20": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "precondition_drop",
+        "description": "'Client's age is between 6 months and 9 months' precondition missing"
+      }
+    ]
+  },
+  "v21": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' on continuation line"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      }
+    ]
+  },
+  "v22": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v23": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was not administered' changed to 'MCV0 was administered'"
+      }
+    ]
+  },
+  "v24": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was not administered' changed to 'MCV0 was administered'"
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' on continuation line"
+      }
+    ]
+  },
+  "v25": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "precondition_drop",
+        "description": "'Client's age is between 6 months and 9 months' precondition missing"
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' on continuation line"
+      }
+    ]
+  },
+  "v26": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' on continuation line"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was not administered' changed to 'MCV0 was administered'"
+      }
+    ]
+  },
+  "v27": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v28": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 43,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' on continuation line"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "precondition_drop",
+        "description": "'Client's age is between 6 months and 9 months' precondition missing"
+      }
+    ]
+  },
+  "v29": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "precondition_drop",
+        "description": "'Client's age is between 6 months and 9 months' precondition missing"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was not administered' changed to 'MCV0 was administered'"
+      }
+    ]
+  },
+  "v30": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 43,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v31": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v32": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      }
+    ]
+  },
+  "v33": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "reference_rename",
+        "description": "'No live vaccine was administered in the last 4 weeks' changed to 'Live vaccine was administered in the last 4 weeks'"
+      }
+    ]
+  },
+  "v34": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 43,
+        "mutationKind": "comparator_flip",
+        "description": "'!=' flipped to '='"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 75,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was administered' changed to 'MCV0 was not administered'"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v35": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 50,
+        "mutationKind": "reference_rename",
+        "description": "'Client's age is less than 6 months' changed to 'Client's age is less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 79,
+        "mutationKind": "precondition_drop",
+        "description": "'Client is not due for MCV0 Case 4' conjunct missing"
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 97,
+        "mutationKind": "reference_rename",
+        "description": "'No live vaccine was administered in the last 4 weeks' changed to 'Live vaccine was administered in the last 4 weeks'"
+      }
+    ]
+  },
+  "v36": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 62,
+        "mutationKind": "reference_rename",
+        "description": "'MCV0 was not administered' changed to 'MCV0 was administered'"
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 68,
+        "mutationKind": "threshold_change",
+        "description": "'more than or equal to 9 months' changed to 'more than or equal to 12 months'"
+      }
+    ]
+  }
+}

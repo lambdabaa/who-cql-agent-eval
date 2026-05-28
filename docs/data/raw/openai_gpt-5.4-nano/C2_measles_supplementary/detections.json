@@ -1,0 +1,106 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 49,
+    "mutationKind": "boolean_op_flip",
+    "description": "In the second row preconditions, 'and'/'or' precedence diverges from the L2 brief (uses '... schedule is complete' OR 'No live vaccine ...' instead of requiring both conjuncts)."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 37,
+    "mutationKind": "boolean_op_flip",
+    "description": "First row preconditions use 'A or B and C' without parentheses, making it looser than the L2 brief's strict three-way AND requirement."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 49,
+    "mutationKind": "boolean_op_flip",
+    "description": "Second row preconditions use 'A or B and C' without parentheses, making it diverge from the L2 brief's strict three-way AND requirement."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 35,
+    "mutationKind": "reference_rename",
+    "description": "First row uses 'Measles supplementary dose was administered' instead of '... was not administered'."
+  },
+  "v05": {
+    "hasBug": false
+  },
+  "v06": {
+    "hasBug": false
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 69,
+    "mutationKind": "precondition_drop",
+    "description": "Second row drops the conjunct requiring 'No live vaccine was administered in the past 4 weeks'."
+  },
+  "v08": {
+    "hasBug": false
+  },
+  "v09": {
+    "hasBug": false
+  },
+  "v10": {
+    "hasBug": false,
+    "define": "Test Validation",
+    "approximateLine": 126,
+    "mutationKind": "comparator_flip",
+    "description": "Test assertion uses 'Patient.id != ...' instead of equality; however it does not affect the main decision defines and the outputs still match the L2 brief for the provided expected cases."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "approximateLine": 65,
+    "mutationKind": "guidance_text_swap",
+    "description": "Guidance literal for 'Client is not due...' is swapped to the 'Measles immunization schedule is complete...' guidance text."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "approximateLine": 65,
+    "mutationKind": "guidance_text_swap",
+    "description": "Guidance literal for 'Client is not due...' is swapped to the 'Consider measles supplementary dose...' guidance text."
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

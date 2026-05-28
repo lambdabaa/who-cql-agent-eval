@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 116,
+    "mutationKind": "boolean_op_flip",
+    "description": "third conjunct connector is 'or' instead of 'and' before No live vaccine clause"
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+    "approximateLine": 97,
+    "mutationKind": "boolean_op_flip",
+    "description": "connector between MCV1 administered and age<15mo is 'or' instead of 'and'"
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 68,
+    "mutationKind": "reference_rename",
+    "description": "'No live vaccine was administered in the last 4 weeks' replaced with polarity-flipped 'Live vaccine was administered in the last 4 weeks'"
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 115,
+    "mutationKind": "reference_rename",
+    "description": "'MCV1 was administered' replaced with 'MCV2 was administered'"
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 67,
+    "mutationKind": "threshold_change",
+    "description": "age threshold for MCV1 changed from '>= 9 months' to '>= 12 months'"
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 134,
+    "mutationKind": "threshold_change",
+    "description": "age threshold for MCV2 not-due changed from '>= 15 months' to '>= 12 months'"
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 133,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'Live vaccine was administered in the last 4 weeks' conjunct"
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 133,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'Client's age is more than or equal to 15 months' conjunct"
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 165,
+    "mutationKind": "comparator_flip",
+    "description": "Measles12.3 test uses 'Guidance' != expected instead of '='"
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 163,
+    "mutationKind": "comparator_flip",
+    "description": "Patient.id != 'Measles11.2' instead of ="
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+    "approximateLine": 105,
+    "mutationKind": "guidance_text_swap",
+    "description": "guidance literal swapped with 'Measles primary series is complete' guidance text"
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Guidance",
+    "approximateLine": 85,
+    "mutationKind": "guidance_text_swap",
+    "description": "guidance literal swapped with 'Measles primary series is complete' guidance text"
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

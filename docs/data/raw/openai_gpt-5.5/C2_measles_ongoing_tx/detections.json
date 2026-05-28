@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 115,
+    "mutationKind": "boolean_op_flip",
+    "description": "The final conjunct was changed from 'and Encounter.\"No live vaccine was administered in the last 4 weeks\"' to 'or ...', making MCV2 due too broadly."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+    "approximateLine": 97,
+    "mutationKind": "boolean_op_flip",
+    "description": "The required AND between MCV1 administered and age less than 15 months was changed to OR."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 62,
+    "mutationKind": "reference_rename",
+    "description": "The due-for-MCV1 row should require no live vaccine in the last 4 weeks, but references live vaccine was administered instead."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 113,
+    "mutationKind": "reference_rename",
+    "description": "The MCV2 due row should require Encounter.\"MCV1 was administered\", but references Encounter.\"MCV2 was administered\"."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 61,
+    "mutationKind": "threshold_change",
+    "description": "The ongoing-transmission schedule requires age >= 9 months for MCV1, but the variant uses age >= 12 months."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 129,
+    "mutationKind": "threshold_change",
+    "description": "The MCV2 live-vaccine not-due row should require age >= 15 months, but the variant uses age >= 12 months."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 128,
+    "mutationKind": "precondition_drop",
+    "description": "The live-vaccine precondition Encounter.\"Live vaccine was administered in the last 4 weeks\" is missing from the MCV2 not-due row."
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is not due for MCV2",
+    "approximateLine": 128,
+    "mutationKind": "precondition_drop",
+    "description": "The age precondition Encounter.\"Client's age is more than or equal to 15 months\" is missing from the MCV2 not-due row."
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 178,
+    "mutationKind": "comparator_flip",
+    "description": "The Measles12.3 test comparison for Guidance was changed from '=' to '!='."
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 174,
+    "mutationKind": "comparator_flip",
+    "description": "The Measles11.2 test condition was changed from Patient.id = 'Measles11.2' to Patient.id != 'Measles11.2'."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+    "approximateLine": 104,
+    "mutationKind": "guidance_text_swap",
+    "description": "The MCV2 age-not-due guidance text was swapped with the measles primary series complete guidance text."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Guidance",
+    "approximateLine": 83,
+    "mutationKind": "guidance_text_swap",
+    "description": "The MCV1 live-vaccine not-due guidance text was swapped with the measles primary series complete guidance text."
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

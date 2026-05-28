@@ -1,0 +1,602 @@
+{
+  "v01": {
+    "findings": []
+  },
+  "v02": {
+    "findings": []
+  },
+  "v03": {
+    "findings": []
+  },
+  "v04": {
+    "findings": []
+  },
+  "v05": {
+    "findings": []
+  },
+  "v06": {
+    "findings": []
+  },
+  "v07": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 104,
+        "mutationKind": "boolean_op_flip",
+        "description": "Final precondition connector changed from 'and' to 'or'."
+      }
+    ]
+  },
+  "v08": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was not administered\" but found Encounter.\"MCV0 was administered\"."
+      }
+    ]
+  },
+  "v09": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      }
+    ]
+  },
+  "v10": {
+    "findings": [
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      }
+    ]
+  },
+  "v11": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "Expected \"Guidance\" != '' but found \"Guidance\" = ''."
+      }
+    ]
+  },
+  "v12": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 46,
+        "mutationKind": "boolean_op_flip",
+        "description": "Final precondition connector changed from 'and' to 'or'."
+      }
+    ]
+  },
+  "v13": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 70,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector before Case 3 changed from 'or' to 'and'."
+      }
+    ]
+  },
+  "v14": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 61,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was administered\" but found Encounter.\"MCV0 was not administered\"."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"No live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v15": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "Expected \"Guidance\" is not null but found \"Guidance\" is null."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      }
+    ]
+  },
+  "v16": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 61,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was administered\" but found Encounter.\"MCV0 was not administered\"."
+      }
+    ]
+  },
+  "v17": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector changed from 'and' to 'or'."
+      }
+    ]
+  },
+  "v18": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 70,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector before Case 3 changed from 'or' to 'and'."
+      }
+    ]
+  },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 70,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector before Case 3 changed from 'or' to 'and'."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 104,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"No live vaccine was administered in the last 4 weeks\" but found Encounter.\"Live vaccine was administered in the last 4 weeks\"."
+      }
+    ]
+  },
+  "v20": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 60,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was administered\" but found Encounter.\"MCV0 was not administered\"."
+      }
+    ]
+  },
+  "v21": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 46,
+        "mutationKind": "boolean_op_flip",
+        "description": "Final precondition connector changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      }
+    ]
+  },
+  "v22": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"No live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v23": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was not administered\" but found Encounter.\"MCV0 was administered\"."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      }
+    ]
+  },
+  "v24": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was not administered\" but found Encounter.\"MCV0 was administered\"."
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 71,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector before Case 4 changed from 'or' to 'and'."
+      }
+    ]
+  },
+  "v25": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 60,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was administered\" but found Encounter.\"MCV0 was not administered\"."
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 69,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after Case 1 changed from 'or' to 'and'."
+      }
+    ]
+  },
+  "v26": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 71,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector before Case 4 changed from 'or' to 'and'."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was not administered\" but found Encounter.\"MCV0 was administered\"."
+      }
+    ]
+  },
+  "v27": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v28": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "Expected \"Guidance\" is not null but found \"Guidance\" is null."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 46,
+        "mutationKind": "boolean_op_flip",
+        "description": "Final precondition connector changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 46,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"Live vaccine was administered in the last 4 weeks\" but found Encounter.\"No live vaccine was administered in the last 4 weeks\"."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      }
+    ]
+  },
+  "v29": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was not administered\" but found Encounter.\"MCV0 was administered\"."
+      }
+    ]
+  },
+  "v30": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "Expected \"Guidance\" is not null but found \"Guidance\" is null."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v31": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 61,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was administered\" but found Encounter.\"MCV0 was not administered\"."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"No live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v32": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 46,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"Live vaccine was administered in the last 4 weeks\" but found Encounter.\"No live vaccine was administered in the last 4 weeks\"."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"No live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v33": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 45,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"Client's age is between 6 months and 9 months\" precondition."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 103,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"No live vaccine was administered in the last 4 weeks\" but found Encounter.\"Live vaccine was administered in the last 4 weeks\"."
+      }
+    ]
+  },
+  "v34": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "Expected \"Guidance\" != '' but found \"Guidance\" = ''."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 4",
+        "approximateLine": 61,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was administered\" but found Encounter.\"MCV0 was not administered\"."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 103,
+        "mutationKind": "boolean_op_flip",
+        "description": "Connector after first precondition changed from 'and' to 'or'."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 103,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"No live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  },
+  "v35": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 1",
+        "approximateLine": 37,
+        "mutationKind": "threshold_change",
+        "description": "Expected age less than 6 months but found age less than 9 months."
+      },
+      {
+        "define": "Client is not due for MCV0",
+        "approximateLine": 68,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Case 4 from the not-due aggregate."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 104,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"No live vaccine was administered in the last 4 weeks\" but found Encounter.\"Live vaccine was administered in the last 4 weeks\"."
+      }
+    ]
+  },
+  "v36": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 44,
+        "mutationKind": "reference_rename",
+        "description": "Expected Encounter.\"MCV0 was not administered\" but found Encounter.\"MCV0 was administered\"."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 2",
+        "approximateLine": 46,
+        "mutationKind": "boolean_op_flip",
+        "description": "Final precondition connector changed from 'and' to 'or'."
+      },
+      {
+        "define": "Client is not due for MCV0 Case 3",
+        "approximateLine": 53,
+        "mutationKind": "threshold_change",
+        "description": "Expected age more than or equal to 9 months but found age more than or equal to 12 months."
+      },
+      {
+        "define": "Consider MCV0.",
+        "approximateLine": 102,
+        "mutationKind": "precondition_drop",
+        "description": "Missing Encounter.\"No live vaccine was administered in the last 4 weeks\" precondition."
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 44,
+    "mutationKind": "boolean_op_flip",
+    "description": "The first conjunction in Case 2 is 'or' instead of the required 'and' between MCV0 not administered and age 6-9 months."
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 45,
+    "mutationKind": "boolean_op_flip",
+    "description": "The conjunction before live vaccine administered is 'or' instead of the required 'and'."
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0",
+    "approximateLine": 68,
+    "mutationKind": "boolean_op_flip",
+    "description": "The aggregate not-due define combines Case 1 and Case 2 with 'and' instead of the required 'or'."
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 4",
+    "approximateLine": 60,
+    "mutationKind": "reference_rename",
+    "description": "Case 4 should reference Encounter.\"MCV0 was administered\" but references Encounter.\"MCV0 was not administered\"."
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 43,
+    "mutationKind": "reference_rename",
+    "description": "Case 2 should require Encounter.\"MCV0 was not administered\" but references Encounter.\"MCV0 was administered\"."
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 1",
+    "approximateLine": 36,
+    "mutationKind": "threshold_change",
+    "description": "Case 1 should use age less than 6 months, but uses Encounter.\"Client's age is less than 9 months\"."
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 3",
+    "approximateLine": 52,
+    "mutationKind": "threshold_change",
+    "description": "Case 3 should use age more than or equal to 9 months, but uses Encounter.\"Client's age is more than or equal to 12 months\"."
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is not due for MCV0 Case 2",
+    "approximateLine": 44,
+    "mutationKind": "precondition_drop",
+    "description": "Case 2 is missing the required age precondition Encounter.\"Client's age is between 6 months and 9 months\"."
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Consider MCV0.",
+    "approximateLine": 107,
+    "mutationKind": "precondition_drop",
+    "description": "The Consider MCV0 define is missing the required precondition Encounter.\"No live vaccine was administered in the last 4 weeks\"."
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Consider MCV0.",
+    "approximateLine": 106,
+    "mutationKind": "precondition_drop",
+    "description": "The Consider MCV0 define is missing the required age precondition Encounter.\"Client's age is between 6 months and 9 months\"."
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 127,
+    "mutationKind": "comparator_flip",
+    "description": "The Measles39.1 test branch uses Patient.id != 'Measles39.1' instead of Patient.id = 'Measles39.1'."
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 125,
+    "mutationKind": "comparator_flip",
+    "description": "The Measles37.3 test branch uses Patient.id != 'Measles37.3' instead of Patient.id = 'Measles37.3'."
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

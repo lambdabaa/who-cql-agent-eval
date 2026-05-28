@@ -1,0 +1,30 @@
+{
+  "Measles22.1": {
+    "Client is not due for MCV1 Case 1": true,
+    "Guidance": "Should not vaccinate client with MCV1 as client's age is less than 12 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+  },
+  "Measles23.3": {
+    "Client is due for MCV1": true,
+    "Guidance": "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.\nCheck for contraindications."
+  },
+  "Measles24.3": {
+    "Client is not due for MCV1 Case 2": true,
+    "Guidance": "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+  },
+  "Measles25.2": {
+    "Client is not due for MCV2 Case 1": true,
+    "Guidance": "Should not vaccinate client with MCV2 as client's age is less than 15 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+  },
+  "Measles26.3": {
+    "Client is due for MCV2": true,
+    "Guidance": "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.\nCheck for contraindications."
+  },
+  "Measles27.3": {
+    "Client is not due for MCV2 Case 2": true,
+    "Guidance": "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+  },
+  "Measles28.1": {
+    "Measles primary series is complete": true,
+    "Guidance": "Measles primary series is complete. Two measles primary series doses were administered.\nCheck if a measles supplementary dose is appropriate for the client."
+  }
+}

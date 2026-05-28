@@ -1,0 +1,53 @@
+{
+  "v01": { "findings": [] },
+  "v07": { "findings": [] },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 1",
+        "approximateLine": 48,
+        "mutationKind": "threshold_change",
+        "description": "Client age threshold 'less than 12 months' changed to 'less than 9 months'"
+      },
+      {
+        "define": "Client is not due for MCV2",
+        "approximateLine": 120,
+        "mutationKind": "comparator_flip",
+        "description": "MCV2 not-due case aggregator uses AND instead of OR (effectively wrong comparator/combination in reference to case logic)."
+      }
+    ]
+  },
+  "v20": { "findings": [] },
+  "v21": { "findings": [] },
+  "v22": { "findings": [] },
+  "v23": { "findings": [] },
+  "v24": { "findings": [] },
+  "v25": { "findings": [] },
+  "v26": { "findings": [] },
+  "v27": { "findings": [] },
+  "v28": { "findings": [] },
+  "v29": { "findings": [] },
+  "v30": { "findings": [] },
+  "v31": { "findings": [] },
+  "v32": { "findings": [] },
+  "v33": { "findings": [] },
+  "v34": { "findings": [] },
+  "v35": { "findings": [] },
+  "v36": { "findings": [] },
+  "v02": { "findings": [] },
+  "v03": { "findings": [] },
+  "v04": { "findings": [] },
+  "v05": { "findings": [] },
+  "v06": { "findings": [] },
+  "v08": { "findings": [] },
+  "v09": { "findings": [] },
+  "v10": { "findings": [] },
+  "v11": { "findings": [] },
+  "v12": { "findings": [] },
+  "v13": { "findings": [] },
+  "v14": { "findings": [] },
+  "v15": { "findings": [] },
+  "v16": { "findings": [] },
+  "v17": { "findings": [] },
+  "v18": { "findings": [] }
+}
