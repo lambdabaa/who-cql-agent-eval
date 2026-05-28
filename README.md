@@ -8,6 +8,21 @@ WHO SMART Guidelines CQL. The v0 slice targets the
 `WorldHealthOrganization/smart-immunizations`.
 
 See [`docs/PLAN.md`](docs/PLAN.md) for the design document and rationale.
+Live leaderboard: <https://lambdabaa.github.io/who-cql-agent-eval/>.
+
+## Leaderboard
+
+The static site under `docs/` is the public leaderboard, deployed via GitHub
+Pages (Settings → Pages → Source: `Deploy from a branch`, branch `main`,
+folder `/docs`). To regenerate the leaderboard payload after a new baseline:
+
+```sh
+npx tsx scripts/build_leaderboard.ts          # latest baseline in baselines/
+npx tsx scripts/build_leaderboard.ts 2026-05-28  # a specific date
+```
+
+That sanitizes the baseline `summary.json` (strips absolute filesystem
+paths) into `docs/data/<date>.json` and refreshes `docs/data/manifest.json`.
 
 ## Overview
 

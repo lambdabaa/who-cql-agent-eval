@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>WHO CQL Agent Eval — Leaderboard</title>
+    <meta
+      name="description"
+      content="Leaderboard for AI agents authoring, modifying, and reasoning about WHO SMART Guidelines CQL."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <div class="brand">
+          <span class="brand-mark">WHO·CQL</span>
+          <span class="brand-title">Agent Eval Leaderboard</span>
+        </div>
+        <nav class="meta" id="run-meta" aria-label="Run metadata">
+          <span class="meta-cell"><span class="meta-label">Baseline</span><span class="meta-value" id="meta-date">—</span></span>
+          <span class="meta-cell"><span class="meta-label">Source</span><span class="meta-value" id="meta-source">—</span></span>
+          <span class="meta-cell"><span class="meta-label">Panel</span><span class="meta-value" id="meta-panel">—</span></span>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <section class="intro">
+        <h1>Can frontier models write WHO-grade CQL?</h1>
+        <p>
+          Each agent gets the same task: author, modify, predict, or audit a real
+          WHO SMART Guidelines decision-table library. We execute their CQL
+          against curated patient panels — no string-similarity scoring — and
+          rank by how often the output matches WHO's own conformance
+          expectations.
+          <a href="https://github.com/lambdabaa/who-cql-agent-eval">Source &amp; methodology →</a>
+        </p>
+      </section>
+
+      <section class="rank-section" aria-labelledby="rank-h">
+        <div class="section-head">
+          <h2 id="rank-h">Overall ranking</h2>
+          <p class="hint">
+            Composite score = mean of per-kind averages. Each kind contributes
+            equally, so a single 5-task suite doesn't dominate.
+          </p>
+        </div>
+        <ol class="rank-grid" id="rank-grid"></ol>
+      </section>
+
+      <section class="kind-section" aria-labelledby="kind-h">
+        <div class="section-head">
+          <h2 id="kind-h">By task kind</h2>
+          <p class="hint">
+            Five axes of CQL competence. Hover or tap a cell for the headline
+            metric.
+          </p>
+        </div>
+        <div class="kind-grid" id="kind-grid"></div>
+      </section>
+
+      <section class="matrix-section" aria-labelledby="matrix-h">
+        <div class="section-head">
+          <h2 id="matrix-h">Full matrix</h2>
+          <p class="hint">
+            Every agent × task. Cells are colored by per-task score (0–100);
+            hover for the raw headline.
+          </p>
+        </div>
+        <div class="table-scroll">
+          <table class="matrix" id="matrix"></table>
+        </div>
+      </section>
+
+      <section class="legend-section" aria-labelledby="legend-h">
+        <h2 id="legend-h">How scoring works</h2>
+        <dl class="legend">
+          <dt>Authoring</dt>
+          <dd>50% if the CQL compiles (T1 pass) + 50% × fraction of patient cases that match expected outputs (T3).</dd>
+          <dt>Detection</dt>
+          <dd>F1 × 100 on detecting injected bugs in a library; localization shown alongside.</dd>
+          <dt>Prediction</dt>
+          <dd>Fraction of expected output cells the agent correctly predicted across the patient panel.</dd>
+          <dt>Audit</dt>
+          <dd>Unmodified WHO content. Clean (no false positives) → 100. Findings reported lower the score.</dd>
+          <dt>Composite detection</dt>
+          <dd>F1 × 100 on detecting variable counts of injected bugs (the frontier-discriminating axis).</dd>
+        </dl>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>
+          Built with
+          <a href="https://github.com/lambdabaa/who-cql-agent-eval">who-cql-agent-eval</a>
+          · Decision libraries from
+          <a href="https://github.com/WorldHealthOrganization/smart-immunizations">smart-immunizations</a>
+          and
+          <a href="https://github.com/WorldHealthOrganization/smart-anc">smart-anc</a>.
+        </span>
+        <span class="footer-right" id="footer-generated"></span>
+      </div>
+    </footer>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
