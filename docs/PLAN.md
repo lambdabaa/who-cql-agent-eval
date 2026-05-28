@@ -2,7 +2,25 @@
 
 **Status:** Draft v0 — for discussion
 **Owner:** Ari Aye (Gates Foundation)
-**Last updated:** 2026-05-27
+**Last updated:** 2026-05-28
+
+---
+
+## 0. Status snapshot (2026-05-28)
+
+Status markers used inline throughout this doc: ✅ done · 🟡 partial · ⏳ not started.
+
+Roll-up against the workplan in §5:
+
+- **Phase 0 (v0 slice):** ✅ done. T3 grader against Measles LowTx passes 7/7. Hermetic, < 60s.
+- **Phase 1 (coverage expansion):** 🟡 partial. 4 of ~30 `smart-immunizations` Logic libraries covered (Measles family: LowTx, MCV0, OngoingTx, Supplementary). 1 ANC library (DT08). smart-hiv + smart-dak-tb vendored but not exercised — see §7.5 / 5.Phase-1. B5 ❌ blocked on clinical SME.
+- **Phase 2 (comprehension + LLM-judge):** 🟡 partial. C2 and C4 shipped; composite_c2 + audit added (not in original plan). C1 not done. T5 LLM-judge not built. T4 measure-evaluation not built.
+- **Phase 3 (apply-grading + cross-engine):** ⏳ not started.
+- **Phase 4 (contribution + adoption):** 🟡 partial. RFC issue and Measles LowTx PR open against `WorldHealthOrganization/smart-immunizations` (#136, #137). Public leaderboard live at <https://lambdabaa.github.io/who-cql-agent-eval/>.
+
+Baseline as of 2026-05-28: 4 agents (Claude Opus 4.7, Claude Haiku 4.5, GPT-5.5, GPT-5.4-nano) × 15 task instances across A1, C2 (×5), composite_c2 (×4), C4, audit (×5). Frozen at `baselines/2026-05-28/summary.json`.
+
+Headline empirical finding: composite_c2 across 4 Measles libraries shows **library-specific capability profiles** rather than a uniform model ranking. Opus 4.7 wins on small tight libraries (Supplementary R=0.97); GPT-5.5 wins on larger idiom-rich ones; Haiku tracks Opus on LowTx but falls behind elsewhere; nano collapses on the most token-heavy library and partially recovers elsewhere.
 
 ---
 
@@ -85,10 +103,10 @@ The headline implication: **WHO's "test cases shall pass" requirement is partly 
 
 ### 3.3 Success criteria for v0
 
-1. One decision table (Measles Low Transmission) is fully covered: all rows have machine-readable expected-output assertions and pass under the harness against the reference WHO CQL.
-2. The harness runs in < 60 seconds for the full table on a laptop, with no external services.
-3. A frozen baseline run exists for ≥ 2 named frontier agents on tasks drawn from each taxonomy category (B1, B2, B3, B5).
-4. A PR is open against `smart-immunizations` adding the harness as `tools/node/runTests.js` plus augmented YAMLs.
+1. ✅ One decision table (Measles Low Transmission) is fully covered: all rows have machine-readable expected-output assertions and pass under the harness against the reference WHO CQL. — *Measles LowTx augmented YAML in `tests/dak/`; T3 7/7 since commit `b403a0e`.*
+2. ✅ The harness runs in < 60 seconds for the full table on a laptop, with no external services.
+3. 🟡 A frozen baseline run exists for ≥ 2 named frontier agents on tasks drawn from each taxonomy category (B1, B2, B3, B5). — *4 agents (Opus 4.7, Haiku 4.5, GPT-5.5, GPT-5.4-nano). B1 (A1) ✅, B3 (C2, C4, audit) ✅, B2 ❌, B5 ❌.*
+4. ✅ A PR is open against `smart-immunizations` adding the harness as `tools/node/runTests.js` plus augmented YAMLs. — *RFC issue [#136](https://github.com/WorldHealthOrganization/smart-immunizations/issues/136), PR [#137](https://github.com/WorldHealthOrganization/smart-immunizations/pull/137) (Measles LowTx `expected:` blocks). Runner not yet PR'd (see §9.3 PR-2).*
 
 ---
 
@@ -113,12 +131,12 @@ Apply-grading is added later as Tier-5 where it offers independent signal.
 
 Every task is scored across all applicable tiers; tiers are reported separately, not collapsed to a single number.
 
-- **T0 Style.** Library naming, required `@`-tags present, `version` element absent, file layout matches WHO conventions. Cheap regex/AST checks.
-- **T1 Parse.** `cql-to-elm` translator exits clean. ELM diff vs reference is informational only.
-- **T2 Type.** FHIR R4 model resolution succeeds; ValueSet/CodeSystem bindings resolve.
-- **T3 Execute.** Run candidate ELM and reference ELM through `cql-execution` over the patient panel; compare expression outputs per patient. **Load-bearing tier.**
-- **T4 Measure.** For indicator libraries, run `cqf-tooling` or CQF Ruler `$evaluate-measure`; diff `MeasureReport.group.population` counts.
-- **T5 Semantic.** LLM-judge over `@guidance` / `@pseudocode` prose. Gated behind T0–T4 to prevent unfounded credit.
+- ⏳ **T0 Style.** Library naming, required `@`-tags present, `version` element absent, file layout matches WHO conventions. Cheap regex/AST checks.
+- 🟡 **T1 Parse.** `cql-to-elm` translator exits clean. ELM diff vs reference is informational only. — *Implemented; surfaced in A1 grader (caught GPT-5.4-nano's SQL-style apostrophe escapes). Not yet a standalone grader.*
+- ⏳ **T2 Type.** FHIR R4 model resolution succeeds; ValueSet/CodeSystem bindings resolve.
+- ✅ **T3 Execute.** Run candidate ELM and reference ELM through `cql-execution` over the patient panel; compare expression outputs per patient. **Load-bearing tier.** — *Shipped at commit `b403a0e`. Powers A1 grading and C4 groundtruth capture.*
+- ⏳ **T4 Measure.** For indicator libraries, run `cqf-tooling` or CQF Ruler `$evaluate-measure`; diff `MeasureReport.group.population` counts.
+- ⏳ **T5 Semantic.** LLM-judge over `@guidance` / `@pseudocode` prose. Gated behind T0–T4 to prevent unfounded credit.
 
 ### 4.3 Harness architecture
 
@@ -151,47 +169,60 @@ Every task is scored across all applicable tiers; tiers are reported separately,
 
 #### B1. Authoring (model produces CQL or FHIR)
 
-| ID | Task | Output | Primary graders |
-|---|---|---|---|
-| A1 | Author Logic CQL from L2 decision table | `*.cql` Logic library | T0, T1, T2, T3, T4 |
-| A2 | Author `Elements`/`EncounterElements` helpers from a data dictionary | `*Elements.cql` | T0, T1, T2, T3 |
-| A3 | Author `Test Validation` define for a Logic library | CQL case-statement | T1, T3 |
-| A4 | Author a test patient YAML for a given decision-table row | YAML doc | T0, T3 (closed-loop) |
-| A5 | Author the `expected:` block for an existing YAML scenario | YAML expected: block | T3 |
-| A6 | Author an `IMMZIND*Logic` indicator measure from an L2 definition | Measure + Library CQL | T1, T2, T4 |
+| ID | Task | Output | Primary graders | Status |
+|---|---|---|---|---|
+| A1 | Author Logic CQL from L2 decision table | `*.cql` Logic library | T0, T1, T2, T3, T4 | ✅ Measles LowTx |
+| A2 | Author `Elements`/`EncounterElements` helpers from a data dictionary | `*Elements.cql` | T0, T1, T2, T3 | ⏳ |
+| A3 | Author `Test Validation` define for a Logic library | CQL case-statement | T1, T3 | ⏳ |
+| A4 | Author a test patient YAML for a given decision-table row | YAML doc | T0, T3 (closed-loop) | ⏳ |
+| A5 | Author the `expected:` block for an existing YAML scenario | YAML expected: block | T3 | ⏳ |
+| A6 | Author an `IMMZIND*Logic` indicator measure from an L2 definition | Measure + Library CQL | T1, T2, T4 | ⏳ |
 
 #### B2. Modification
 
-| ID | Task | Graders |
-|---|---|---|
-| M1 | Patch CQL to match a guideline diff (vN → vN+1) | T1, T2, T3 bidirectional |
-| M2 | Backport a fix from one DAK to another | T3 cross-DAK |
-| M3 | Add a contraindication path | T0 (DE161 pattern), T3 |
-| M4 | Refactor duplicated expressions into `IMMZCommon` | T1, T3 semantics-preserving |
-| M5 | Migrate a library from FHIR R4 to R5 | T1, T2 against R5 model |
+All M-tasks ⏳ not started.
+
+| ID | Task | Graders | Status |
+|---|---|---|---|
+| M1 | Patch CQL to match a guideline diff (vN → vN+1) | T1, T2, T3 bidirectional | ⏳ |
+| M2 | Backport a fix from one DAK to another | T3 cross-DAK | ⏳ |
+| M3 | Add a contraindication path | T0 (DE161 pattern), T3 | ⏳ |
+| M4 | Refactor duplicated expressions into `IMMZCommon` | T1, T3 semantics-preserving | ⏳ |
+| M5 | Migrate a library from FHIR R4 to R5 | T1, T2 against R5 model | ⏳ |
 
 #### B3. Comprehension and safety
 
-| ID | Task | Graders |
-|---|---|---|
-| C1 | Explain a CQL expression mapped to `@guidance` | T5 gated by T3 round-trip |
-| C2 | Detect inconsistency between L2 narrative, L2 decision table, and L3 CQL | Recall/precision on synthetic bug-injection dataset |
-| C3 | Identify which test patients exercise a given row | Exact match against ground truth |
-| C4 | Predict the output of a Logic library on a YAML patient *without executing it* | T3 compares prediction to actual execution |
-| C5 | Suggest test cases that expose a stated weakness | T3 against a held-out buggy library |
+| ID | Task | Graders | Status |
+|---|---|---|---|
+| C1 | Explain a CQL expression mapped to `@guidance` | T5 gated by T3 round-trip | ⏳ blocked on T5 |
+| C2 | Detect inconsistency between L2 narrative, L2 decision table, and L3 CQL | Recall/precision on synthetic bug-injection dataset | ✅ 5 libraries (4 Measles + ANCDT08) + composite (×4) |
+| C3 | Identify which test patients exercise a given row | Exact match against ground truth | ⏳ |
+| C4 | Predict the output of a Logic library on a YAML patient *without executing it* | T3 compares prediction to actual execution | ✅ Measles LowTx |
+| C5 | Suggest test cases that expose a stated weakness | T3 against a held-out buggy library | ⏳ |
 
 C2 is the highest-leverage task for WHO — humans do not scale to cross-layer auditing across the DAK catalog.
 
+**Additions not in the original plan:**
+
+| ID | Task | Graders | Status |
+|---|---|---|---|
+| composite_c2 | Detection with 0–5 bugs per variant (vs exactly 1 in C2) | Set-based P/R/F1 over (variant, define) pairs | ✅ 4 Measles libraries |
+| audit | Same as C2 but against the *real, unmodified* library (no truth — surfaces real L2↔L3 mismatches and per-agent false-positive rate) | Per-agent finding counts + cross-agent consensus | ✅ 5 libraries (4 Measles + ANCDT08) |
+
 #### B4. Cross-cutting structural
 
-| ID | Task | Graders |
-|---|---|---|
-| S1 | Identify missing WHO tags in a CQL fragment | Set-match |
-| S2 | Rename a library per WHO conventions given its role | AST match |
-| S3 | Identify the correct library for a stray expression | Multiple choice |
-| S4 | Translate L2 pseudocode into a `@pseudocode:` annotation | T5 + T3 round-trip |
+All S-tasks ⏳ not started.
+
+| ID | Task | Graders | Status |
+|---|---|---|---|
+| S1 | Identify missing WHO tags in a CQL fragment | Set-match | ⏳ |
+| S2 | Rename a library per WHO conventions given its role | AST match | ⏳ |
+| S3 | Identify the correct library for a stray expression | Multiple choice | ⏳ |
+| S4 | Translate L2 pseudocode into a `@pseudocode:` annotation | T5 + T3 round-trip | ⏳ |
 
 #### B5. Adversarial subset (resistant to training-data contamination)
+
+All ⏳ — blocked on a clinical SME partner (per §9.2, "no LLM in the loop while authoring B5").
 
 - **B5a Boundary patients** — sit on every threshold edge (`b+6w` exact, last-vaccine-window edge).
 - **B5b Distractor data** — extra unrelated Immunizations/Conditions that should not affect output.
@@ -210,7 +241,7 @@ C2 is the highest-leverage task for WHO — humans do not scale to cross-layer a
 
 ## 5. Workplan
 
-### Phase 0 — v0 slice (≈ 2 weeks)
+### Phase 0 — v0 slice (≈ 2 weeks) — ✅ done
 
 Target: `IMMZD2DTMeaslesLowTransmissionLogic` end-to-end.
 
@@ -227,29 +258,29 @@ Target: `IMMZD2DTMeaslesLowTransmissionLogic` end-to-end.
 
 Exit criteria: success criteria 1–2 from §3.3 met.
 
-### Phase 1 — coverage expansion (≈ 4 weeks)
+### Phase 1 — coverage expansion (≈ 4 weeks) — 🟡 partial
 
-- Port remaining `smart-immunizations` decision tables.
-- Add T0/T1/T2 across all of `smart-anc`, `smart-hiv`, `smart-dak-tb`.
-- Build the B5 adversarial set for Measles + 2 ANC decisions.
-- First baseline runs against named frontier agents; publish numbers.
+- 🟡 Port remaining `smart-immunizations` decision tables. *4 of ~30 Measles Logic libraries covered via C2 + composite_c2 (LowTx, MCV0, OngoingTx, Supplementary). Remaining Measles tables + the rest of `smart-immunizations` (BCG, Hep, DTP, Hib, HPV, …) ⏳.*
+- 🟡 Add T0/T1/T2 across all of `smart-anc`, `smart-hiv`, `smart-dak-tb`. *T0/T2 not built. T1 implicit via cql-to-elm. smart-anc: 1 library (ANCDT08). smart-hiv vendored but mutators don't match its convention (mid-line `and` in `if … then '…' else ''` combine-blocks). smart-dak-tb vendored but its `input/cql/` is empty upstream.*
+- ⏳ Build the B5 adversarial set for Measles + 2 ANC decisions. *Blocked on clinical SME partner.*
+- ✅ First baseline runs against named frontier agents; publish numbers. *4 agents frozen at `baselines/2026-05-28/summary.json`; leaderboard live.*
 
-### Phase 2 — comprehension tasks + LLM-judge (≈ 4 weeks)
+### Phase 2 — comprehension tasks + LLM-judge (≈ 4 weeks) — 🟡 partial
 
-- Implement C1, C2, C4 tasks with synthetic bug-injection datasets.
-- Stand up the T5 LLM-judge with gating on T3.
-- Add T4 measure-evaluation against `cqf-tooling`.
+- 🟡 Implement C1, C2, C4 tasks with synthetic bug-injection datasets. *C2 ✅ (5 libraries) + composite_c2 ✅ (4 Measles libraries, 0–5 bugs per variant) + audit ✅ (5 libraries against real unmodified content). C4 ✅ (Measles LowTx). C1 (explanation/T5-judge) ⏳.*
+- ⏳ Stand up the T5 LLM-judge with gating on T3.
+- ⏳ Add T4 measure-evaluation against `cqf-tooling`.
 
-### Phase 3 — apply-grading + cross-engine (≈ 4 weeks)
+### Phase 3 — apply-grading + cross-engine (≈ 4 weeks) — ⏳ not started
 
-- Add Tier-5 apply-grading using a containerized CQF Ruler.
-- Cross-check `cql-execution` (JS) against JVM `clinical-reasoning`; surface engine disagreements as findings.
+- ⏳ Add Tier-5 apply-grading using a containerized CQF Ruler.
+- ⏳ Cross-check `cql-execution` (JS) against JVM `clinical-reasoning`; surface engine disagreements as findings.
 
-### Phase 4 — contribution and adoption
+### Phase 4 — contribution and adoption — 🟡 partial
 
-- PR the harness + augmented YAMLs to `WorldHealthOrganization/smart-immunizations`.
-- Propose `expected:` block as a YAML convention in the L3 CQL SOP v2.
-- Publish public leaderboard with adversarial-subset headline.
+- 🟡 PR the harness + augmented YAMLs to `WorldHealthOrganization/smart-immunizations`. *PR [#137](https://github.com/WorldHealthOrganization/smart-immunizations/pull/137) (LowTx YAML, +72 lines) is open. PR-2 (Node test runner) and PR-3+ (per-DAK augmentation rollouts) ⏳ — gated on PR-1 review.*
+- 🟡 Propose `expected:` block as a YAML convention in the L3 CQL SOP v2. *RFC issue [#136](https://github.com/WorldHealthOrganization/smart-immunizations/issues/136) filed; no SOP-side commitment yet.*
+- ✅ Publish public leaderboard with adversarial-subset headline. *Live at <https://lambdabaa.github.io/who-cql-agent-eval/>. Adversarial-subset headline ⏳ (B5 not built).*
 
 ---
 
@@ -266,11 +297,11 @@ Exit criteria: success criteria 1–2 from §3.3 met.
 
 ## 7. Open questions
 
-1. Which patient-panel source-of-truth do we commit to long-term: AHRQ `cql-testing` YAML format (mature, documented) or the augmented WHO YAML format (faithful to how WHO publishes)? v0 uses the latter; a Phase 2 decision should choose.
-2. Does WHO want the harness contributed back, or kept external? Affects how aggressively we push for an `expected:` convention upstream.
-3. What is the agent-runner protocol? File-system handoff, a thin API, or directly via tool-using agents? v0 should pick one minimal contract.
-4. Funding/hosting for a public leaderboard, if Phase 4 proceeds.
-5. Cross-DAK coverage priority order after Measles — ANC (most-deployed) vs HIV (most-complex) vs TB (most-actively-updated)?
+1. ⏳ Which patient-panel source-of-truth do we commit to long-term: AHRQ `cql-testing` YAML format (mature, documented) or the augmented WHO YAML format (faithful to how WHO publishes)? v0 uses the latter; a Phase 2 decision should choose.
+2. 🟡 Does WHO want the harness contributed back, or kept external? Affects how aggressively we push for an `expected:` convention upstream. *Pending response to RFC [#136](https://github.com/WorldHealthOrganization/smart-immunizations/issues/136) / PR [#137](https://github.com/WorldHealthOrganization/smart-immunizations/pull/137).*
+3. ✅ What is the agent-runner protocol? File-system handoff, a thin API, or directly via tool-using agents? v0 should pick one minimal contract. *File-system handoff chosen; `src/runners/types.ts`.*
+4. ✅ Funding/hosting for a public leaderboard, if Phase 4 proceeds. *GitHub Pages on the public repo; zero hosting cost. Re-open if/when the leaderboard needs an authenticated B5-aware view.*
+5. 🟡 Cross-DAK coverage priority order after Measles — ANC (most-deployed) vs HIV (most-complex) vs TB (most-actively-updated)? *ANC picked and partially covered (ANCDT08). smart-hiv vendored but blocked on mutator extensions for mid-line `and`/`or`. smart-dak-tb vendored but its `input/cql/` is empty upstream.*
 
 ---
 
@@ -331,11 +362,11 @@ What is PR-able to WHO vs what stays in the eval repo:
 
 PR sequencing:
 
-1. **PR-0 (RFC issue), early.** A non-binding issue against `smart-immunizations` introducing the `expected:` convention and the harness's intent. Establishes the channel and surfaces objections before code lands.
-2. **Land Phase-0 work in the eval repo first.** A working harness with one fully-covered DAK is a stronger PR than a half-finished spec.
-3. **PR-1: `expected:` blocks on existing Measles YAMLs.** Smallest, highest-value, zero behavior change to the WHO build.
-4. **PR-2: Node test runner**, only if PR-0 discussion indicated appetite.
-5. **PR-3+: per-DAK augmentation** rolled out as separate PRs against each DAK repo, not bundled.
+1. ✅ **PR-0 (RFC issue), early.** A non-binding issue against `smart-immunizations` introducing the `expected:` convention and the harness's intent. Establishes the channel and surfaces objections before code lands. — *Filed as [#136](https://github.com/WorldHealthOrganization/smart-immunizations/issues/136).*
+2. ✅ **Land Phase-0 work in the eval repo first.** A working harness with one fully-covered DAK is a stronger PR than a half-finished spec.
+3. ✅ **PR-1: `expected:` blocks on existing Measles YAMLs.** Smallest, highest-value, zero behavior change to the WHO build. — *Filed as [#137](https://github.com/WorldHealthOrganization/smart-immunizations/pull/137); +72 lines on `IMMZD2DTMeaslesLowTransmissionLogic.yaml`.*
+4. ⏳ **PR-2: Node test runner**, only if PR-0 discussion indicated appetite.
+5. ⏳ **PR-3+: per-DAK augmentation** rolled out as separate PRs against each DAK repo, not bundled.
 
 Governance considerations:
 
