@@ -60,6 +60,20 @@ const LOW_TX_COMPOSITE_PLAN: CompositeVariantPlan[] = [
   { id: 'v22', kinds: ['precondition_drop', 'boolean_op_flip', 'threshold_change'], seed: 6204 },
   { id: 'v23', kinds: ['guidance_text_swap', 'reference_rename', 'precondition_drop'], seed: 6205 },
   { id: 'v24', kinds: ['comparator_flip', 'threshold_change', 'boolean_op_flip'], seed: 6206 },
+  // 6 four-bug variants — each picks 4 of the 6 kinds.
+  { id: 'v25', kinds: ['boolean_op_flip', 'threshold_change', 'reference_rename', 'precondition_drop'], seed: 6301 },
+  { id: 'v26', kinds: ['threshold_change', 'comparator_flip', 'guidance_text_swap', 'reference_rename'], seed: 6302 },
+  { id: 'v27', kinds: ['precondition_drop', 'boolean_op_flip', 'comparator_flip', 'threshold_change'], seed: 6303 },
+  { id: 'v28', kinds: ['reference_rename', 'guidance_text_swap', 'precondition_drop', 'boolean_op_flip'], seed: 6304 },
+  { id: 'v29', kinds: ['comparator_flip', 'reference_rename', 'threshold_change', 'guidance_text_swap'], seed: 6305 },
+  { id: 'v30', kinds: ['guidance_text_swap', 'precondition_drop', 'boolean_op_flip', 'comparator_flip'], seed: 6306 },
+  // 6 five-bug variants — each picks 5 of the 6 kinds (one kind held out each).
+  { id: 'v31', kinds: ['boolean_op_flip', 'threshold_change', 'reference_rename', 'precondition_drop', 'comparator_flip'], seed: 6401 },
+  { id: 'v32', kinds: ['threshold_change', 'reference_rename', 'precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 6402 },
+  { id: 'v33', kinds: ['boolean_op_flip', 'reference_rename', 'precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 6403 },
+  { id: 'v34', kinds: ['boolean_op_flip', 'threshold_change', 'precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 6404 },
+  { id: 'v35', kinds: ['boolean_op_flip', 'threshold_change', 'reference_rename', 'comparator_flip', 'guidance_text_swap'], seed: 6405 },
+  { id: 'v36', kinds: ['boolean_op_flip', 'threshold_change', 'reference_rename', 'precondition_drop', 'guidance_text_swap'], seed: 6406 },
 ];
 
 const PROMPT_TEMPLATE = (libraryName: string, l2RowFamily: string, variantCount: number) => `# Task COMPOSITE C2: Detect *every* inconsistency between L2 brief and Logic CQL
