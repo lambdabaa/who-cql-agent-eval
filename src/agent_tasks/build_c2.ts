@@ -12,7 +12,7 @@ import type { DetectionTaskSpec, MutationKind } from './schema.js';
  * source CQL, the L2 brief, and the variant plan.
  */
 
-const DEP_CQL = 'IMMZD2DTMeaslesEncounterElements.cql';
+const MEASLES_DEP_CQL = 'IMMZD2DTMeaslesEncounterElements.cql';
 
 export interface VariantPlan {
   id: string;
@@ -24,10 +24,14 @@ export interface VariantPlan {
 interface BuildC2FixtureForLibraryOptions {
   /** Task id (e.g. `C2_measles_low_tx`). */
   taskId: string;
+  /** DAK name as it appears under vendor/ (e.g. `smart-immunizations`). */
+  dakName: string;
   /** Library identifier (e.g. `IMMZD2DTMeaslesLowTransmissionLogic`). */
   libraryName: string;
   /** Human label for the prompt (e.g. `IMMZ.D2.DT.Measles.LowTransmission`). */
   l2RowFamily: string;
+  /** Dependency CQL file names (just the basename, looked up under input/cql/). */
+  depCqlNames: string[];
   /** Raw markdown content for inputs/L2_table.md. */
   l2BriefContent: string;
   /** Variant plan. */
@@ -43,13 +47,15 @@ function buildC2FixtureForLibrary(opts: BuildC2FixtureForLibraryOptions): { task
   mkdirSync(join(opts.taskDir, 'groundtruth'), { recursive: true });
 
   const libSrc = join(opts.dakRoot, 'input', 'cql', `${opts.libraryName}.cql`);
-  const depSrc = join(opts.dakRoot, 'input', 'cql', DEP_CQL);
   if (!existsSync(libSrc)) throw new Error(`source CQL missing: ${libSrc}`);
-  if (!existsSync(depSrc)) throw new Error(`dep CQL missing: ${depSrc}`);
+  for (const dep of opts.depCqlNames) {
+    const depSrc = join(opts.dakRoot, 'input', 'cql', dep);
+    if (!existsSync(depSrc)) throw new Error(`dep CQL missing: ${depSrc}`);
+    copyFileSync(depSrc, join(opts.taskDir, 'inputs', 'deps', dep));
+  }
   const source = readFileSync(libSrc, 'utf8');
 
   writeFileSync(join(opts.taskDir, 'inputs', 'L2_table.md'), opts.l2BriefContent);
-  copyFileSync(depSrc, join(opts.taskDir, 'inputs', 'deps', DEP_CQL));
 
   const truth: Record<string, {
     kind: MutationKind;
@@ -103,12 +109,13 @@ function buildC2FixtureForLibrary(opts: BuildC2FixtureForLibraryOptions): { task
     l2RowFamily: opts.l2RowFamily,
     libraryName: opts.libraryName,
     variantCount: opts.variantPlan.length,
+    depCqlNames: opts.depCqlNames,
   }));
 
   const spec: DetectionTaskSpec = {
     id: opts.taskId,
     kind: 'detection',
-    dak: 'smart-immunizations',
+    dak: opts.dakName,
     logicLibraryId: opts.libraryName,
     variantIds: opts.variantPlan.map((v) => v.id),
     mutationVocabulary: [
@@ -126,13 +133,14 @@ function buildC2FixtureForLibrary(opts: BuildC2FixtureForLibraryOptions): { task
   return { taskDir: opts.taskDir, spec };
 }
 
-function renderPrompt(p: { l2RowFamily: string; libraryName: string; variantCount: number }): string {
+function renderPrompt(p: { l2RowFamily: string; libraryName: string; variantCount: number; depCqlNames: string[] }): string {
+  const depList = p.depCqlNames.map((d) => `\`inputs/deps/${d}\``).join(', ');
   return `# Task C2: Detect inconsistencies between L2 brief and Logic CQL
 
 You are given:
 
 - \`inputs/L2_table.md\` — the canonical L2 decision table for ${p.l2RowFamily}.
-- \`inputs/deps/${DEP_CQL}\` — the dependency library exposing \`Encounter."…"\` helpers the variants call into.
+- ${depList} — the dependency librar${p.depCqlNames.length === 1 ? 'y' : 'ies'} the variants call into.
 - \`inputs/variants/v01.cql\` through \`inputs/variants/v${String(p.variantCount).padStart(2, '0')}.cql\` — ${p.variantCount} candidate Logic libraries (\`${p.libraryName}\`). Each is either:
   - byte-identical to a known-good reference (a "control"), or
   - has exactly one injected bug from the taxonomy below.
@@ -251,14 +259,18 @@ export interface BuildC2Options {
   taskDir: string;
 }
 
+const MEASLES_FAMILY_DEPS = [MEASLES_DEP_CQL];
+
 export function buildC2Fixture(opts: BuildC2Options): { taskDir: string; spec: DetectionTaskSpec } {
   // The Low Tx brief is the same one A1 uses — read it off A1's fixture so
   // the two stay byte-identical. (baseline.ts builds A1 before any C2.)
   const lowTxBrief = readFileSync('tasks/A1_measles_low_tx/inputs/L2_table.md', 'utf8');
   return buildC2FixtureForLibrary({
     taskId: 'C2_measles_low_tx',
+    dakName: 'smart-immunizations',
     libraryName: 'IMMZD2DTMeaslesLowTransmissionLogic',
     l2RowFamily: 'IMMZ.D2.DT.Measles.LowTransmission',
+    depCqlNames: MEASLES_FAMILY_DEPS,
     l2BriefContent: lowTxBrief,
     variantPlan: LOW_TX_VARIANT_PLAN,
     dakRoot: opts.dakRoot,
@@ -269,8 +281,10 @@ export function buildC2Fixture(opts: BuildC2Options): { taskDir: string; spec: D
 export function buildC2McvDose0Fixture(opts: BuildC2Options): { taskDir: string; spec: DetectionTaskSpec } {
   return buildC2FixtureForLibrary({
     taskId: 'C2_measles_mcv0',
+    dakName: 'smart-immunizations',
     libraryName: 'IMMZD2DTMeaslesMCVDose0Logic',
     l2RowFamily: 'IMMZ.D2.DT.Measles.MCV0',
+    depCqlNames: MEASLES_FAMILY_DEPS,
     l2BriefContent: MCV0_L2_BRIEF,
     variantPlan: MCV0_VARIANT_PLAN,
     dakRoot: opts.dakRoot,
@@ -281,8 +295,10 @@ export function buildC2McvDose0Fixture(opts: BuildC2Options): { taskDir: string;
 export function buildC2OngoingTxFixture(opts: BuildC2Options): { taskDir: string; spec: DetectionTaskSpec } {
   return buildC2FixtureForLibrary({
     taskId: 'C2_measles_ongoing_tx',
+    dakName: 'smart-immunizations',
     libraryName: 'IMMZD2DTMeaslesOngoingTransmissionLogic',
     l2RowFamily: 'IMMZ.D2.DT.Measles.OngoingTransmission',
+    depCqlNames: MEASLES_FAMILY_DEPS,
     l2BriefContent: ONGOING_TX_L2_BRIEF,
     variantPlan: ONGOING_TX_VARIANT_PLAN,
     dakRoot: opts.dakRoot,
@@ -293,10 +309,28 @@ export function buildC2OngoingTxFixture(opts: BuildC2Options): { taskDir: string
 export function buildC2SupplementaryFixture(opts: BuildC2Options): { taskDir: string; spec: DetectionTaskSpec } {
   return buildC2FixtureForLibrary({
     taskId: 'C2_measles_supplementary',
+    dakName: 'smart-immunizations',
     libraryName: 'IMMZD2DTMeaslesSupplementaryDoseLogic',
     l2RowFamily: 'IMMZ.D2.DT.Measles.SupplementaryDose',
+    depCqlNames: MEASLES_FAMILY_DEPS,
     l2BriefContent: SUPPLEMENTARY_L2_BRIEF,
     variantPlan: SUPPLEMENTARY_VARIANT_PLAN,
+    dakRoot: opts.dakRoot,
+    taskDir: opts.taskDir,
+  });
+}
+
+const ANC_DT08_DEPS = ['ANCConfig.cql', 'ANCConcepts.cql', 'ANCDataElements.cql', 'ANCContactDataElements.cql'];
+
+export function buildC2AncDt08Fixture(opts: { dakRoot: string; taskDir: string }): { taskDir: string; spec: DetectionTaskSpec } {
+  return buildC2FixtureForLibrary({
+    taskId: 'C2_anc_dt08',
+    dakName: 'smart-anc',
+    libraryName: 'ANCDT08',
+    l2RowFamily: 'ANC.DT.08 — HIV testing',
+    depCqlNames: ANC_DT08_DEPS,
+    l2BriefContent: ANC_DT08_L2_BRIEF,
+    variantPlan: ANC_DT08_VARIANT_PLAN,
     dakRoot: opts.dakRoot,
     taskDir: opts.taskDir,
   });
@@ -488,6 +522,83 @@ All preconditions reference defines exposed by the
 
 Each row's guidance literal is published as its own \`<row output> Guidance\`
 string define (no case-aggregator wrapping).
+`;
+
+const ANC_DT08_VARIANT_PLAN: VariantPlan[] = [
+  // 12 mutated: 2 boolean_op_flip, 2 precondition_drop, 3 comparator_flip,
+  // 2 reference_rename, 3 threshold_change. No guidance_text_swap (ANCDT08
+  // has no guidance defines).
+  { id: 'v01', kind: 'boolean_op_flip', seed: 5001 },
+  { id: 'v02', kind: 'boolean_op_flip', seed: 5002 },
+  { id: 'v03', kind: 'precondition_drop', seed: 5201 },
+  { id: 'v04', kind: 'precondition_drop', seed: 5202 },
+  { id: 'v05', kind: 'comparator_flip', seed: 5301 },
+  { id: 'v06', kind: 'comparator_flip', seed: 5302 },
+  { id: 'v07', kind: 'comparator_flip', seed: 5303 },
+  { id: 'v08', kind: 'reference_rename', seed: 5101 },
+  { id: 'v09', kind: 'reference_rename', seed: 5102 },
+  { id: 'v10', kind: 'threshold_change', seed: 5501 },
+  { id: 'v11', kind: 'threshold_change', seed: 5502 },
+  { id: 'v12', kind: 'threshold_change', seed: 5503 },
+  // 12 controls
+  { id: 'v13', kind: 'none', seed: 0 },
+  { id: 'v14', kind: 'none', seed: 0 },
+  { id: 'v15', kind: 'none', seed: 0 },
+  { id: 'v16', kind: 'none', seed: 0 },
+  { id: 'v17', kind: 'none', seed: 0 },
+  { id: 'v18', kind: 'none', seed: 0 },
+  { id: 'v19', kind: 'none', seed: 0 },
+  { id: 'v20', kind: 'none', seed: 0 },
+  { id: 'v21', kind: 'none', seed: 0 },
+  { id: 'v22', kind: 'none', seed: 0 },
+  { id: 'v23', kind: 'none', seed: 0 },
+  { id: 'v24', kind: 'none', seed: 0 },
+];
+
+const ANC_DT08_L2_BRIEF = `# ANC.DT.08 — HIV Testing Decision Table
+
+**Setting:** Antenatal care (ANC) contact. Decide whether to conduct an HIV test for the pregnant client at this visit.
+**Trigger:** ANC contact.
+
+The Logic library publishes exactly four boolean output defines, each
+guarded by a different combination of population prevalence, ANC contact
+number, gestational age, and the client's known HIV status.
+
+All preconditions reference defines exposed by the WHO ANC dependency
+libraries (\`Config\`, \`ContactData\`, \`Cx\`); see the files under
+\`inputs/deps/\` for the exact names.
+
+## Rows
+
+### Row R1 — \`Should Conduct HIV test\`
+
+- Preconditions (AND):
+  - \`Config."Population prevalence of HIV in pregnant women" >= 5 '%'\`
+  - \`ContactData."ANC contact number" = 1\`
+- Output define (Boolean): \`Should Conduct HIV test\`
+
+### Row R2 — \`Should Conduct HIV test 2\`
+
+- Preconditions (AND):
+  - \`Config."Population prevalence of HIV in pregnant women" >= 5 '%'\`
+  - \`ContactData."Gestational age" >= 29 'weeks'\`
+  - \`ContactData."HIV status" in Cx."HIV status - HIV negative Choices"\`
+- Output define (Boolean): \`Should Conduct HIV test 2\`
+
+### Row R3 — \`Should HIV test is optional\`
+
+- Precondition: \`Config."Population prevalence of HIV in pregnant women" < 5 '%'\`
+- Output define (Boolean): \`Should HIV test is optional\` (the literal define name, including the slightly awkward grammar)
+
+### Row R4 — \`Should HIV test is not required\`
+
+- Precondition: \`ContactData."HIV status" in Cx."HIV status - HIV positive Choices"\`
+- Output define (Boolean): \`Should HIV test is not required\`
+
+## Notes
+
+- ANC.DT.08 does not publish any \`Guidance\` aggregator or \`Has Guidance\` define. Each row's boolean stands on its own.
+- The library uses inline numeric literals with CQL unit syntax (\`5 '%'\`, \`29 'weeks'\`, \`= 1\`) rather than helper-name predicates. Mutations may target either the literal value or the comparator.
 `;
 
 const MCV0_L2_BRIEF = `# IMMZ.D2.DT.Measles.MCV0 — Decision Table

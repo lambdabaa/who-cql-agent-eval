@@ -10,6 +10,7 @@ import {
 import { join, relative, resolve } from 'node:path';
 import { buildA1Fixture } from './build_a1.js';
 import {
+  buildC2AncDt08Fixture,
   buildC2Fixture,
   buildC2McvDose0Fixture,
   buildC2OngoingTxFixture,
@@ -45,6 +46,7 @@ export const TASK_IDS = [
   'C2_measles_mcv0',
   'C2_measles_ongoing_tx',
   'C2_measles_supplementary',
+  'C2_anc_dt08',
   'C4_measles_low_tx',
 ] as const;
 export type TaskId = (typeof TASK_IDS)[number];
@@ -95,6 +97,10 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
   buildC2SupplementaryFixture({
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'C2_measles_supplementary'),
+  });
+  buildC2AncDt08Fixture({
+    dakRoot: resolve(paths.dakRoot, '..', 'smart-anc'),
+    taskDir: join(paths.tasksRoot, 'C2_anc_dt08'),
   });
   await buildC4Fixture({
     dakRoot: paths.dakRoot,

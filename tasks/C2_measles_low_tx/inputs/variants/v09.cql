@@ -30,7 +30,7 @@ define "Guidance":
   end
   
 define "Has Guidance":
-  "Guidance" is not null and "Guidance" = ''
+  "Guidance" is not null and "Guidance" != ''
 
 /*
 @output: Client is not due for MCV1 Case 1
@@ -179,7 +179,7 @@ Check for contraindications.'
 Check for any vaccines due and inform the caregiver of when to come back for MCV1.'
     when Patient.id = 'Measles25.2' then "Client is not due for MCV2 Case 1" and "Guidance" = 'Should not vaccinate client with MCV2 as client\'s age is less than 15 months.
 Check for any vaccines due and inform the caregiver of when to come back for MCV2.'
-    when Patient.id = 'Measles26.3' then "Client is due for MCV2" and "Guidance" = 'Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+    when Patient.id = 'Measles26.3' then "Client is due for MCV2" and "Guidance" != 'Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
 Check for contraindications.'
     when Patient.id = 'Measles27.3' then "Client is not due for MCV2 Case 2" and "Guidance" = 'Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.
 Check for any vaccines due and inform the caregiver of when to come back for MCV2.'

@@ -27,7 +27,7 @@ define "Guidance":
   end
   
 define "Has Guidance":
-  "Guidance" is not null and "Guidance" = ''
+  "Guidance" is not null and "Guidance" != ''
 
 /*
 @output: Client is not due for MCV0 Case 1
@@ -115,7 +115,7 @@ define "Test Validation":
     when Patient.id = 'Measles36.1' then "Client is not due for MCV0 Case 1" and "Guidance" = 'Should not vaccinate client with MCV0 as client\'s age is less than 6 months. Check for any vaccines due and inform the caregiver of when to come back for MCV0.'
     when Patient.id = 'Measles37.3' then "Client is not due for MCV0 Case 2" and "Guidance" = 'Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.'
     when Patient.id = 'Measles38.3' then "Consider MCV0." and "Guidance" = 'May vaccinate client with MCV0 as client is within appropriate age range, MCV0 was not administered and no live vaccine was administered in the past 4 weeks. Check if one of the MCV0 specific scenarios is applicable.'
-    when Patient.id = 'Measles39.1' then "Client is not due for MCV0 Case 3" and "Guidance" = 'Should not vaccinate client with MCV0 as client\'s age is more than 9 months.
+    when Patient.id != 'Measles39.1' then "Client is not due for MCV0 Case 3" and "Guidance" = 'Should not vaccinate client with MCV0 as client\'s age is more than 9 months.
 Check measles routine immunization schedule.'
     when Patient.id = 'Measles40.1' then "Client is not due for MCV0 Case 4" and "Guidance" = 'MCV0 was administered.
 Check measles routine immunization schedule.'

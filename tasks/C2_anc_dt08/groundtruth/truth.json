@@ -1,0 +1,158 @@
+{
+  "v01": {
+    "kind": "boolean_op_flip",
+    "define": "Should Conduct HIV test 2",
+    "definesAffected": [
+      "Should Conduct HIV test 2"
+    ],
+    "approxLine": 30,
+    "original": "    and ContactData.\"HIV status\" in Cx.\"HIV status - HIV negative Choices\"",
+    "modified": "    or ContactData.\"HIV status\" in Cx.\"HIV status - HIV negative Choices\""
+  },
+  "v02": {
+    "kind": "boolean_op_flip",
+    "define": "Should Conduct HIV test 2",
+    "definesAffected": [
+      "Should Conduct HIV test 2"
+    ],
+    "approxLine": 29,
+    "original": "    and ContactData.\"Gestational age\" >= 29 'weeks'",
+    "modified": "    or ContactData.\"Gestational age\" >= 29 'weeks'"
+  },
+  "v03": {
+    "kind": "precondition_drop",
+    "define": "Should Conduct HIV test 2",
+    "definesAffected": [
+      "Should Conduct HIV test 2"
+    ],
+    "approxLine": 30,
+    "original": "    and ContactData.\"HIV status\" in Cx.\"HIV status - HIV negative Choices\"",
+    "modified": "<line removed>"
+  },
+  "v04": {
+    "kind": "precondition_drop",
+    "define": "Should Conduct HIV test",
+    "definesAffected": [
+      "Should Conduct HIV test"
+    ],
+    "approxLine": 20,
+    "original": "    and (ContactData.\"ANC contact number\" = 1)",
+    "modified": "<line removed>"
+  },
+  "v05": {
+    "kind": "comparator_flip",
+    "define": "Should HIV test is optional",
+    "definesAffected": [
+      "Should HIV test is optional"
+    ],
+    "approxLine": 36,
+    "original": "  Config.\"Population prevalence of HIV in pregnant women\" < 5 '%'",
+    "modified": "  Config.\"Population prevalence of HIV in pregnant women\" <= 5 '%'"
+  },
+  "v06": {
+    "kind": "comparator_flip",
+    "define": "Should Conduct HIV test",
+    "definesAffected": [
+      "Should Conduct HIV test"
+    ],
+    "approxLine": 20,
+    "original": "    and (ContactData.\"ANC contact number\" = 1)",
+    "modified": "    and (ContactData.\"ANC contact number\" != 1)"
+  },
+  "v07": {
+    "kind": "comparator_flip",
+    "define": "Should Conduct HIV test",
+    "definesAffected": [
+      "Should Conduct HIV test"
+    ],
+    "approxLine": 19,
+    "original": "  Config.\"Population prevalence of HIV in pregnant women\" >= 5 '%'",
+    "modified": "  Config.\"Population prevalence of HIV in pregnant women\" > 5 '%'"
+  },
+  "v08": {
+    "kind": "reference_rename",
+    "define": "Should HIV test is not required",
+    "definesAffected": [
+      "Should HIV test is not required"
+    ],
+    "approxLine": 42,
+    "original": "  ContactData.\"HIV status\" in Cx.\"HIV status - HIV positive Choices\"",
+    "modified": "  ContactData.\"HIV status\" in Cx.\"HIV status - HIV negative Choices\""
+  },
+  "v09": {
+    "kind": "reference_rename",
+    "define": "Should Conduct HIV test 2",
+    "definesAffected": [
+      "Should Conduct HIV test 2"
+    ],
+    "approxLine": 30,
+    "original": "    and ContactData.\"HIV status\" in Cx.\"HIV status - HIV negative Choices\"",
+    "modified": "    and ContactData.\"HIV status\" in Cx.\"HIV status - HIV positive Choices\""
+  },
+  "v10": {
+    "kind": "threshold_change",
+    "define": "Should Conduct HIV test",
+    "definesAffected": [
+      "Should Conduct HIV test"
+    ],
+    "approxLine": 19,
+    "original": "  Config.\"Population prevalence of HIV in pregnant women\" >= 5 '%'",
+    "modified": "  Config.\"Population prevalence of HIV in pregnant women\" >= 6 '%'"
+  },
+  "v11": {
+    "kind": "threshold_change",
+    "define": "Should HIV test is optional",
+    "definesAffected": [
+      "Should HIV test is optional"
+    ],
+    "approxLine": 36,
+    "original": "  Config.\"Population prevalence of HIV in pregnant women\" < 5 '%'",
+    "modified": "  Config.\"Population prevalence of HIV in pregnant women\" < 6 '%'"
+  },
+  "v12": {
+    "kind": "threshold_change",
+    "define": "Should Conduct HIV test 2",
+    "definesAffected": [
+      "Should Conduct HIV test 2"
+    ],
+    "approxLine": 28,
+    "original": "  Config.\"Population prevalence of HIV in pregnant women\" >= 5 '%'",
+    "modified": "  Config.\"Population prevalence of HIV in pregnant women\" >= 6 '%'"
+  },
+  "v13": {
+    "kind": "none"
+  },
+  "v14": {
+    "kind": "none"
+  },
+  "v15": {
+    "kind": "none"
+  },
+  "v16": {
+    "kind": "none"
+  },
+  "v17": {
+    "kind": "none"
+  },
+  "v18": {
+    "kind": "none"
+  },
+  "v19": {
+    "kind": "none"
+  },
+  "v20": {
+    "kind": "none"
+  },
+  "v21": {
+    "kind": "none"
+  },
+  "v22": {
+    "kind": "none"
+  },
+  "v23": {
+    "kind": "none"
+  },
+  "v24": {
+    "kind": "none"
+  }
+}

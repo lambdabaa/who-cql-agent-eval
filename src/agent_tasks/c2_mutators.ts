@@ -80,6 +80,45 @@ function enclosingDefine(lines: string[], lineIdx: number): string {
 }
 
 /**
+ * Compute, for each line, whether it lies *inside* a `/* … *​/` block
+ * comment. The opening `/​*` line and the closing `*​/` line are flagged
+ * too. Used to keep mutators from picking sites inside pseudocode
+ * comments — those don't actually run, and `enclosingDefine` will
+ * mis-attribute them to the *preceding* define rather than the one
+ * the comment annotates.
+ */
+function computeCommentMask(lines: string[]): boolean[] {
+  const inComment: boolean[] = new Array(lines.length).fill(false);
+  let depth = 0;
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i]!;
+    // A line is "inside a comment" if depth>0 when we start it OR it opens one.
+    if (depth > 0) inComment[i] = true;
+    let j = 0;
+    while (j < line.length - 1) {
+      if (line[j] === '/' && line[j + 1] === '*') {
+        depth += 1;
+        inComment[i] = true;
+        j += 2;
+      } else if (line[j] === '*' && line[j + 1] === '/') {
+        depth = Math.max(0, depth - 1);
+        inComment[i] = true;
+        j += 2;
+      } else {
+        j += 1;
+      }
+    }
+  }
+  return inComment;
+}
+
+function isLineCode(line: string, lineIdx: number, mask: boolean[]): boolean {
+  if (mask[lineIdx]) return false;
+  if (/^\s*\/\//.test(line)) return false;
+  return true;
+}
+
+/**
  * Replace exactly one line in `source` at `lineIdx` (0-based) with
  * `newLine`. Returns the new source.
  */
@@ -105,8 +144,10 @@ function removeLine(source: string, lineIdx: number): string {
  */
 export function mutateBooleanOpFlip(source: string, rng: () => number): MutationResult {
   const lines = source.split('\n');
+  const mask = computeCommentMask(lines);
   const candidates: number[] = [];
   for (let i = 0; i < lines.length; i += 1) {
+    if (!isLineCode(lines[i]!, i, mask)) continue;
     if (/^\s+(and|or)\s+/.test(lines[i]!)) candidates.push(i);
   }
   if (candidates.length === 0) throw new Error('boolean_op_flip: no candidates');
@@ -130,46 +171,52 @@ export function mutateBooleanOpFlip(source: string, rng: () => number): Mutation
 }
 
 /**
- * Helper-relation facts about the Measles EncounterElements library. These
- * pairs hold across every Logic library that uses the same helpers
- * (LowTransmission, MCVDose0, OngoingTransmission, SupplementaryDose).
+ * Helper-relation facts about WHO DAK libraries. These pairs hold across
+ * Logic libraries that use the same helpers / choice sets / data elements.
+ *
+ * Pair entries are *fully-qualified* references — `Encounter."X"`, `Cx."Y"`,
+ * etc. — so the same finder mechanism works across DAK conventions
+ * (`smart-immunizations` uses `Encounter.` helpers; `smart-anc` uses
+ * `Cx."<choice set>"` and `ContactData."<element>"`).
  *
  * `ENTITY_REFERENCE_PAIRS` — swaps that change the referenced *entity*
- * (MCV1 ↔ MCV2, "administered" ↔ "not administered"). The numeric form
- * is preserved; semantic referent changes.
+ * (MCV1 ↔ MCV2, "HIV negative" ↔ "HIV positive"). Numeric form preserved.
  *
- * `THRESHOLD_PAIRS` — swaps that keep the predicate type ("less than N
- * months") but change the numeric threshold. The semantic *referent* is
- * the same kind of fact about the patient; the clinically meaningful
- * number is what changed. This is the bug class that requires knowing
- * the actual immunization schedule, not just matching shape.
+ * `THRESHOLD_PAIRS` — swaps that keep the predicate type but change the
+ * numeric threshold inside the reference name (e.g. "…less than 12 months"
+ * → "…less than 15 months"). Distinct from entity swaps because the
+ * *referent* type is the same; only the number is wrong.
  */
 const ENTITY_REFERENCE_PAIRS: Array<[string, string]> = [
-  ['MCV1 was administered', 'MCV2 was administered'],
-  ['Live vaccine was administered in the last 4 weeks', 'No live vaccine was administered in the last 4 weeks'],
-  ['Live vaccine was administered in the past 4 weeks', 'No live vaccine was administered in the past 4 weeks'],
-  ['MCV0 was administered', 'MCV0 was not administered'],
-  ['Measles supplementary dose was administered', 'Measles supplementary dose was not administered'],
+  // smart-immunizations: Measles Encounter helpers
+  ['Encounter."MCV1 was administered"', 'Encounter."MCV2 was administered"'],
+  ['Encounter."Live vaccine was administered in the last 4 weeks"', 'Encounter."No live vaccine was administered in the last 4 weeks"'],
+  ['Encounter."Live vaccine was administered in the past 4 weeks"', 'Encounter."No live vaccine was administered in the past 4 weeks"'],
+  ['Encounter."MCV0 was administered"', 'Encounter."MCV0 was not administered"'],
+  ['Encounter."Measles supplementary dose was administered"', 'Encounter."Measles supplementary dose was not administered"'],
+  // smart-anc: Cx choice sets
+  ['Cx."HIV status - HIV negative Choices"', 'Cx."HIV status - HIV positive Choices"'],
 ];
 
 const THRESHOLD_PAIRS: Array<[string, string]> = [
-  // Cross-table age thresholds for the "less than N months" family.
-  ["Client's age is less than 6 months", "Client's age is less than 9 months"],
-  ["Client's age is less than 9 months", "Client's age is less than 12 months"],
-  ["Client's age is less than 12 months", "Client's age is less than 15 months"],
-  // "more than or equal to" family (note: there's no 6-month variant in helpers).
-  ["Client's age is more than or equal to 9 months", "Client's age is more than or equal to 12 months"],
-  ["Client's age is more than or equal to 12 months", "Client's age is more than or equal to 15 months"],
+  // smart-immunizations: cross-table age thresholds.
+  ['Encounter."Client\'s age is less than 6 months"', 'Encounter."Client\'s age is less than 9 months"'],
+  ['Encounter."Client\'s age is less than 9 months"', 'Encounter."Client\'s age is less than 12 months"'],
+  ['Encounter."Client\'s age is less than 12 months"', 'Encounter."Client\'s age is less than 15 months"'],
+  ['Encounter."Client\'s age is more than or equal to 9 months"', 'Encounter."Client\'s age is more than or equal to 12 months"'],
+  ['Encounter."Client\'s age is more than or equal to 12 months"', 'Encounter."Client\'s age is more than or equal to 15 months"'],
 ];
 
 function findSwapSites(source: string, pairs: Array<[string, string]>): Array<{ lineIdx: number; from: string; to: string }> {
   const lines = source.split('\n');
+  const mask = computeCommentMask(lines);
   const sites: Array<{ lineIdx: number; from: string; to: string }> = [];
   for (const [a, b] of pairs) {
     for (let i = 0; i < lines.length; i += 1) {
       const line = lines[i]!;
-      if (line.includes(`Encounter."${a}"`)) sites.push({ lineIdx: i, from: a, to: b });
-      if (line.includes(`Encounter."${b}"`)) sites.push({ lineIdx: i, from: b, to: a });
+      if (!isLineCode(line, i, mask)) continue;
+      if (line.includes(a)) sites.push({ lineIdx: i, from: a, to: b });
+      if (line.includes(b)) sites.push({ lineIdx: i, from: b, to: a });
     }
   }
   return sites;
@@ -181,7 +228,7 @@ export function mutateReferenceRename(source: string, rng: () => number): Mutati
   if (sites.length === 0) throw new Error('reference_rename: no candidates');
   const site = pick(rng, sites);
   const orig = lines[site.lineIdx]!;
-  const modified = orig.replace(`Encounter."${site.from}"`, `Encounter."${site.to}"`);
+  const modified = orig.replace(site.from, site.to);
   const def = enclosingDefine(lines, site.lineIdx);
   return {
     source: replaceLine(source, site.lineIdx, modified),
@@ -197,19 +244,59 @@ export function mutateReferenceRename(source: string, rng: () => number): Mutati
 }
 
 /**
- * Threshold change: swap a numeric-threshold helper reference for another
- * with a different number but the same predicate shape (e.g.
- * `"…less than 12 months"` → `"…less than 15 months"`). All swap targets
- * are known-existing helpers in `IMMZD2DTMeaslesEncounterElements`, so the
- * library still compiles; only the clinical threshold is wrong.
+ * Threshold change: in helper-driven libraries, swap a numeric-threshold
+ * helper reference for another with the same predicate but a different
+ * number (e.g. `"…less than 12 months"` → `"…less than 15 months"`). In
+ * libraries with inline literals (smart-anc style), nudge an integer
+ * literal followed by a unit string (e.g. `5 '%'` → `6 '%'`, `29 'weeks'`
+ * → `30 'weeks'`). Both forms preserve syntactic validity; only the
+ * clinical threshold is wrong.
  */
 export function mutateThresholdChange(source: string, rng: () => number): MutationResult {
+  // Prefer helper-name swaps when they exist (richer semantic signal).
+  const helperSites = findSwapSites(source, THRESHOLD_PAIRS);
+  if (helperSites.length > 0) {
+    const lines = source.split('\n');
+    const site = pick(rng, helperSites);
+    const orig = lines[site.lineIdx]!;
+    const modified = orig.replace(site.from, site.to);
+    const def = enclosingDefine(lines, site.lineIdx);
+    return {
+      source: replaceLine(source, site.lineIdx, modified),
+      mutation: {
+        kind: 'threshold_change',
+        define: def,
+        definesAffected: [def],
+        approxLine: site.lineIdx + 1,
+        original: orig,
+        modified,
+      },
+    };
+  }
+  // Fall back to inline-literal nudge: `<integer> '<unit>'`. Pick a site,
+  // nudge by +1 (or -1 if the original is already 1, so we don't produce 0
+  // and trigger semantic degeneracy).
   const lines = source.split('\n');
-  const sites = findSwapSites(source, THRESHOLD_PAIRS);
-  if (sites.length === 0) throw new Error('threshold_change: no candidates');
-  const site = pick(rng, sites);
+  const mask = computeCommentMask(lines);
+  type InlineSite = { lineIdx: number; match: string; replacement: string };
+  const inlineSites: InlineSite[] = [];
+  const re = /\b(\d+)(\s*'[A-Za-z%]+')/g;
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i]!;
+    if (!isLineCode(line, i, mask)) continue;
+    let m: RegExpExecArray | null;
+    re.lastIndex = 0;
+    while ((m = re.exec(line)) !== null) {
+      const num = parseInt(m[1]!, 10);
+      const delta = num <= 1 ? 1 : (num >= 100 ? -1 : 1);
+      const newNum = num + delta;
+      inlineSites.push({ lineIdx: i, match: m[0], replacement: `${newNum}${m[2]}` });
+    }
+  }
+  if (inlineSites.length === 0) throw new Error('threshold_change: no candidates');
+  const site = pick(rng, inlineSites);
   const orig = lines[site.lineIdx]!;
-  const modified = orig.replace(`Encounter."${site.from}"`, `Encounter."${site.to}"`);
+  const modified = orig.replace(site.match, site.replacement);
   const def = enclosingDefine(lines, site.lineIdx);
   return {
     source: replaceLine(source, site.lineIdx, modified),
@@ -231,8 +318,10 @@ export function mutateThresholdChange(source: string, rng: () => number): Mutati
  */
 export function mutatePreconditionDrop(source: string, rng: () => number): MutationResult {
   const lines = source.split('\n');
+  const mask = computeCommentMask(lines);
   const candidates: number[] = [];
   for (let i = 0; i < lines.length; i += 1) {
+    if (!isLineCode(lines[i]!, i, mask)) continue;
     if (!/^\s+and\s+/.test(lines[i]!)) continue;
     // Require the previous non-blank line to also be a clause (not a `:` opener)
     // — otherwise we'd be dropping the only continuation.
@@ -365,23 +454,49 @@ export function mutateGuidanceTextSwap(source: string, rng: () => number): Mutat
 }
 
 /**
- * Flip `is not null` ↔ `is null` or `!=` ↔ `=` in a boolean position.
- * Targets `define "Has Guidance":` and similar scalar comparisons.
+ * Flip a comparator in a boolean position. Covers:
+ *   - `is not null` ↔ `is null`
+ *   - `!=` ↔ `=`  (and the plain `=` ↔ `!=` direction for inline equalities)
+ *   - `>=` ↔ `>` and `<=` ↔ `<` (boundary tweaks on numeric comparators)
+ *   - `<` ↔ `<=` and `>` ↔ `>=` (the same boundary tweaks, opposite side)
+ *
+ * Lookbehinds disambiguate `=` from `!=`, `>=`, `<=` so each operator is
+ * counted exactly once per occurrence. Comment lines (`//`, `/*`) are
+ * skipped so we never mutate a pseudocode annotation.
  */
+const COMPARATOR_FLIPS: Array<{ pattern: RegExp; to: string }> = [
+  { pattern: /\bis not null\b/g, to: 'is null' },
+  { pattern: /\bis null\b/g, to: 'is not null' },
+  { pattern: /!=/g, to: '=' },
+  { pattern: />=/g, to: '>' },
+  { pattern: /<=/g, to: '<' },
+  { pattern: /(?<![!<>])=(?!=)/g, to: '!=' },
+  { pattern: /(?<![<])<(?![=])/g, to: '<=' },
+  { pattern: /(?<![>])>(?![=])/g, to: '>=' },
+];
+
 export function mutateComparatorFlip(source: string, rng: () => number): MutationResult {
   const lines = source.split('\n');
-  type Site = { lineIdx: number; from: RegExp; to: string };
+  const mask = computeCommentMask(lines);
+  type Site = { lineIdx: number; matchedText: string; to: string; matchIndex: number };
   const sites: Site[] = [];
   for (let i = 0; i < lines.length; i += 1) {
     const line = lines[i]!;
-    if (/\bis not null\b/.test(line)) sites.push({ lineIdx: i, from: /\bis not null\b/, to: 'is null' });
-    else if (/\bis null\b/.test(line)) sites.push({ lineIdx: i, from: /\bis null\b/, to: 'is not null' });
-    if (/!=/.test(line)) sites.push({ lineIdx: i, from: /!=/, to: '=' });
+    if (!isLineCode(line, i, mask)) continue;
+    for (const { pattern, to } of COMPARATOR_FLIPS) {
+      pattern.lastIndex = 0;
+      let m: RegExpExecArray | null;
+      while ((m = pattern.exec(line)) !== null) {
+        sites.push({ lineIdx: i, matchedText: m[0], to, matchIndex: m.index });
+      }
+    }
   }
   if (sites.length === 0) throw new Error('comparator_flip: no candidates');
   const site = pick(rng, sites);
   const orig = lines[site.lineIdx]!;
-  const modified = orig.replace(site.from, site.to);
+  // Replace at the exact character position so multiple matches on the same
+  // line don't all flip.
+  const modified = orig.slice(0, site.matchIndex) + site.to + orig.slice(site.matchIndex + site.matchedText.length);
   const def = enclosingDefine(lines, site.lineIdx);
   return {
     source: replaceLine(source, site.lineIdx, modified),

@@ -3,7 +3,7 @@
 You are given:
 
 - `inputs/L2_table.md` — the canonical L2 decision table for IMMZ.D2.DT.Measles.OngoingTransmission.
-- `inputs/deps/IMMZD2DTMeaslesEncounterElements.cql` — the dependency library exposing `Encounter."…"` helpers the variants call into.
+- `inputs/deps/IMMZD2DTMeaslesEncounterElements.cql` — the dependency library the variants call into.
 - `inputs/variants/v01.cql` through `inputs/variants/v24.cql` — 24 candidate Logic libraries (`IMMZD2DTMeaslesOngoingTransmissionLogic`). Each is either:
   - byte-identical to a known-good reference (a "control"), or
   - has exactly one injected bug from the taxonomy below.

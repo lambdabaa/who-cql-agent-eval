@@ -1,5 +1,5 @@
 {
-  "frozenAt": "2026-05-28T21:08:29.262Z",
+  "frozenAt": "2026-05-28T21:37:14.328Z",
   "panelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
   "sourceRevision": "smart-immunizations@b16245f71",
   "agents": [
@@ -10,6 +10,7 @@
   ],
   "tasks": [
     "A1_measles_low_tx",
+    "C2_anc_dt08",
     "C2_measles_low_tx",
     "C2_measles_mcv0",
     "C2_measles_ongoing_tx",
@@ -364,11 +365,11 @@
     },
     {
       "agentId": "anthropic_claude-haiku-4-5",
-      "taskId": "C2_measles_low_tx",
+      "taskId": "C2_anc_dt08",
       "kind": "detection",
       "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
       "detail": {
-        "taskId": "C2_measles_low_tx",
+        "taskId": "C2_anc_dt08",
         "agentSubmitted": true,
         "detection": {
           "truePositive": 12,
@@ -385,6 +386,285 @@
         },
         "classification": {
           "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 3,
+            "flagged": 3
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should HIV test is optional",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Should HIV test is not required",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is not required",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should HIV test is optional",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "C2_measles_low_tx",
+      "kind": "detection",
+      "headline": "F1: 0.96 (P=1.00 R=0.92) · loc: 11/11",
+      "detail": {
+        "taskId": "C2_measles_low_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 11,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 1,
+          "precision": 1,
+          "recall": 0.917,
+          "f1": 0.957
+        },
+        "localization": {
+          "flagged": 11,
+          "defineCorrect": 11
+        },
+        "classification": {
+          "flagged": 11,
           "kindCorrect": 9
         },
         "perKindRecall": {
@@ -394,7 +674,7 @@
           },
           "reference_rename": {
             "total": 2,
-            "flagged": 2
+            "flagged": 1
           },
           "threshold_change": {
             "total": 2,
@@ -443,12 +723,8 @@
             "truthHasBug": true,
             "truthKind": "reference_rename",
             "truthDefine": "Client is due for MCV2",
-            "agentHasBug": true,
-            "agentDefine": "Client is due for MCV2",
-            "agentKind": "reference_rename",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": true
+            "agentHasBug": false,
+            "detectionPass": false
           },
           {
             "variantId": "v04",
@@ -457,7 +733,7 @@
             "truthDefine": "Client is due for MCV1",
             "agentHasBug": true,
             "agentDefine": "Client is due for MCV1",
-            "agentKind": "precondition_drop",
+            "agentKind": "boolean_op_flip",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": false
@@ -514,21 +790,21 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "boolean_op_flip",
+            "agentDefine": "Test Validation",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": false
+            "classificationPass": true
           },
           {
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -668,7 +944,7 @@
         },
         "classification": {
           "flagged": 12,
-          "kindCorrect": 12
+          "kindCorrect": 9
         },
         "perKindRecall": {
           "boolean_op_flip": {
@@ -760,10 +1036,10 @@
             "truthDefine": "Client is not due for MCV0 Case 1",
             "agentHasBug": true,
             "agentDefine": "Client is not due for MCV0 Case 1",
-            "agentKind": "threshold_change",
+            "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v07",
@@ -817,25 +1093,25 @@
             "variantId": "v11",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Test Validation",
+            "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v12",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Test Validation",
+            "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v13",
@@ -947,7 +1223,7 @@
         },
         "classification": {
           "flagged": 12,
-          "kindCorrect": 12
+          "kindCorrect": 11
         },
         "perKindRecall": {
           "boolean_op_flip": {
@@ -1076,21 +1352,21 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Test Validation",
+            "agentKind": "guidance_text_swap",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -1355,9 +1631,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -1367,9 +1643,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -2274,6 +2550,285 @@
     },
     {
       "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "C2_anc_dt08",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_anc_dt08",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 3,
+            "flagged": 3
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should HIV test is optional",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Should HIV test is not required",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is not required",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should HIV test is optional",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
       "taskId": "C2_measles_low_tx",
       "kind": "detection",
       "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
@@ -2424,9 +2979,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -2436,9 +2991,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -2727,9 +3282,9 @@
             "variantId": "v11",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -2739,9 +3294,9 @@
             "variantId": "v12",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -2986,9 +3541,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -2998,9 +3553,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -3265,9 +3820,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -3277,9 +3832,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -3469,11 +4024,11 @@
     },
     {
       "agentId": "openai_gpt-5.4-nano",
-      "taskId": "C2_measles_low_tx",
+      "taskId": "C2_anc_dt08",
       "kind": "detection",
-      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 11/12",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
       "detail": {
-        "taskId": "C2_measles_low_tx",
+        "taskId": "C2_anc_dt08",
         "agentSubmitted": true,
         "detection": {
           "truePositive": 12,
@@ -3486,22 +4041,14 @@
         },
         "localization": {
           "flagged": 12,
-          "defineCorrect": 11
+          "defineCorrect": 12
         },
         "classification": {
           "flagged": 12,
-          "kindCorrect": 7
+          "kindCorrect": 11
         },
         "perKindRecall": {
           "boolean_op_flip": {
-            "total": 2,
-            "flagged": 2
-          },
-          "reference_rename": {
-            "total": 2,
-            "flagged": 2
-          },
-          "threshold_change": {
             "total": 2,
             "flagged": 2
           },
@@ -3510,12 +4057,16 @@
             "flagged": 2
           },
           "comparator_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
             "total": 2,
             "flagged": 2
           },
-          "guidance_text_swap": {
-            "total": 2,
-            "flagged": 2
+          "threshold_change": {
+            "total": 3,
+            "flagged": 3
           }
         },
         "perVariant": [
@@ -3523,21 +4074,21 @@
             "variantId": "v01",
             "truthHasBug": true,
             "truthKind": "boolean_op_flip",
-            "truthDefine": "Client is not due for MCV1 Case 2",
+            "truthDefine": "Should Conduct HIV test 2",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV1 Case 2",
-            "agentKind": "precondition_drop",
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": false
+            "classificationPass": true
           },
           {
             "variantId": "v02",
             "truthHasBug": true,
             "truthKind": "boolean_op_flip",
-            "truthDefine": "Client is due for MCV1",
+            "truthDefine": "Should Conduct HIV test 2",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1",
+            "agentDefine": "Should Conduct HIV test 2",
             "agentKind": "boolean_op_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -3546,11 +4097,11 @@
           {
             "variantId": "v03",
             "truthHasBug": true,
-            "truthKind": "reference_rename",
-            "truthDefine": "Client is due for MCV2",
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test 2",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV2",
-            "agentKind": "reference_rename",
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "precondition_drop",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -3558,47 +4109,47 @@
           {
             "variantId": "v04",
             "truthHasBug": true,
-            "truthKind": "reference_rename",
-            "truthDefine": "Client is due for MCV1",
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1",
-            "agentKind": "comparator_flip",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": false
-          },
-          {
-            "variantId": "v05",
-            "truthHasBug": true,
-            "truthKind": "threshold_change",
-            "truthDefine": "Client is not due for MCV1 Case 1",
-            "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV1 Case 1",
-            "agentKind": "threshold_change",
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "precondition_drop",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
           },
           {
-            "variantId": "v06",
+            "variantId": "v05",
             "truthHasBug": true,
-            "truthKind": "threshold_change",
-            "truthDefine": "Client is not due for MCV1 Case 1",
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should HIV test is optional",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentDefine": "Should HIV test is optional",
             "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": false
           },
           {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
             "variantId": "v07",
             "truthHasBug": true,
-            "truthKind": "precondition_drop",
-            "truthDefine": "Client is not due for MCV1 Case 2",
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV1 Case 2",
-            "agentKind": "precondition_drop",
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -3606,23 +4157,23 @@
           {
             "variantId": "v08",
             "truthHasBug": true,
-            "truthKind": "precondition_drop",
-            "truthDefine": "Client is due for MCV2",
+            "truthKind": "reference_rename",
+            "truthDefine": "Should HIV test is not required",
             "agentHasBug": true,
-            "agentDefine": "Test Validation",
-            "agentKind": "none",
+            "agentDefine": "Should HIV test is not required",
+            "agentKind": "reference_rename",
             "detectionPass": true,
-            "localizationPass": false,
-            "classificationPass": false
+            "localizationPass": true,
+            "classificationPass": true
           },
           {
             "variantId": "v09",
             "truthHasBug": true,
-            "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthKind": "reference_rename",
+            "truthDefine": "Should Conduct HIV test 2",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -3630,11 +4181,11 @@
           {
             "variantId": "v10",
             "truthHasBug": true,
-            "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -3642,11 +4193,11 @@
           {
             "variantId": "v11",
             "truthHasBug": true,
-            "truthKind": "guidance_text_swap",
-            "truthDefine": "Measles primary series is complete Guidance",
+            "truthKind": "threshold_change",
+            "truthDefine": "Should HIV test is optional",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1 Guidance",
-            "agentKind": "guidance_text_swap",
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -3654,14 +4205,14 @@
           {
             "variantId": "v12",
             "truthHasBug": true,
-            "truthKind": "guidance_text_swap",
-            "truthDefine": "Client is due for MCV2 Guidance",
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test 2",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1 Guidance",
-            "agentKind": "reference_rename",
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": false
+            "classificationPass": true
           },
           {
             "variantId": "v13",
@@ -3752,28 +4303,319 @@
     },
     {
       "agentId": "openai_gpt-5.4-nano",
+      "taskId": "C2_measles_low_tx",
+      "kind": "detection",
+      "headline": "F1: 0.76 (P=0.65 R=0.92) · loc: 10/11",
+      "detail": {
+        "taskId": "C2_measles_low_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 11,
+          "falsePositive": 6,
+          "trueNegative": 6,
+          "falseNegative": 1,
+          "precision": 0.647,
+          "recall": 0.917,
+          "f1": 0.759
+        },
+        "localization": {
+          "flagged": 11,
+          "defineCorrect": 10
+        },
+        "classification": {
+          "flagged": 11,
+          "kindCorrect": 10
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 1
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV1 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV1 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": false,
+            "detectionPass": false
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Test Validation",
+            "agentHasBug": true,
+            "agentDefine": "Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": false,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Test Validation",
+            "agentHasBug": true,
+            "agentDefine": "Test Validation",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is due for MCV2 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "threshold_change",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "comparator_flip",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "comparator_flip",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "precondition_drop",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
       "taskId": "C2_measles_mcv0",
       "kind": "detection",
-      "headline": "F1: 0.88 (P=0.85 R=0.92) · loc: 11/11",
+      "headline": "F1: 0.87 (P=0.91 R=0.83) · loc: 10/10",
       "detail": {
         "taskId": "C2_measles_mcv0",
         "agentSubmitted": true,
         "detection": {
-          "truePositive": 11,
-          "falsePositive": 2,
-          "trueNegative": 10,
-          "falseNegative": 1,
-          "precision": 0.846,
-          "recall": 0.917,
-          "f1": 0.88
+          "truePositive": 10,
+          "falsePositive": 1,
+          "trueNegative": 11,
+          "falseNegative": 2,
+          "precision": 0.909,
+          "recall": 0.833,
+          "f1": 0.87
         },
         "localization": {
-          "flagged": 11,
-          "defineCorrect": 11
+          "flagged": 10,
+          "defineCorrect": 10
         },
         "classification": {
-          "flagged": 11,
-          "kindCorrect": 9
+          "flagged": 10,
+          "kindCorrect": 8
         },
         "perKindRecall": {
           "boolean_op_flip": {
@@ -3794,7 +4636,7 @@
           },
           "comparator_flip": {
             "total": 2,
-            "flagged": 2
+            "flagged": 1
           }
         },
         "perVariant": [
@@ -3817,10 +4659,10 @@
             "truthDefine": "Client is not due for MCV0 Case 2",
             "agentHasBug": true,
             "agentDefine": "Client is not due for MCV0 Case 2",
-            "agentKind": "reference_rename",
+            "agentKind": "boolean_op_flip",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": false
+            "classificationPass": true
           },
           {
             "variantId": "v03",
@@ -3887,8 +4729,12 @@
             "truthHasBug": true,
             "truthKind": "precondition_drop",
             "truthDefine": "Client is not due for MCV0 Case 2",
-            "agentHasBug": false,
-            "detectionPass": false
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
           },
           {
             "variantId": "v09",
@@ -3907,36 +4753,28 @@
             "truthHasBug": true,
             "truthKind": "precondition_drop",
             "truthDefine": "Consider MCV0.",
-            "agentHasBug": true,
-            "agentDefine": "Consider MCV0.",
-            "agentKind": "reference_rename",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": false
+            "agentHasBug": false,
+            "detectionPass": false
           },
           {
             "variantId": "v11",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
-            "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": true
+            "truthDefine": "Test Validation",
+            "agentHasBug": false,
+            "detectionPass": false
           },
           {
             "variantId": "v12",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Test Validation",
+            "agentKind": "precondition_drop",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v13",
@@ -3984,19 +4822,15 @@
             "variantId": "v19",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV0 Guidance",
-            "agentKind": "guidance_text_swap",
-            "detectionPass": false
+            "agentHasBug": false,
+            "detectionPass": true
           },
           {
             "variantId": "v20",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV0 Guidance",
-            "agentKind": "guidance_text_swap",
-            "detectionPass": false
+            "agentHasBug": false,
+            "detectionPass": true
           },
           {
             "variantId": "v21",
@@ -4016,8 +4850,10 @@
             "variantId": "v23",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": false,
-            "detectionPass": true
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 3",
+            "agentKind": "threshold_change",
+            "detectionPass": false
           },
           {
             "variantId": "v24",
@@ -4033,7 +4869,7 @@
       "agentId": "openai_gpt-5.4-nano",
       "taskId": "C2_measles_ongoing_tx",
       "kind": "detection",
-      "headline": "F1: 0.83 (P=0.83 R=0.83) · loc: 7/10",
+      "headline": "F1: 0.83 (P=0.83 R=0.83) · loc: 8/10",
       "detail": {
         "taskId": "C2_measles_ongoing_tx",
         "agentSubmitted": true,
@@ -4048,16 +4884,16 @@
         },
         "localization": {
           "flagged": 10,
-          "defineCorrect": 7
+          "defineCorrect": 8
         },
         "classification": {
           "flagged": 10,
-          "kindCorrect": 10
+          "kindCorrect": 7
         },
         "perKindRecall": {
           "boolean_op_flip": {
             "total": 2,
-            "flagged": 1
+            "flagged": 2
           },
           "reference_rename": {
             "total": 2,
@@ -4073,7 +4909,7 @@
           },
           "comparator_flip": {
             "total": 2,
-            "flagged": 2
+            "flagged": 1
           },
           "guidance_text_swap": {
             "total": 2,
@@ -4098,8 +4934,12 @@
             "truthHasBug": true,
             "truthKind": "boolean_op_flip",
             "truthDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
-            "agentHasBug": false,
-            "detectionPass": false
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
           },
           {
             "variantId": "v03",
@@ -4108,10 +4948,10 @@
             "truthDefine": "Client is due for MCV1",
             "agentHasBug": true,
             "agentDefine": "Client is due for MCV1",
-            "agentKind": "reference_rename",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v04",
@@ -4143,11 +4983,11 @@
             "truthKind": "threshold_change",
             "truthDefine": "Client is not due for MCV2",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
-            "agentKind": "threshold_change",
+            "agentDefine": "Client is not due for MCV1 Guidance",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": false,
-            "classificationPass": true
+            "classificationPass": false
           },
           {
             "variantId": "v07",
@@ -4155,10 +4995,10 @@
             "truthKind": "precondition_drop",
             "truthDefine": "Client is not due for MCV2",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentDefine": "Client is not due for MCV2",
             "agentKind": "precondition_drop",
             "detectionPass": true,
-            "localizationPass": false,
+            "localizationPass": true,
             "classificationPass": true
           },
           {
@@ -4173,21 +5013,17 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
-            "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": true
+            "truthDefine": "Test Validation",
+            "agentHasBug": false,
+            "detectionPass": false
           },
           {
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -4199,10 +5035,10 @@
             "truthKind": "guidance_text_swap",
             "truthDefine": "Measles primary series is complete Guidance",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+            "agentDefine": "Client is due for MCV2 Guidance",
             "agentKind": "guidance_text_swap",
             "detectionPass": true,
-            "localizationPass": true,
+            "localizationPass": false,
             "classificationPass": true
           },
           {
@@ -4211,18 +5047,20 @@
             "truthKind": "guidance_text_swap",
             "truthDefine": "Client is not due for MCV1 Guidance",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for first dose of measles-containing vaccine (MCV1) Guidance",
+            "agentDefine": "Client is not due for MCV1 Guidance",
             "agentKind": "guidance_text_swap",
             "detectionPass": true,
-            "localizationPass": false,
+            "localizationPass": true,
             "classificationPass": true
           },
           {
             "variantId": "v13",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": false,
-            "detectionPass": true
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
           },
           {
             "variantId": "v14",
@@ -4235,8 +5073,10 @@
             "variantId": "v15",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": false,
-            "detectionPass": true
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "comparator_flip",
+            "detectionPass": false
           },
           {
             "variantId": "v16",
@@ -4249,10 +5089,8 @@
             "variantId": "v17",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": true,
-            "agentDefine": "Client is due for MCV2 Guidance",
-            "agentKind": "guidance_text_swap",
-            "detectionPass": false
+            "agentHasBug": false,
+            "detectionPass": true
           },
           {
             "variantId": "v18",
@@ -4293,10 +5131,8 @@
             "variantId": "v23",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": true,
-            "agentDefine": "Client is not due for first dose of measles-containing vaccine (MCV1) Guidance",
-            "agentKind": "reference_rename",
-            "detectionPass": false
+            "agentHasBug": false,
+            "detectionPass": true
           },
           {
             "variantId": "v24",
@@ -4312,26 +5148,26 @@
       "agentId": "openai_gpt-5.4-nano",
       "taskId": "C2_measles_supplementary",
       "kind": "detection",
-      "headline": "F1: 0.83 (P=0.83 R=0.83) · loc: 9/10",
+      "headline": "F1: 0.74 (P=1.00 R=0.58) · loc: 7/7",
       "detail": {
         "taskId": "C2_measles_supplementary",
         "agentSubmitted": true,
         "detection": {
-          "truePositive": 10,
-          "falsePositive": 2,
-          "trueNegative": 10,
-          "falseNegative": 2,
-          "precision": 0.833,
-          "recall": 0.833,
-          "f1": 0.833
+          "truePositive": 7,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 5,
+          "precision": 1,
+          "recall": 0.583,
+          "f1": 0.737
         },
         "localization": {
-          "flagged": 10,
-          "defineCorrect": 9
+          "flagged": 7,
+          "defineCorrect": 7
         },
         "classification": {
-          "flagged": 10,
-          "kindCorrect": 8
+          "flagged": 7,
+          "kindCorrect": 7
         },
         "perKindRecall": {
           "boolean_op_flip": {
@@ -4340,7 +5176,7 @@
           },
           "reference_rename": {
             "total": 2,
-            "flagged": 2
+            "flagged": 1
           },
           "precondition_drop": {
             "total": 3,
@@ -4348,7 +5184,7 @@
           },
           "comparator_flip": {
             "total": 2,
-            "flagged": 2
+            "flagged": 0
           },
           "guidance_text_swap": {
             "total": 2,
@@ -4362,11 +5198,11 @@
             "truthKind": "boolean_op_flip",
             "truthDefine": "Consider measles supplementary dose. Create a clinical note",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for measles supplementary dose",
-            "agentKind": "comparator_flip",
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
             "detectionPass": true,
-            "localizationPass": false,
-            "classificationPass": false
+            "localizationPass": true,
+            "classificationPass": true
           },
           {
             "variantId": "v02",
@@ -4375,10 +5211,10 @@
             "truthDefine": "Client is not due for measles supplementary dose",
             "agentHasBug": true,
             "agentDefine": "Client is not due for measles supplementary dose",
-            "agentKind": "reference_rename",
+            "agentKind": "boolean_op_flip",
             "detectionPass": true,
             "localizationPass": true,
-            "classificationPass": false
+            "classificationPass": true
           },
           {
             "variantId": "v03",
@@ -4409,12 +5245,8 @@
             "truthHasBug": true,
             "truthKind": "reference_rename",
             "truthDefine": "Consider measles supplementary dose. Create a clinical note",
-            "agentHasBug": true,
-            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
-            "agentKind": "reference_rename",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": true
+            "agentHasBug": false,
+            "detectionPass": false
           },
           {
             "variantId": "v06",
@@ -4448,25 +5280,19 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
-            "agentHasBug": true,
-            "agentDefine": "Has Guidance",
-            "agentKind": "comparator_flip",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": true
+            "truthDefine": "Test Validation",
+            "agentHasBug": false,
+            "detectionPass": false
           },
           {
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
-            "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
+            "agentHasBug": false,
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
-            "detectionPass": true,
-            "localizationPass": true,
-            "classificationPass": true
+            "detectionPass": false
           },
           {
             "variantId": "v11",
@@ -4517,10 +5343,8 @@
             "variantId": "v16",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": true,
-            "agentDefine": "Test Validation",
-            "agentKind": "guidance_text_swap",
-            "detectionPass": false
+            "agentHasBug": false,
+            "detectionPass": true
           },
           {
             "variantId": "v17",
@@ -4540,10 +5364,8 @@
             "variantId": "v19",
             "truthHasBug": false,
             "truthKind": "none",
-            "agentHasBug": true,
-            "agentDefine": "Client is not due for measles supplementary dose Guidance",
-            "agentKind": "guidance_text_swap",
-            "detectionPass": false
+            "agentHasBug": false,
+            "detectionPass": true
           },
           {
             "variantId": "v20",
@@ -5371,6 +6193,285 @@
     },
     {
       "agentId": "openai_gpt-5.5",
+      "taskId": "C2_anc_dt08",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_anc_dt08",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 3,
+            "flagged": 3
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should HIV test is optional",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Should HIV test is not required",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is not required",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should HIV test is optional",
+            "agentHasBug": true,
+            "agentDefine": "Should HIV test is optional",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Should Conduct HIV test 2",
+            "agentHasBug": true,
+            "agentDefine": "Should Conduct HIV test 2",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
       "taskId": "C2_measles_low_tx",
       "kind": "detection",
       "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
@@ -5521,9 +6622,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -5533,9 +6634,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -5824,9 +6925,9 @@
             "variantId": "v11",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -5836,9 +6937,9 @@
             "variantId": "v12",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -6083,9 +7184,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -6095,9 +7196,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -6362,9 +7463,9 @@
             "variantId": "v09",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
@@ -6374,9 +7475,9 @@
             "variantId": "v10",
             "truthHasBug": true,
             "truthKind": "comparator_flip",
-            "truthDefine": "Has Guidance",
+            "truthDefine": "Test Validation",
             "agentHasBug": true,
-            "agentDefine": "Has Guidance",
+            "agentDefine": "Test Validation",
             "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,

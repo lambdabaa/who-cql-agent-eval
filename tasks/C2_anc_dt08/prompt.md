@@ -2,9 +2,9 @@
 
 You are given:
 
-- `inputs/L2_table.md` — the canonical L2 decision table for IMMZ.D2.DT.Measles.SupplementaryDose.
-- `inputs/deps/IMMZD2DTMeaslesEncounterElements.cql` — the dependency library the variants call into.
-- `inputs/variants/v01.cql` through `inputs/variants/v24.cql` — 24 candidate Logic libraries (`IMMZD2DTMeaslesSupplementaryDoseLogic`). Each is either:
+- `inputs/L2_table.md` — the canonical L2 decision table for ANC.DT.08 — HIV testing.
+- `inputs/deps/ANCConfig.cql`, `inputs/deps/ANCConcepts.cql`, `inputs/deps/ANCDataElements.cql`, `inputs/deps/ANCContactDataElements.cql` — the dependency libraries the variants call into.
+- `inputs/variants/v01.cql` through `inputs/variants/v24.cql` — 24 candidate Logic libraries (`ANCDT08`). Each is either:
   - byte-identical to a known-good reference (a "control"), or
   - has exactly one injected bug from the taxonomy below.
 

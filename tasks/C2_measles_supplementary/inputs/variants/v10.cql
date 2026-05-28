@@ -28,7 +28,7 @@ define "Guidance":
   end
   
 define "Has Guidance":
-  "Guidance" is null and "Guidance" != ''
+  "Guidance" is not null and "Guidance" != ''
 
 /*
 @output: Client is not due for measles supplementary dose
@@ -90,6 +90,6 @@ define "Test Validation":
 Check for any vaccines due and inform the caregiver of when to come back for supplementary dose.'
     when Patient.id = 'Measles49.3' then "Consider measles supplementary dose. Create a clinical note" and "Guidance" = 'May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks.
 Check if one of the measles supplementary dose specific scenarios is applicable.'
-    when Patient.id = 'Measles50.1' then "Measles immunization schedule is complete" and "Guidance" = 'Measles immunization schedule is complete. Measles supplementary dose was administered.'
+    when Patient.id != 'Measles50.1' then "Measles immunization schedule is complete" and "Guidance" = 'Measles immunization schedule is complete. Measles supplementary dose was administered.'
     else 'No test case set'
   end

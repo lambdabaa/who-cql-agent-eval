@@ -81,23 +81,23 @@
   },
   "v09": {
     "kind": "comparator_flip",
-    "define": "Has Guidance",
+    "define": "Test Validation",
     "definesAffected": [
-      "Has Guidance"
+      "Test Validation"
     ],
-    "approxLine": 31,
-    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
-    "modified": "  \"Guidance\" is not null and \"Guidance\" = ''"
+    "approxLine": 91,
+    "original": "    when Patient.id = 'Measles49.3' then \"Consider measles supplementary dose. Create a clinical note\" and \"Guidance\" = 'May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks.",
+    "modified": "    when Patient.id = 'Measles49.3' then \"Consider measles supplementary dose. Create a clinical note\" and \"Guidance\" != 'May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks."
   },
   "v10": {
     "kind": "comparator_flip",
-    "define": "Has Guidance",
+    "define": "Test Validation",
     "definesAffected": [
-      "Has Guidance"
+      "Test Validation"
     ],
-    "approxLine": 31,
-    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
-    "modified": "  \"Guidance\" is null and \"Guidance\" != ''"
+    "approxLine": 93,
+    "original": "    when Patient.id = 'Measles50.1' then \"Measles immunization schedule is complete\" and \"Guidance\" = 'Measles immunization schedule is complete. Measles supplementary dose was administered.'",
+    "modified": "    when Patient.id != 'Measles50.1' then \"Measles immunization schedule is complete\" and \"Guidance\" = 'Measles immunization schedule is complete. Measles supplementary dose was administered.'"
   },
   "v11": {
     "kind": "guidance_text_swap",

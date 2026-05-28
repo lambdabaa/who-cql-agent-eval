@@ -101,23 +101,23 @@
   },
   "v11": {
     "kind": "comparator_flip",
-    "define": "Has Guidance",
+    "define": "Test Validation",
     "definesAffected": [
-      "Has Guidance"
+      "Test Validation"
     ],
-    "approxLine": 30,
-    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
-    "modified": "  \"Guidance\" is not null and \"Guidance\" = ''"
+    "approxLine": 118,
+    "original": "    when Patient.id = 'Measles39.1' then \"Client is not due for MCV0 Case 3\" and \"Guidance\" = 'Should not vaccinate client with MCV0 as client\\'s age is more than 9 months.",
+    "modified": "    when Patient.id != 'Measles39.1' then \"Client is not due for MCV0 Case 3\" and \"Guidance\" = 'Should not vaccinate client with MCV0 as client\\'s age is more than 9 months."
   },
   "v12": {
     "kind": "comparator_flip",
-    "define": "Has Guidance",
+    "define": "Test Validation",
     "definesAffected": [
-      "Has Guidance"
+      "Test Validation"
     ],
-    "approxLine": 30,
-    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
-    "modified": "  \"Guidance\" is null and \"Guidance\" != ''"
+    "approxLine": 116,
+    "original": "    when Patient.id = 'Measles37.3' then \"Client is not due for MCV0 Case 2\" and \"Guidance\" = 'Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.'",
+    "modified": "    when Patient.id != 'Measles37.3' then \"Client is not due for MCV0 Case 2\" and \"Guidance\" = 'Should not vaccinate client with MCV0 as live vaccine was administered in the past 4 weeks. Check for any vaccines due and inform the caregiver of when to come back for MCV0.'"
   },
   "v13": {
     "kind": "none"

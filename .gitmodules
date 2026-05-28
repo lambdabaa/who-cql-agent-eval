@@ -2,3 +2,6 @@
 	path = vendor/smart-immunizations
 	url = https://github.com/WorldHealthOrganization/smart-immunizations.git
 	branch = main
+[submodule "vendor/smart-anc"]
+	path = vendor/smart-anc
+	url = https://github.com/WorldHealthOrganization/smart-anc.git
