@@ -307,6 +307,22 @@ function renderMatrix(data, summaries) {
 
 // ---------- inspect: raw model output ----------
 
+// The per-task `runs/` directory is gitignored — only the vendored copies
+// under `docs/data/raw/` are tracked in the repo. Link to those.
+const GITHUB_RAW_BASE = 'https://github.com/lambdabaa/who-cql-agent-eval/blob/main/docs/data/raw';
+const OCTOCAT_SVG =
+  '<svg class="octocat" viewBox="0 0 16 16" width="12" height="12" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>';
+
+function githubFileUrl(row, filename) {
+  return `${GITHUB_RAW_BASE}/${row.agentId}/${row.taskId}/${encodeURIComponent(filename)}`;
+}
+
+function sourceHeading(row, filename, label) {
+  const href = githubFileUrl(row, filename);
+  return `<h4><a class="source-link" href="${href}" target="_blank" rel="noopener" title="View ${escapeHtml(filename)} on GitHub">${escapeHtml(label)} ${OCTOCAT_SVG}</a></h4>`;
+}
+
+
 const inspectState = {
   selectedAgent: null,
   summaries: null,
@@ -424,42 +440,43 @@ function renderQualitativeOutput(row, contents) {
     const section = document.createElement('div');
     section.className = 'body-section';
     if (name.endsWith('.cql')) {
-      section.appendChild(renderCql(name, text));
+      section.appendChild(renderCql(row, name, text));
     } else if (name === 'detections.json') {
-      section.appendChild(renderDetections(text, row));
+      section.appendChild(renderDetections(row, name, text));
     } else if (name === 'predictions.json') {
-      section.appendChild(renderPredictions(text, row));
+      section.appendChild(renderPredictions(row, name, text));
     } else if (name === 'findings.json') {
-      section.appendChild(renderFindings(text));
+      section.appendChild(renderFindings(row, name, text));
     } else {
-      section.appendChild(renderJson(name, text));
+      section.appendChild(renderJson(row, name, text));
     }
     wrap.appendChild(section);
   }
   return wrap;
 }
 
-function renderCql(name, text) {
+function renderCql(row, name, text) {
   const frag = document.createDocumentFragment();
-  const heading = document.createElement('h4');
-  heading.textContent = `${name} · ${text.split('\n').length} lines`;
+  const lines = text.split('\n').length;
+  const wrap = document.createElement('div');
+  wrap.innerHTML = sourceHeading(row, name, `${name} · ${lines} lines`);
+  frag.appendChild(wrap.firstElementChild);
   const pre = document.createElement('pre');
   pre.className = 'code';
   pre.textContent = text;
-  frag.appendChild(heading);
   frag.appendChild(pre);
   return frag;
 }
 
-function renderDetections(text, row) {
+function renderDetections(row, name, text) {
   const frag = document.createDocumentFragment();
-  const heading = document.createElement('h4');
-  heading.textContent = 'Variants the model labelled';
-  frag.appendChild(heading);
+  const headWrap = document.createElement('div');
+  headWrap.innerHTML = sourceHeading(row, name, 'Variants the model labelled');
+  frag.appendChild(headWrap.firstElementChild);
 
   let data;
   try { data = JSON.parse(text); } catch {
-    return renderJson('detections.json', text);
+    return renderJson(row, name, text);
   }
   const entries = Object.entries(data);
   if (entries.length === 0) {
@@ -481,19 +498,19 @@ function renderDetections(text, row) {
     list.appendChild(li);
   }
   frag.appendChild(list);
-  frag.appendChild(rawJsonDetails('Full detections.json', text));
+  frag.appendChild(rawJsonDetails(row, name, 'Full detections.json', text));
   return frag;
 }
 
-function renderPredictions(text, row) {
+function renderPredictions(row, name, text) {
   const frag = document.createDocumentFragment();
-  const heading = document.createElement('h4');
-  heading.textContent = 'Predicted output cells (per patient)';
-  frag.appendChild(heading);
+  const headWrap = document.createElement('div');
+  headWrap.innerHTML = sourceHeading(row, name, 'Predicted output cells (per patient)');
+  frag.appendChild(headWrap.firstElementChild);
 
   let data;
   try { data = JSON.parse(text); } catch {
-    return renderJson('predictions.json', text);
+    return renderJson(row, name, text);
   }
   const patients = Object.entries(data);
   if (patients.length === 0) {
@@ -504,7 +521,6 @@ function renderPredictions(text, row) {
     return frag;
   }
 
-  // Build a flat table: rows = (patient, define), cols = patient | define | predicted.
   const scroll = document.createElement('div');
   scroll.className = 'pred-scroll';
   const table = document.createElement('table');
@@ -522,19 +538,19 @@ function renderPredictions(text, row) {
   }
   scroll.appendChild(table);
   frag.appendChild(scroll);
-  frag.appendChild(rawJsonDetails('Full predictions.json', text));
+  frag.appendChild(rawJsonDetails(row, name, 'Full predictions.json', text));
   return frag;
 }
 
-function renderFindings(text) {
+function renderFindings(row, name, text) {
   const frag = document.createDocumentFragment();
-  const heading = document.createElement('h4');
-  heading.textContent = 'Findings reported';
-  frag.appendChild(heading);
+  const headWrap = document.createElement('div');
+  headWrap.innerHTML = sourceHeading(row, name, 'Findings reported');
+  frag.appendChild(headWrap.firstElementChild);
 
   let data;
   try { data = JSON.parse(text); } catch {
-    return renderJson('findings.json', text);
+    return renderJson(row, name, text);
   }
   const findings = Array.isArray(data) ? data : Array.isArray(data?.findings) ? data.findings : [];
   if (findings.length === 0) {
@@ -542,7 +558,7 @@ function renderFindings(text) {
     p.className = 'empty-state';
     p.textContent = 'Model reported no findings on this library.';
     frag.appendChild(p);
-    frag.appendChild(rawJsonDetails('Full findings.json', text));
+    frag.appendChild(rawJsonDetails(row, name, 'Full findings.json', text));
     return frag;
   }
   const list = document.createElement('ul');
@@ -556,26 +572,26 @@ function renderFindings(text) {
   return frag;
 }
 
-function renderJson(name, text) {
+function renderJson(row, name, text) {
   const frag = document.createDocumentFragment();
-  const heading = document.createElement('h4');
-  heading.textContent = name;
+  const headWrap = document.createElement('div');
+  headWrap.innerHTML = sourceHeading(row, name, name);
+  frag.appendChild(headWrap.firstElementChild);
   let pretty = text;
   try { pretty = JSON.stringify(JSON.parse(text), null, 2); } catch {}
   const pre = document.createElement('pre');
   pre.className = 'code';
   pre.textContent = pretty;
-  frag.appendChild(heading);
   frag.appendChild(pre);
   return frag;
 }
 
-function rawJsonDetails(label, text) {
+function rawJsonDetails(row, filename, label, text) {
   const det = document.createElement('details');
   det.style.marginTop = '12px';
   const sum = document.createElement('summary');
   sum.className = 'raw-toggle';
-  sum.textContent = label;
+  sum.innerHTML = `${escapeHtml(label)} <a class="source-link" href="${githubFileUrl(row, filename)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" title="View ${escapeHtml(filename)} on GitHub">${OCTOCAT_SVG}</a>`;
   let pretty = text;
   try { pretty = JSON.stringify(JSON.parse(text), null, 2); } catch {}
   const pre = document.createElement('pre');

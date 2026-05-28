@@ -618,6 +618,26 @@ section { margin-bottom: 56px; }
   letter-spacing: 0.08em;
   color: var(--text-soft);
 }
+.task-card-body h4 a.source-link,
+.task-card-body .raw-toggle a.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px dashed transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.task-card-body h4 a.source-link:hover,
+.task-card-body .raw-toggle a.source-link:hover {
+  color: var(--accent);
+  border-bottom-color: color-mix(in srgb, var(--accent) 60%, transparent);
+}
+.task-card-body .raw-toggle a.source-link {
+  margin-left: 6px;
+}
+.task-card-body a.source-link .octocat { opacity: 0.7; }
+.task-card-body a.source-link:hover .octocat { opacity: 1; }
 
 .task-card-body pre.code {
   background: var(--bg);
