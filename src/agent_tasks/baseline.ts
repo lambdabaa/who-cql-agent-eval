@@ -27,6 +27,7 @@ import {
   buildCompositeC2Fixture,
   buildCompositeC2Mcv0Fixture,
   buildCompositeC2OngoingTxFixture,
+  buildCompositeC2SupplementaryFixture,
 } from './build_composite_c2.js';
 import { buildC4Fixture } from './build_c4.js';
 import { gradeA1, type GradeA1Result } from './grade_a1.js';
@@ -64,6 +65,7 @@ export const TASK_IDS = [
   'composite_c2_measles_low_tx',
   'composite_c2_measles_mcv0',
   'composite_c2_measles_ongoing_tx',
+  'composite_c2_measles_supplementary',
   'C4_measles_low_tx',
   'audit_measles_low_tx',
   'audit_measles_mcv0',
@@ -135,6 +137,10 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
   buildCompositeC2OngoingTxFixture({
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'composite_c2_measles_ongoing_tx'),
+  });
+  buildCompositeC2SupplementaryFixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'composite_c2_measles_supplementary'),
   });
   // Audit fixtures reuse the C2 L2 briefs (which are written by the C2
   // builders above), so they must run after the C2 fixtures.

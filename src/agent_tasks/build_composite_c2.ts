@@ -247,6 +247,60 @@ const ONGOING_TX_COMPOSITE_PLAN: CompositeVariantPlan[] = LOW_TX_COMPOSITE_PLAN.
 }));
 
 /**
+ * Supplementary uses no age helpers (no `Encounter."Client's age …"`
+ * references), so `threshold_change` has no candidates. Plan drops it
+ * and substitutes extra boolean_op_flip / reference_rename slots.
+ * Small library (96 lines, 3 rows) — bigger variants will rely on the
+ * dedupe loop reaching for distinct sites within the few applicable
+ * kinds.
+ */
+const SUPPLEMENTARY_COMPOSITE_PLAN: CompositeVariantPlan[] = [
+  // 6 controls
+  { id: 'v01', kinds: [], seed: 0 },
+  { id: 'v02', kinds: [], seed: 0 },
+  { id: 'v03', kinds: [], seed: 0 },
+  { id: 'v04', kinds: [], seed: 0 },
+  { id: 'v05', kinds: [], seed: 0 },
+  { id: 'v06', kinds: [], seed: 0 },
+  // 6 single-bug — 5 applicable kinds + 1 repeat
+  { id: 'v07', kinds: ['boolean_op_flip'], seed: 8001 },
+  { id: 'v08', kinds: ['reference_rename'], seed: 8002 },
+  { id: 'v09', kinds: ['precondition_drop'], seed: 8003 },
+  { id: 'v10', kinds: ['comparator_flip'], seed: 8004 },
+  { id: 'v11', kinds: ['guidance_text_swap'], seed: 8005 },
+  { id: 'v12', kinds: ['boolean_op_flip'], seed: 8006 },
+  // 6 two-bug
+  { id: 'v13', kinds: ['boolean_op_flip', 'reference_rename'], seed: 8101 },
+  { id: 'v14', kinds: ['precondition_drop', 'comparator_flip'], seed: 8102 },
+  { id: 'v15', kinds: ['guidance_text_swap', 'boolean_op_flip'], seed: 8103 },
+  { id: 'v16', kinds: ['reference_rename', 'precondition_drop'], seed: 8104 },
+  { id: 'v17', kinds: ['comparator_flip', 'guidance_text_swap'], seed: 8105 },
+  { id: 'v18', kinds: ['boolean_op_flip', 'comparator_flip'], seed: 8106 },
+  // 6 three-bug
+  { id: 'v19', kinds: ['boolean_op_flip', 'reference_rename', 'precondition_drop'], seed: 8201 },
+  { id: 'v20', kinds: ['reference_rename', 'precondition_drop', 'comparator_flip'], seed: 8202 },
+  { id: 'v21', kinds: ['precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 8203 },
+  { id: 'v22', kinds: ['comparator_flip', 'guidance_text_swap', 'boolean_op_flip'], seed: 8204 },
+  { id: 'v23', kinds: ['guidance_text_swap', 'boolean_op_flip', 'reference_rename'], seed: 8205 },
+  { id: 'v24', kinds: ['boolean_op_flip', 'precondition_drop', 'comparator_flip'], seed: 8206 },
+  // 6 four-bug — uses all 5 applicable kinds minus one each, with one variant
+  // that repeats boolean_op_flip to round out.
+  { id: 'v25', kinds: ['boolean_op_flip', 'reference_rename', 'precondition_drop', 'comparator_flip'], seed: 8301 },
+  { id: 'v26', kinds: ['reference_rename', 'precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 8302 },
+  { id: 'v27', kinds: ['boolean_op_flip', 'precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 8303 },
+  { id: 'v28', kinds: ['boolean_op_flip', 'reference_rename', 'comparator_flip', 'guidance_text_swap'], seed: 8304 },
+  { id: 'v29', kinds: ['boolean_op_flip', 'reference_rename', 'precondition_drop', 'guidance_text_swap'], seed: 8305 },
+  { id: 'v30', kinds: ['boolean_op_flip', 'reference_rename', 'precondition_drop', 'comparator_flip'], seed: 8306 },
+  // 6 five-bug — all 5 kinds, varying order.
+  { id: 'v31', kinds: ['boolean_op_flip', 'reference_rename', 'precondition_drop', 'comparator_flip', 'guidance_text_swap'], seed: 8401 },
+  { id: 'v32', kinds: ['reference_rename', 'precondition_drop', 'comparator_flip', 'guidance_text_swap', 'boolean_op_flip'], seed: 8402 },
+  { id: 'v33', kinds: ['precondition_drop', 'comparator_flip', 'guidance_text_swap', 'boolean_op_flip', 'reference_rename'], seed: 8403 },
+  { id: 'v34', kinds: ['comparator_flip', 'guidance_text_swap', 'boolean_op_flip', 'reference_rename', 'precondition_drop'], seed: 8404 },
+  { id: 'v35', kinds: ['guidance_text_swap', 'boolean_op_flip', 'reference_rename', 'precondition_drop', 'comparator_flip'], seed: 8405 },
+  { id: 'v36', kinds: ['precondition_drop', 'boolean_op_flip', 'guidance_text_swap', 'comparator_flip', 'reference_rename'], seed: 8406 },
+];
+
+/**
  * MCV0 has only 1 simple-literal guidance define (`Consider MCV0. Guidance`)
  * so `guidance_text_swap` has no candidate pair. Plan replaces every
  * guidance_text_swap slot with an extra `comparator_flip` or
@@ -348,6 +402,22 @@ export function buildCompositeC2Mcv0Fixture(opts: BuildCompositeC2Options): { ta
     depCqlNames: [MEASLES_DEP],
     l2BriefContent: readBriefFromC2('C2_measles_mcv0'),
     variantPlan: MCV0_COMPOSITE_PLAN,
+    dakRoot: opts.dakRoot,
+    taskDir: opts.taskDir,
+  });
+}
+
+export function buildCompositeC2SupplementaryFixture(opts: BuildCompositeC2Options): {
+  taskDir: string;
+  spec: CompositeDetectionTaskSpec;
+} {
+  return buildCompositeC2ForLibrary({
+    taskId: 'composite_c2_measles_supplementary',
+    libraryName: 'IMMZD2DTMeaslesSupplementaryDoseLogic',
+    l2RowFamily: 'IMMZ.D2.DT.Measles.SupplementaryDose',
+    depCqlNames: [MEASLES_DEP],
+    l2BriefContent: readBriefFromC2('C2_measles_supplementary'),
+    variantPlan: SUPPLEMENTARY_COMPOSITE_PLAN,
     dakRoot: opts.dakRoot,
     taskDir: opts.taskDir,
   });

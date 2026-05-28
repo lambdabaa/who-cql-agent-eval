@@ -1,0 +1,575 @@
+{
+  "v01": { "findings": [] },
+  "v02": { "findings": [] },
+  "v03": { "findings": [] },
+  "v04": { "findings": [] },
+  "v05": { "findings": [] },
+  "v06": { "findings": [] },
+  "v07": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 42,
+        "mutationKind": "boolean_op_flip",
+        "description": "First 'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v08": {
+    "findings": [
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 66,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was administered' to 'Measles supplementary dose was not administered'"
+      }
+    ]
+  },
+  "v09": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Measles routine immunization schedule is complete'"
+      }
+    ]
+  },
+  "v10": { "findings": [] },
+  "v11": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v12": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 42,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v13": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 66,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was administered' to 'Measles supplementary dose was not administered'"
+      }
+    ]
+  },
+  "v14": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 42,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"No live vaccine was administered in the past 4 weeks\"'"
+      }
+    ]
+  },
+  "v15": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v16": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"Live vaccine was administered in the past 4 weeks\"'"
+      }
+    ]
+  },
+  "v17": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      }
+    ]
+  },
+  "v18": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "First 'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"No live vaccine was administered in the past 4 weeks\"'"
+      }
+    ]
+  },
+  "v20": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 22,
+        "mutationKind": "comparator_flip",
+        "description": "'!=' flipped to '='"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"Measles routine immunization schedule is complete\"'"
+      }
+    ]
+  },
+  "v21": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 62,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"No live vaccine was administered in the past 4 weeks\"'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v22": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 22,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "First 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v23": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "First 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v24": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v25": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      }
+    ]
+  },
+  "v26": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 22,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      }
+    ]
+  },
+  "v27": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "First 'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"Measles routine immunization schedule is complete\"'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      }
+    ]
+  },
+  "v28": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "First 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 62,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v29": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      }
+    ]
+  },
+  "v30": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 54,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      }
+    ]
+  },
+  "v31": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 62,
+        "mutationKind": "precondition_drop",
+        "description": "Missing precondition 'Encounter.\"Measles routine immunization schedule is complete\"'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v32": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to 'Measles supplementary dose was administered'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v33": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 66,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was administered' to 'Measles supplementary dose was not administered'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 79,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v34": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 62,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was not administered' to part of wrong precondition logic"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  },
+  "v35": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 37,
+        "mutationKind": "boolean_op_flip",
+        "description": "Second 'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Measles immunization schedule is complete Guidance'"
+      },
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 74,
+        "mutationKind": "reference_rename",
+        "description": "Reference changed from 'Measles supplementary dose was administered' to 'Measles supplementary dose was not administered'"
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 82,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      }
+    ]
+  },
+  "v36": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 22,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 55,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Consider measles supplementary dose. Create a clinical note Guidance'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 62,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 71,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with 'Client is not due for measles supplementary dose Guidance'"
+      }
+    ]
+  }
+}

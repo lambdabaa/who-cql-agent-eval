@@ -1,0 +1,446 @@
+{
+  "v01": {
+    "findings": []
+  },
+  "v02": {
+    "findings": []
+  },
+  "v03": {
+    "findings": []
+  },
+  "v04": {
+    "findings": []
+  },
+  "v05": {
+    "findings": []
+  },
+  "v06": {
+    "findings": []
+  },
+  "v07": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 41,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance definition literal does not match L2: it is missing the word 'in the past 4 weeks' continuation punctuation context (string differs from canonical guidance)."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 60,
+        "mutationKind": "boolean_op_flip",
+        "description": "Condition uses 'or' / mis-grouping where L2 requires an AND of three preconditions."
+      }
+    ]
+  },
+  "v08": {
+    "findings": [
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 88,
+        "mutationKind": "boolean_op_flip",
+        "description": "Output define is negated vs L2 (uses 'not administered' instead of the required 'was administered')."
+      }
+    ]
+  },
+  "v09": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 40,
+        "mutationKind": "boolean_op_flip",
+        "description": "Preconditions for not-due row are not a conjunction of the three L2 requirements (structure differs from L2)."
+      }
+    ]
+  },
+  "v10": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 132,
+        "mutationKind": "comparator_flip",
+        "description": "Test validation uses '!=' in Patient id check (logic mutation) instead of '=' for the consider row."
+      }
+    ]
+  },
+  "v11": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 81,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance literal is swapped: it contains the Measles schedule complete guidance instead of the 'Should not vaccinate...' guidance."
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 116,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance literal is swapped: it contains the 'Should not vaccinate...' guidance instead of the 'Measles immunization schedule is complete...' guidance."
+      }
+    ]
+  },
+  "v12": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 61,
+        "mutationKind": "boolean_op_flip",
+        "description": "Precondition conjunction is broken: row 2 requires AND of 3 predicates, but code uses 'and' + 'or' mixing (precondition drop / boolean operator flip)."
+      }
+    ]
+  },
+  "v13": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 uses wrong boolean structure (missing one L2 conjunct due to 'or' instead of requiring conjunction)."
+      },
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 90,
+        "mutationKind": "reference_rename",
+        "description": "Output define for schedule complete is incorrect relative to L2 (points to wrong Encounter predicate)."
+      }
+    ]
+  },
+  "v14": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 60,
+        "mutationKind": "precondition_drop",
+        "description": "Row 2 'Consider' output is missing the 'No live vaccine...' precondition (incomplete L2 conjunct set)."
+      }
+    ]
+  },
+  "v15": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 uses 'or' instead of requiring all three L2 preconditions (boolean operator flip / precondition drop)."
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance string is swapped with the 'Consider' guidance."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 124,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance string is swapped with the 'Client is not due...' guidance."
+      }
+    ]
+  },
+  "v16": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "precondition_drop",
+        "description": "Row 1 missing the 'Live vaccine was administered in the past 4 weeks' conjunct."
+      }
+    ]
+  },
+  "v17": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 106,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance for the 'Consider' row is swapped with the 'Measles immunization schedule is complete' guidance."
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 132,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance for the 'Measles immunization schedule is complete' row is swapped with the 'Should not vaccinate...' guidance."
+      }
+    ]
+  },
+  "v18": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 uses 'or' where L2 requires all three preconditions to be true (boolean operator flip)."
+      }
+    ]
+  },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 'not due' condition uses 'or' and drops the required conjunction structure."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 71,
+        "mutationKind": "precondition_drop",
+        "description": "Row 2 'Consider' condition missing the 'No live vaccine...' conjunct due to boolean/operator structure."
+      }
+    ]
+  },
+  "v20": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 26,
+        "mutationKind": "comparator_flip",
+        "description": "Has Guidance uses '=' instead of '!='; condition for empty guidance is inverted."
+      },
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 42,
+        "mutationKind": "comparator_flip",
+        "description": "Row 1 predicate uses 'supplementary dose was administered' instead of 'was not administered' (threshold/comparator flip)."
+      }
+    ]
+  },
+  "v21": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Client not due guidance literal is swapped with Consider guidance."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 116,
+        "mutationKind": "guidance_text_swap",
+        "description": "Consider guidance literal is swapped with Client not due guidance."
+      }
+    ]
+  },
+  "v22": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 26,
+        "mutationKind": "comparator_flip",
+        "description": "Has Guidance uses null/empty checks inverted vs L2."
+      },
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 42,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 uses 'or' where L2 requires AND of three preconditions."
+      }
+    ]
+  },
+  "v23": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Not due guidance is swapped with Consider guidance."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 116,
+        "mutationKind": "guidance_text_swap",
+        "description": "Consider guidance is swapped with Not due guidance."
+      }
+    ]
+  },
+  "v24": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 42,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 uses 'or' instead of requiring schedule complete and live vaccine conjuncts together."
+      }
+    ]
+  },
+  "v25": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance string for not due row is correct but other row guidance/output booleans are inverted elsewhere; this variant flips the 'Consider' row output."
+      }
+    ]
+  },
+  "v26": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 73,
+        "mutationKind": "comparator_flip",
+        "description": "Row 2 uses 'supplementary dose was administered' where L2 requires 'was not administered' (predicate flip)."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 93,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance string swapped to 'Measles schedule complete...' guidance."
+      }
+    ]
+  },
+  "v27": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 88,
+        "mutationKind": "guidance_text_swap",
+        "description": "Consider guidance is swapped with the 'Measles immunization schedule is complete' guidance."
+      }
+    ]
+  },
+  "v28": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Not due guidance literal replaced with the 'Consider' guidance."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 63,
+        "mutationKind": "comparator_flip",
+        "description": "Row 2 uses wrong supplementary dose predicate (administered vs not administered)."
+      }
+    ]
+  },
+  "v29": {
+    "findings": [
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 94,
+        "mutationKind": "guidance_text_swap",
+        "description": "Consider guidance swapped with 'Measles immunization schedule is complete' guidance."
+      }
+    ]
+  },
+  "v30": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 1 uses 'and/or' wrong precedence: 'or Live vaccine...' causes insufficient conjunction."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 78,
+        "mutationKind": "comparator_flip",
+        "description": "Row 2 uses 'supplementary dose was administered' instead of 'was not administered'."
+      }
+    ]
+  },
+  "v31": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Not due guidance literal swapped with 'Measles immunization schedule is complete' guidance."
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 108,
+        "mutationKind": "guidance_text_swap",
+        "description": "Measles schedule complete guidance swapped with 'Should not vaccinate...' guidance."
+      }
+    ]
+  },
+  "v32": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose",
+        "approximateLine": 39,
+        "mutationKind": "comparator_flip",
+        "description": "Row 1 uses 'Measles supplementary dose was administered' where L2 requires 'was not administered'."
+      },
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 57,
+        "mutationKind": "guidance_text_swap",
+        "description": "Not due guidance literal swapped with 'Measles immunization schedule is complete' guidance."
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 108,
+        "mutationKind": "guidance_text_swap",
+        "description": "Measles schedule complete guidance swapped with 'Should not vaccinate...' guidance."
+      }
+    ]
+  },
+  "v33": {
+    "findings": [
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 81,
+        "mutationKind": "comparator_flip",
+        "description": "Measles schedule complete output uses wrong supplementary dose precondition: should reflect 'supplementary dose was administered', but variant uses 'not administered'."
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 112,
+        "mutationKind": "guidance_text_swap",
+        "description": "Measles schedule complete guidance swapped with 'Should not vaccinate...' guidance."
+      }
+    ]
+  },
+  "v34": {
+    "findings": [
+      {
+        "define": "Client is not due for measles supplementary dose Guidance",
+        "approximateLine": 54,
+        "mutationKind": "guidance_text_swap",
+        "description": "Not due guidance literal is replaced with the 'Consider' guidance text."
+      }
+    ]
+  },
+  "v35": {
+    "findings": [
+      {
+        "define": "Measles immunization schedule is complete",
+        "approximateLine": 98,
+        "mutationKind": "comparator_flip",
+        "description": "Measles schedule complete output uses 'not administered' where L2 requires 'was administered'."
+      },
+      {
+        "define": "Measles immunization schedule is complete Guidance",
+        "approximateLine": 112,
+        "mutationKind": "guidance_text_swap",
+        "description": "Measles schedule complete guidance literal replaced with 'May vaccinate...' guidance."
+      }
+    ]
+  },
+  "v36": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 26,
+        "mutationKind": "comparator_flip",
+        "description": "Has Guidance uses inverted null/empty condition."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note",
+        "approximateLine": 76,
+        "mutationKind": "boolean_op_flip",
+        "description": "Row 2 uses 'or' between supplementary-not-administered and live-vaccine predicate, violating L2 AND structure."
+      },
+      {
+        "define": "Consider measles supplementary dose. Create a clinical note Guidance",
+        "approximateLine": 98,
+        "mutationKind": "guidance_text_swap",
+        "description": "Consider guidance text is swapped with 'Client is not due...' guidance."
+      }
+    ]
+  }
+}

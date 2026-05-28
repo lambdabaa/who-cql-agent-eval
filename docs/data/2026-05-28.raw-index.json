@@ -44,6 +44,9 @@
     ],
     "composite_c2_measles_ongoing_tx": [
       "detections.json"
+    ],
+    "composite_c2_measles_supplementary": [
+      "detections.json"
     ]
   },
   "anthropic_claude-opus-4-7": {
@@ -90,6 +93,9 @@
       "detections.json"
     ],
     "composite_c2_measles_ongoing_tx": [
+      "detections.json"
+    ],
+    "composite_c2_measles_supplementary": [
       "detections.json"
     ]
   },
@@ -138,6 +144,9 @@
     ],
     "composite_c2_measles_ongoing_tx": [
       "detections.json"
+    ],
+    "composite_c2_measles_supplementary": [
+      "detections.json"
     ]
   },
   "openai_gpt-5.5": {
@@ -184,6 +193,9 @@
       "detections.json"
     ],
     "composite_c2_measles_ongoing_tx": [
+      "detections.json"
+    ],
+    "composite_c2_measles_supplementary": [
       "detections.json"
     ]
   }

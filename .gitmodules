@@ -5,3 +5,9 @@
 [submodule "vendor/smart-anc"]
 	path = vendor/smart-anc
 	url = https://github.com/WorldHealthOrganization/smart-anc.git
+[submodule "vendor/smart-hiv"]
+	path = vendor/smart-hiv
+	url = https://github.com/WorldHealthOrganization/smart-hiv.git
+[submodule "vendor/smart-dak-tb"]
+	path = vendor/smart-dak-tb
+	url = https://github.com/WorldHealthOrganization/smart-dak-tb.git
