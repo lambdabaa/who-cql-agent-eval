@@ -86,6 +86,29 @@ export const DetectionTaskSpecSchema = z
   .strict();
 
 /**
+ * Composite detection: each variant has 0, 1, 2, or 3 injected bugs (not
+ * exactly one as in `detection`). Output schema is a per-variant findings
+ * list; grader is set-based (precision/recall/F1 over the bug *set*).
+ *
+ * Discrimination headroom this opens up: in `detection`, agents either
+ * spot the one bug or don't — frontier models saturate at F1 = 1.00.
+ * In `composite_detection`, an agent that finds 2 of 3 bugs in a variant
+ * scores partial credit (recall 0.67), and an agent that flags an extra
+ * non-existent bug takes a precision hit. Subtler signal.
+ */
+export const CompositeDetectionTaskSpecSchema = z
+  .object({
+    id: z.string(),
+    kind: z.literal('composite_detection'),
+    dak: z.string(),
+    logicLibraryId: z.string(),
+    variantIds: z.array(z.string()).min(1),
+    mutationVocabulary: z.array(MutationKindSchema).min(1),
+    outputFiles: z.array(z.string()).min(1),
+  })
+  .strict();
+
+/**
  * Audit task: agent is given one *real, unmodified* Logic library and its
  * L2 brief. Asked to flag any inconsistencies it sees. No truth file —
  * the brief was derived from the published CQL, so a perfect-match output
@@ -114,14 +137,40 @@ export const TaskSpecSchema = z.discriminatedUnion('kind', [
   AuthoringTaskSpecSchema,
   PredictionTaskSpecSchema,
   DetectionTaskSpecSchema,
+  CompositeDetectionTaskSpecSchema,
   AuditTaskSpecSchema,
 ]);
 
 export type AuthoringTaskSpec = z.infer<typeof AuthoringTaskSpecSchema>;
 export type PredictionTaskSpec = z.infer<typeof PredictionTaskSpecSchema>;
 export type DetectionTaskSpec = z.infer<typeof DetectionTaskSpecSchema>;
+export type CompositeDetectionTaskSpec = z.infer<typeof CompositeDetectionTaskSpecSchema>;
 export type AuditTaskSpec = z.infer<typeof AuditTaskSpecSchema>;
 export type TaskSpec = z.infer<typeof TaskSpecSchema>;
+
+/**
+ * Per-variant detection record for composite tasks. `findings` may be
+ * empty (clean variant detected as clean) or have N entries (N bugs flagged).
+ */
+export const CompositeFindingSchema = z
+  .object({
+    define: z.string(),
+    approximateLine: z.number().int().nullable().optional(),
+    mutationKind: MutationKindSchema.optional(),
+    description: z.string().optional(),
+  })
+  .strict();
+
+export const CompositeDetectionRecordSchema = z
+  .object({
+    findings: z.array(CompositeFindingSchema),
+  })
+  .strict();
+
+export const CompositeDetectionsFileSchema = z.record(z.string(), CompositeDetectionRecordSchema);
+export type CompositeFinding = z.infer<typeof CompositeFindingSchema>;
+export type CompositeDetectionRecord = z.infer<typeof CompositeDetectionRecordSchema>;
+export type CompositeDetectionsFile = z.infer<typeof CompositeDetectionsFileSchema>;
 
 /**
  * Per-finding record the agent writes to outputs/findings.json for an

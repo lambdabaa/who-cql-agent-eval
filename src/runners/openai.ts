@@ -43,7 +43,7 @@ export function openaiRunner(options: OpenAIRunnerOptions): AgentRunner {
 
       const text = resp.choices[0]?.message?.content ?? '';
 
-      const files = parseFencedOutputs(text);
+      const files = parseFencedOutputs(text, spec.outputFiles);
       const { written, missing } = writeOutputs(taskDir, files, spec.outputFiles);
 
       const warnings: string[] = [];

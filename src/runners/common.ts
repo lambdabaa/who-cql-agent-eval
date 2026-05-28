@@ -91,17 +91,42 @@ export function composePrompt(taskDir: string, spec: TaskSpec): ComposedPrompt {
  * relative path → content. The opening fence may be tagged as
  * `path=foo.cql`, `cql path=foo.cql`, or any info string containing
  * `path=<token>` (token = non-whitespace).
+ *
+ * Fallback for single-output tasks: if no `path=` tagged blocks are found
+ * AND the caller passes `expectedFiles` of length 1 AND there's at least
+ * one fenced block whose info string matches the expected file's extension
+ * (or is bare), treat the *last* such block as the file. Many small models
+ * emit valid output inside a plain `\`\`\`json` block; rejecting them on a
+ * missing tag throws away the actual answer.
  */
-export function parseFencedOutputs(response: string): Record<string, string> {
+export function parseFencedOutputs(response: string, expectedFiles?: string[]): Record<string, string> {
   const out: Record<string, string> = {};
-  // Match triple-backtick fences with an info string that includes path=<token>.
-  // Capture group 1 is the path, group 2 is the body. Greedy-up-to-closing-fence.
   const re = /```[^\n]*?path=([^\s`]+)[^\n]*\n([\s\S]*?)```/g;
   for (const m of response.matchAll(re)) {
     const path = m[1];
     const body = m[2];
     if (path === undefined || body === undefined) continue;
     out[path] = body.replace(/\n$/, '');
+  }
+  if (Object.keys(out).length > 0) return out;
+
+  if (expectedFiles && expectedFiles.length === 1) {
+    const target = expectedFiles[0]!;
+    const ext = target.split('.').pop() ?? '';
+    const fallbackRe = /```([^\n]*)\n([\s\S]*?)```/g;
+    let lastBody: string | undefined;
+    for (const m of response.matchAll(fallbackRe)) {
+      const info = (m[1] ?? '').trim();
+      const body = m[2];
+      if (body === undefined) continue;
+      // Skip blocks that explicitly tag a different file via path=.
+      if (info.includes('path=')) continue;
+      // Accept bare-info or info matching the extension.
+      if (info === '' || info === ext || info.startsWith(ext + ' ') || info.endsWith(' ' + ext)) {
+        lastBody = body.replace(/\n$/, '');
+      }
+    }
+    if (lastBody !== undefined) out[target] = lastBody;
   }
   return out;
 }

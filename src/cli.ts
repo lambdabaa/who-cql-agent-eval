@@ -198,6 +198,11 @@ baseline
         );
       } else if ('findingsCount' in r) {
         console.log(`${g.agentId}/${g.taskId}: ${r.findingsCount} finding(s)`);
+      } else if ('global' in r) {
+        const x = r.global;
+        console.log(
+          `${g.agentId}/${g.taskId}: F1=${x.f1.toFixed(2)} (P=${x.precision.toFixed(2)} R=${x.recall.toFixed(2)})`,
+        );
       } else {
         console.log(`${g.agentId}/${g.taskId}: ${r.correctCells}/${r.totalCells}`);
       }

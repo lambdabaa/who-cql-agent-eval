@@ -23,10 +23,12 @@ import {
   buildC2OngoingTxFixture,
   buildC2SupplementaryFixture,
 } from './build_c2.js';
+import { buildCompositeC2Fixture } from './build_composite_c2.js';
 import { buildC4Fixture } from './build_c4.js';
 import { gradeA1, type GradeA1Result } from './grade_a1.js';
 import { gradeAudit, type GradeAuditResult } from './grade_audit.js';
 import { gradeC2, type GradeC2Result } from './grade_c2.js';
+import { gradeCompositeC2, type GradeCompositeC2Result } from './grade_composite_c2.js';
 import { gradeC4, type GradeC4Result } from './grade_c4.js';
 import { TaskSpecSchema, type TaskSpec } from './schema.js';
 import type { AgentRunner, AgentRunResult } from '../runners/types.js';
@@ -55,6 +57,7 @@ export const TASK_IDS = [
   'C2_measles_ongoing_tx',
   'C2_measles_supplementary',
   'C2_anc_dt08',
+  'composite_c2_measles_low_tx',
   'C4_measles_low_tx',
   'audit_measles_low_tx',
   'audit_measles_mcv0',
@@ -114,6 +117,10 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
   buildC2AncDt08Fixture({
     dakRoot: resolve(paths.dakRoot, '..', 'smart-anc'),
     taskDir: join(paths.tasksRoot, 'C2_anc_dt08'),
+  });
+  buildCompositeC2Fixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'composite_c2_measles_low_tx'),
   });
   // Audit fixtures reuse the C2 L2 briefs (which are written by the C2
   // builders above), so they must run after the C2 fixtures.
@@ -207,7 +214,7 @@ export interface GradedRun {
   agentId: string;
   taskId: string;
   spec: TaskSpec;
-  result: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditResult;
+  result: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditResult | GradeCompositeC2Result;
 }
 
 /** Grade every agent run found under runs/. */
@@ -241,6 +248,9 @@ export async function gradeAllRuns(paths: BaselinePaths, opts: { jarPath?: strin
       } else if (spec.kind === 'audit') {
         const result = gradeAudit({ spec, taskDir: runDir, reportPath: join(runDir, 'grade.json') });
         out.push({ agentId: agentDir, taskId, spec, result });
+      } else if (spec.kind === 'composite_detection') {
+        const result = gradeCompositeC2({ spec, taskDir: runDir, reportPath: join(runDir, 'grade.json') });
+        out.push({ agentId: agentDir, taskId, spec, result });
       }
     }
   }
@@ -258,7 +268,7 @@ export interface BaselineSummary {
     taskId: string;
     kind: TaskSpec['kind'];
     headline: string;
-    detail: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditResult;
+    detail: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditResult | GradeCompositeC2Result;
   }>;
 }
 
@@ -296,7 +306,7 @@ export function freezeBaseline(paths: BaselinePaths, graded: GradedRun[], dateIs
   return path;
 }
 
-function headline(r: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditResult): string {
+function headline(r: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditResult | GradeCompositeC2Result): string {
   if ('t1' in r) {
     if (!r.agentSubmitted) return 'no submission';
     if (r.t1 !== 'pass') return `T1: ${r.t1}`;
@@ -308,6 +318,12 @@ function headline(r: GradeA1Result | GradeC2Result | GradeC4Result | GradeAuditR
     if (r.parseError) return `parse error: ${r.parseError}`;
     const d = r.detection;
     return `F1: ${d.f1.toFixed(2)} (P=${d.precision.toFixed(2)} R=${d.recall.toFixed(2)}) · loc: ${r.localization.defineCorrect}/${r.localization.flagged}`;
+  }
+  if ('global' in r) {
+    if (r.parseError && !r.agentSubmitted) return 'no submission';
+    if (r.parseError) return `parse error: ${r.parseError}`;
+    const g = r.global;
+    return `F1: ${g.f1.toFixed(2)} (P=${g.precision.toFixed(2)} R=${g.recall.toFixed(2)}) · TP=${g.truePositive}/FP=${g.falsePositive}/FN=${g.falseNegative}`;
   }
   if ('findingsCount' in r) {
     if (r.parseError && !r.agentSubmitted) return 'no submission';

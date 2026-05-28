@@ -44,7 +44,7 @@ export function anthropicRunner(options: AnthropicRunnerOptions): AgentRunner {
         .map((b) => b.text)
         .join('\n');
 
-      const files = parseFencedOutputs(text);
+      const files = parseFencedOutputs(text, spec.outputFiles);
       const { written, missing } = writeOutputs(taskDir, files, spec.outputFiles);
 
       const warnings: string[] = [];
