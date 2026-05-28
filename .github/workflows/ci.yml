@@ -18,10 +18,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Checkout (with submodules)
+      # Don't ask actions/checkout to init submodules — vendor/smart-hiv has
+      # a stray gitlink (`smart-hiv/smart-hiv`) without a matching .gitmodules
+      # entry upstream, which breaks `git submodule update`. We only need the
+      # DAKs that have active fixtures, so init them explicitly below.
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: true
+
+      - name: Init only used submodules
+        run: |
+          git submodule update --init vendor/smart-immunizations vendor/smart-anc
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
