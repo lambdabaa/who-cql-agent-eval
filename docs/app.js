@@ -292,12 +292,12 @@ function renderMatrix(data, summaries) {
       const band = scoreBand(row.score);
       const headline = (row.headline ?? '').replace(/"/g, '&quot;');
       cells.push(
-        `<td class="cell${startCls}" title="${headline}"><span class="cell-score score-band ${band}">${row.score}</span></td>`,
+        `<td class="cell${startCls}" data-agent-id="${escapeHtml(s.agentId)}" data-task-id="${escapeHtml(taskId)}" tabindex="0" role="button" aria-label="Drill into ${escapeHtml(s.name)} on ${escapeHtml(taskId)}" title="${headline}"><span class="cell-score score-band ${band}">${row.score}</span></td>`,
       );
     }
     const overallBand = scoreBand(s.overall);
     cells.push(
-      `<td class="cell kind-start"><span class="cell-score score-band ${overallBand}">${fmt(s.overall, 0)}</span></td>`,
+      `<td class="cell cell-overall kind-start"><span class="cell-score score-band ${overallBand}">${fmt(s.overall, 0)}</span></td>`,
     );
     tr.innerHTML = cells.join('');
     tbody.appendChild(tr);
@@ -611,6 +611,381 @@ function escapeHtml(s) {
     .replace(/"/g, '&quot;');
 }
 
+// ---------- drilldown drawer ----------
+//
+// Matrix cells carry data-agent-id + data-task-id; clicking one opens a
+// right-side drawer with the per-kind breakdown that doesn't fit in a
+// single coloured chip. The grade.json detail is already in the row
+// payload, so this is a pure rendering layer — no extra fetches.
+
+let drilldownData = null;
+let drilldownSummaries = null;
+
+function attachDrilldown(data, summaries) {
+  drilldownData = data;
+  drilldownSummaries = summaries;
+  const matrix = document.getElementById('matrix');
+  matrix.addEventListener('click', (e) => {
+    const cell = e.target.closest('td.cell');
+    if (!cell || cell.classList.contains('empty')) return;
+    const agentId = cell.getAttribute('data-agent-id');
+    const taskId = cell.getAttribute('data-task-id');
+    if (agentId && taskId) openDrilldown(agentId, taskId);
+  });
+  matrix.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    const cell = e.target.closest('td.cell');
+    if (!cell || cell.classList.contains('empty')) return;
+    e.preventDefault();
+    const agentId = cell.getAttribute('data-agent-id');
+    const taskId = cell.getAttribute('data-task-id');
+    if (agentId && taskId) openDrilldown(agentId, taskId);
+  });
+  document.getElementById('drilldown-close').addEventListener('click', closeDrilldown);
+  document.getElementById('drilldown-overlay').addEventListener('click', closeDrilldown);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeDrilldown();
+  });
+}
+
+function openDrilldown(agentId, taskId) {
+  if (!drilldownData) return;
+  const summary = drilldownSummaries.find((s) => s.agentId === agentId);
+  const row = drilldownData.rows.find((r) => r.agentId === agentId && r.taskId === taskId);
+  if (!summary || !row) return;
+
+  const title = document.getElementById('drilldown-title');
+  const subtitle = document.getElementById('drilldown-subtitle');
+  const body = document.getElementById('drilldown-body');
+  title.textContent = `${summary.name} · ${libraryLabel(taskId)}`;
+  subtitle.textContent = `${KIND_META[row.kind]?.label ?? row.kind} · ${row.headline ?? ''}`;
+  body.innerHTML = '';
+  body.appendChild(renderDrilldown(row));
+
+  const drawer = document.getElementById('drilldown');
+  const overlay = document.getElementById('drilldown-overlay');
+  drawer.hidden = false;
+  drawer.setAttribute('aria-hidden', 'false');
+  overlay.hidden = false;
+  drawer.scrollTop = 0;
+  body.scrollTop = 0;
+}
+
+function closeDrilldown() {
+  const drawer = document.getElementById('drilldown');
+  const overlay = document.getElementById('drilldown-overlay');
+  if (drawer.hidden) return;
+  drawer.hidden = true;
+  drawer.setAttribute('aria-hidden', 'true');
+  overlay.hidden = true;
+}
+
+function renderDrilldown(row) {
+  switch (row.kind) {
+    case 'authoring':
+      return renderDrilldownAuthoring(row);
+    case 'detection':
+      return renderDrilldownDetection(row);
+    case 'composite_detection':
+      return renderDrilldownComposite(row);
+    case 'prediction':
+      return renderDrilldownPrediction(row);
+    case 'audit':
+      return renderDrilldownAudit(row);
+    default:
+      return wrapSection('Detail', `<pre>${escapeHtml(JSON.stringify(row.detail, null, 2))}</pre>`);
+  }
+}
+
+function wrapSection(heading, innerHtml) {
+  const div = document.createElement('div');
+  div.className = 'dd-section';
+  div.innerHTML = `<h3>${escapeHtml(heading)}</h3>${innerHtml}`;
+  return div;
+}
+
+function combineSections(...nodes) {
+  const frag = document.createDocumentFragment();
+  for (const n of nodes) if (n) frag.appendChild(n);
+  return frag;
+}
+
+function recallBarSpan(flagged, total) {
+  if (total === 0) return '';
+  const pct = Math.round((flagged / total) * 100);
+  const cls = pct >= 90 ? '' : pct >= 60 ? 'partial' : 'poor';
+  return `<div class="bar"><span class="${cls}" style="width:${pct}%"></span></div>`;
+}
+
+function variantBadgeClass(tp, total, fp) {
+  if (total === 0) return fp === 0 ? 'good' : 'partial';
+  if (tp === total && fp === 0) return 'good';
+  if (tp === 0) return 'bad';
+  return 'partial';
+}
+
+// ---- per-kind drilldown renderers ----
+
+function renderDrilldownAuthoring(row) {
+  const d = row.detail;
+  const head = document.createElement('div');
+  head.className = 'dd-section';
+  const t3 = d.t3;
+  head.innerHTML = `<h3>Headline</h3>
+    <div class="dd-headline">
+      <div class="dd-headline-pair"><span>T1 parse</span><span>${escapeHtml(d.t1)}</span></div>
+      ${t3 ? `<div class="dd-headline-pair"><span>T3 execute</span><span>${t3.casesPassed}/${t3.casesTotal} cases</span></div>` : ''}
+      <div class="dd-headline-pair"><span>Submitted</span><span>${d.agentSubmitted ? 'yes' : 'no'}</span></div>
+    </div>`;
+
+  const errors = (d.t1Errors || []).length === 0
+    ? wrapSection('T1 errors', '<div class="dd-empty">No translator errors.</div>')
+    : wrapSection(
+        'T1 errors',
+        `<ul class="dd-list">${d.t1Errors
+          .slice(0, 6)
+          .map((e) => `<li><span class="miss">${escapeHtml(e)}</span></li>`)
+          .join('')}</ul>`,
+      );
+
+  if (!t3 || !Array.isArray(t3.perCase) || t3.perCase.length === 0) {
+    return combineSections(head, errors);
+  }
+
+  const rows = t3.perCase
+    .map((c) => {
+      const failedCmps = (c.comparisons || []).filter((cmp) => !cmp.pass);
+      const cls = c.passed ? 'good' : 'bad';
+      const note = c.passed
+        ? `${(c.comparisons || []).length}/${(c.comparisons || []).length} defines match`
+        : `${failedCmps.length} miss${failedCmps.length === 1 ? '' : 'es'}: ${failedCmps.slice(0, 3).map((cmp) => cmp.define).join(', ')}${failedCmps.length > 3 ? '…' : ''}`;
+      return `<div class="vid">${escapeHtml(c.patientId)}</div>
+              <div class="vstats">${escapeHtml(note)}</div>
+              <div class="vbadge ${cls}">${c.passed ? '✓' : '✗'}</div>`;
+    })
+    .join('');
+  const perCaseSection = wrapSection('Per-patient', `<div class="dd-variants">${rows}</div>`);
+
+  return combineSections(head, errors, perCaseSection);
+}
+
+function renderDrilldownDetection(row) {
+  const d = row.detail;
+  if (!d.agentSubmitted) {
+    return combineSections(
+      headlineNoSubmit('Detection', d.parseError),
+    );
+  }
+  const det = d.detection;
+  const head = document.createElement('div');
+  head.className = 'dd-section';
+  head.innerHTML = `<h3>Headline</h3>
+    <div class="dd-headline">
+      <div class="dd-headline-pair"><span>F1</span><span>${det.f1.toFixed(2)}</span></div>
+      <div class="dd-headline-pair"><span>Precision</span><span>${det.precision.toFixed(2)}</span></div>
+      <div class="dd-headline-pair"><span>Recall</span><span>${det.recall.toFixed(2)}</span></div>
+      <div class="dd-headline-pair"><span>TP / FP / FN</span><span>${det.truePositive} / ${det.falsePositive} / ${det.falseNegative}</span></div>
+      <div class="dd-headline-pair"><span>Localization</span><span>${d.localization?.defineCorrect ?? 0}/${d.localization?.flagged ?? 0}</span></div>
+    </div>`;
+
+  const perKindSection = renderPerKindRecallSection(d.perKindRecall);
+  const variantsSection = renderPerVariantSection(d.perVariant || [], false);
+  return combineSections(head, perKindSection, variantsSection);
+}
+
+function renderDrilldownComposite(row) {
+  const d = row.detail;
+  if (!d.agentSubmitted) {
+    return combineSections(headlineNoSubmit('Composite detection', d.parseError));
+  }
+  const g = d.global;
+  const head = document.createElement('div');
+  head.className = 'dd-section';
+  head.innerHTML = `<h3>Headline</h3>
+    <div class="dd-headline">
+      <div class="dd-headline-pair"><span>F1</span><span>${g.f1.toFixed(2)}</span></div>
+      <div class="dd-headline-pair"><span>Precision</span><span>${g.precision.toFixed(2)}</span></div>
+      <div class="dd-headline-pair"><span>Recall</span><span>${g.recall.toFixed(2)}</span></div>
+      <div class="dd-headline-pair"><span>TP / FP / FN</span><span>${g.truePositive} / ${g.falsePositive} / ${g.falseNegative}</span></div>
+    </div>`;
+
+  const buckets = renderBugCountBucketsSection(d.perVariant || []);
+  const perKindSection = renderPerKindRecallSection(d.perKindRecall);
+  const variantsSection = renderPerVariantSection(d.perVariant || [], true);
+  return combineSections(head, buckets, perKindSection, variantsSection);
+}
+
+function renderDrilldownPrediction(row) {
+  const d = row.detail;
+  if (!d.agentSubmitted) return combineSections(headlineNoSubmit('Prediction', d.parseError));
+  const head = document.createElement('div');
+  head.className = 'dd-section';
+  head.innerHTML = `<h3>Headline</h3>
+    <div class="dd-headline">
+      <div class="dd-headline-pair"><span>Cells correct</span><span>${d.correctCells} / ${d.totalCells}</span></div>
+      <div class="dd-headline-pair"><span>Accuracy</span><span>${d.totalCells === 0 ? '—' : (d.correctCells / d.totalCells).toFixed(2)}</span></div>
+    </div>`;
+
+  const patients = d.perPatient || [];
+  if (patients.length === 0) return combineSections(head);
+  const rows = patients
+    .map((p) => {
+      const acc = p.total === 0 ? 0 : p.correct / p.total;
+      const cls = acc >= 0.9 ? 'good' : acc >= 0.5 ? 'partial' : 'bad';
+      const note = (p.misses || []).length === 0
+        ? `${p.correct}/${p.total} defines match`
+        : `missed: ${p.misses.slice(0, 3).map((m) => m.define).join(', ')}${p.misses.length > 3 ? '…' : ''}`;
+      return `<div class="vid">${escapeHtml(p.patientId)}</div>
+              <div class="vstats">${escapeHtml(note)}</div>
+              <div class="vbadge ${cls}">${p.correct}/${p.total}</div>`;
+    })
+    .join('');
+  return combineSections(head, wrapSection('Per-patient', `<div class="dd-variants">${rows}</div>`));
+}
+
+function renderDrilldownAudit(row) {
+  const d = row.detail;
+  const head = document.createElement('div');
+  head.className = 'dd-section';
+  head.innerHTML = `<h3>Headline</h3>
+    <div class="dd-headline">
+      <div class="dd-headline-pair"><span>Findings</span><span>${d.findingsCount}</span></div>
+      <div class="dd-headline-pair"><span>Submitted</span><span>${d.agentSubmitted ? 'yes' : 'no'}</span></div>
+      ${d.parseError ? `<div class="dd-headline-pair"><span>Note</span><span>${escapeHtml(d.parseError)}</span></div>` : ''}
+    </div>`;
+  const findings = d.findings || [];
+  if (findings.length === 0) {
+    return combineSections(
+      head,
+      wrapSection(
+        'Findings',
+        '<div class="dd-empty">Agent flagged no inconsistencies. (Audit briefs are derived from the published CQL, so this is the expected default — see baselines/&lt;date&gt;/audit_report.md.)</div>',
+      ),
+    );
+  }
+  const rows = findings
+    .map((f) => {
+      const sev = f.severity ? ` <span class="lbl">[${escapeHtml(f.severity)}]</span>` : '';
+      const ln = f.approximateLine != null ? ` <span class="lbl">L${f.approximateLine}</span>` : '';
+      const kind = f.mutationKind ? ` <span class="lbl">${escapeHtml(f.mutationKind)}</span>` : '';
+      return `<li><strong>${escapeHtml(f.define)}</strong>${ln}${kind}${sev}<br>${escapeHtml(f.description || '')}</li>`;
+    })
+    .join('');
+  return combineSections(head, wrapSection('Findings', `<ul class="dd-list">${rows}</ul>`));
+}
+
+// ---- shared bits ----
+
+function headlineNoSubmit(label, err) {
+  const div = document.createElement('div');
+  div.className = 'dd-section';
+  div.innerHTML = `<h3>${escapeHtml(label)}</h3>
+    <div class="dd-headline">
+      <div class="dd-headline-pair"><span>Submitted</span><span>no</span></div>
+      ${err ? `<div class="dd-headline-pair"><span>Reason</span><span>${escapeHtml(err)}</span></div>` : ''}
+    </div>`;
+  return div;
+}
+
+function renderPerKindRecallSection(perKindRecall) {
+  if (!perKindRecall) return null;
+  const entries = Object.entries(perKindRecall);
+  if (entries.length === 0) return null;
+  const rows = entries
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([k, v]) => `
+      <div class="label">${escapeHtml(k)}</div>
+      ${recallBarSpan(v.flagged, v.total)}
+      <div class="value">${v.flagged}/${v.total}</div>
+    `)
+    .join('');
+  return wrapSection('Recall by mutation kind', `<div class="dd-stat-grid">${rows}</div>`);
+}
+
+function renderBugCountBucketsSection(perVariant) {
+  const buckets = {};
+  for (const v of perVariant) {
+    const k = v.truthBugCount;
+    if (!buckets[k]) buckets[k] = { tp: 0, fn: 0, fp: 0, total: 0 };
+    buckets[k].tp += v.truePositive;
+    buckets[k].fn += v.falseNegative;
+    buckets[k].fp += v.falsePositive;
+    buckets[k].total += 1;
+  }
+  const orderedKeys = Object.keys(buckets)
+    .map((n) => parseInt(n, 10))
+    .sort((a, b) => a - b);
+  const rows = orderedKeys
+    .map((k) => {
+      const b = buckets[k];
+      const truthBugs = b.tp + b.fn;
+      if (truthBugs === 0) {
+        // Controls: report false positive count.
+        const cls = b.fp === 0 ? '' : 'value';
+        return `<div class="label">${k} bugs (controls)</div>
+                <div class="bar"><span class="${b.fp === 0 ? '' : 'poor'}" style="width:${b.fp === 0 ? 100 : Math.min(100, b.fp * 20)}%"></span></div>
+                <div class="${cls}">${b.fp} FP across ${b.total} variants</div>`;
+      }
+      return `<div class="label">${k} bug${k === 1 ? '' : 's'} (${b.total} variants)</div>
+              ${recallBarSpan(b.tp, truthBugs)}
+              <div class="value">${b.tp}/${truthBugs} recall · ${b.fp} FP</div>`;
+    })
+    .join('');
+  return wrapSection('Recall by bugs-per-variant', `<div class="dd-stat-grid">${rows}</div>`);
+}
+
+function renderPerVariantSection(perVariant, isComposite) {
+  if (!perVariant || perVariant.length === 0) return null;
+  // Show only variants with TP+FP+FN > 0 (i.e. mutated variants the agent
+  // flagged or missed, or controls the agent flagged). Hide clean controls
+  // detected as clean (they add no diagnostic value to the drilldown).
+  const interesting = perVariant.filter((v) => {
+    if (v.truthBugCount > 0) return true;
+    return (v.falsePositive || 0) > 0;
+  });
+  if (interesting.length === 0) {
+    return wrapSection('Per variant', '<div class="dd-empty">Agent matched every mutated variant cleanly with no false positives on controls.</div>');
+  }
+  const rows = interesting
+    .slice(0, 50)
+    .map((v) => {
+      const truthBugs = v.truthBugCount;
+      const cls = variantBadgeClass(v.truePositive, truthBugs, v.falsePositive);
+      const badge = truthBugs === 0
+        ? `+${v.falsePositive} FP`
+        : `${v.truePositive}/${truthBugs}${v.falsePositive ? ` · +${v.falsePositive} FP` : ''}`;
+      const parts = [];
+      if (isComposite) parts.push(`${truthBugs}-bug`);
+      if (v.misses && v.misses.length > 0) {
+        const names = v.misses.slice(0, 2).map((m) => m.define).join(', ');
+        parts.push(`<span class="miss">missed: ${escapeHtml(names)}${v.misses.length > 2 ? '…' : ''}</span>`);
+      }
+      if (v.spurious && v.spurious.length > 0) {
+        const names = v.spurious.slice(0, 2).map((s) => s.define).join(', ');
+        parts.push(`<span class="extra">extra: ${escapeHtml(names)}${v.spurious.length > 2 ? '…' : ''}</span>`);
+      }
+      // single-bug detection (non-composite) doesn't carry misses/spurious;
+      // fall back to define + kind from the per-variant record.
+      if (!isComposite && parts.length === 0) {
+        const kindHint = v.truthKind || '';
+        if (v.truthHasBug && !v.agentHasBug) parts.push(`<span class="miss">missed ${escapeHtml(v.truthDefine || '?')} (${escapeHtml(kindHint)})</span>`);
+        else if (!v.truthHasBug && v.agentHasBug) parts.push(`<span class="extra">false flag on clean variant</span>`);
+        else if (v.truthHasBug && v.agentHasBug && v.localizationPass === false) {
+          parts.push(`<span class="lbl">caught but mis-located</span>`);
+        } else if (v.truthHasBug && v.agentHasBug) {
+          parts.push(`caught ${escapeHtml(kindHint)}`);
+        }
+      }
+      const stats = parts.join(' · ');
+      return `<div class="vid">${escapeHtml(v.variantId)}</div>
+              <div class="vstats">${stats}</div>
+              <div class="vbadge ${cls}">${badge}</div>`;
+    })
+    .join('');
+  const note = interesting.length > 50 ? `<div class="dd-empty">Showing first 50 of ${interesting.length} interesting variants.</div>` : '';
+  return wrapSection('Per variant (interesting only)', `<div class="dd-variants">${rows}</div>${note}`);
+}
+
 // ---------- bootstrap ----------
 
 async function loadData() {
@@ -639,6 +1014,7 @@ async function main() {
     renderRanking(summaries);
     renderKindPanels(summaries);
     renderMatrix(data, summaries);
+    attachDrilldown(data, summaries);
     renderInspect(summaries, rawIndex);
   } catch (err) {
     console.error(err);

@@ -68,8 +68,10 @@
         <div class="section-head">
           <h2 id="matrix-h">Full matrix</h2>
           <p class="hint">
-            Every agent × task. Cells are colored by per-task score (0–100);
-            hover for the raw headline.
+            Every agent × task. Cells are colored by per-task score (0–100).
+            <strong>Click any cell</strong> for the per-bucket recall,
+            per-mutation-kind recall, and the actual missed-vs-spurious
+            findings; hover for the headline.
           </p>
         </div>
         <div class="table-scroll">
@@ -119,6 +121,32 @@
         <span class="footer-right" id="footer-generated"></span>
       </div>
     </footer>
+
+    <!-- Per-cell drilldown drawer. Opens when any matrix cell is clicked. -->
+    <div class="drilldown-overlay" id="drilldown-overlay" hidden></div>
+    <aside
+      class="drilldown"
+      id="drilldown"
+      aria-labelledby="drilldown-title"
+      aria-hidden="true"
+      hidden
+    >
+      <header class="drilldown-header">
+        <div class="drilldown-titles">
+          <h2 id="drilldown-title">Per-cell breakdown</h2>
+          <p class="drilldown-subtitle" id="drilldown-subtitle"></p>
+        </div>
+        <button
+          type="button"
+          class="drilldown-close"
+          id="drilldown-close"
+          aria-label="Close drilldown"
+        >
+          ✕
+        </button>
+      </header>
+      <div class="drilldown-body" id="drilldown-body"></div>
+    </aside>
 
     <script type="module" src="./app.js"></script>
   </body>
