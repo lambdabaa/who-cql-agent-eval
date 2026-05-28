@@ -1,5 +1,5 @@
 {
-  "frozenAt": "2026-05-28T22:14:00.586Z",
+  "frozenAt": "2026-05-28T22:28:07.969Z",
   "panelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
   "sourceRevision": "smart-immunizations@b16245f71",
   "agents": [
@@ -21,7 +21,9 @@
     "audit_measles_mcv0",
     "audit_measles_ongoing_tx",
     "audit_measles_supplementary",
-    "composite_c2_measles_low_tx"
+    "composite_c2_measles_low_tx",
+    "composite_c2_measles_mcv0",
+    "composite_c2_measles_ongoing_tx"
   ],
   "rows": [
     {
@@ -2827,6 +2829,1139 @@
       }
     },
     {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "composite_c2_measles_mcv0",
+      "kind": "composite_detection",
+      "headline": "F1: 0.80 (P=1.00 R=0.67) · TP=60/FP=0/FN=30",
+      "detail": {
+        "taskId": "composite_c2_measles_mcv0",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 60,
+          "falsePositive": 0,
+          "falseNegative": 30,
+          "precision": 1,
+          "recall": 0.667,
+          "f1": 0.8
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 20,
+            "flagged": 14
+          },
+          "reference_rename": {
+            "total": 17,
+            "flagged": 14
+          },
+          "threshold_change": {
+            "total": 19,
+            "flagged": 19
+          },
+          "precondition_drop": {
+            "total": 17,
+            "flagged": 8
+          },
+          "comparator_flip": {
+            "total": 17,
+            "flagged": 5
+          }
+        }
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "composite_c2_measles_ongoing_tx",
+      "kind": "composite_detection",
+      "headline": "F1: 0.77 (P=0.82 R=0.72) · TP=65/FP=14/FN=25",
+      "detail": {
+        "taskId": "composite_c2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 65,
+          "falsePositive": 14,
+          "falseNegative": 25,
+          "precision": 0.823,
+          "recall": 0.722,
+          "f1": 0.769
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 2,
+            "truePositive": 1,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "threshold_change"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV1 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is due for MCV1",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is due for MCV2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is due for MCV2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 15,
+            "flagged": 12
+          },
+          "reference_rename": {
+            "total": 15,
+            "flagged": 12
+          },
+          "threshold_change": {
+            "total": 17,
+            "flagged": 15
+          },
+          "precondition_drop": {
+            "total": 15,
+            "flagged": 9
+          },
+          "comparator_flip": {
+            "total": 14,
+            "flagged": 3
+          },
+          "guidance_text_swap": {
+            "total": 14,
+            "flagged": 14
+          }
+        }
+      }
+    },
+    {
       "agentId": "anthropic_claude-opus-4-7",
       "taskId": "A1_measles_low_tx",
       "kind": "authoring",
@@ -5231,6 +6366,1027 @@
           "guidance_text_swap": {
             "total": 14,
             "flagged": 10
+          }
+        }
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "composite_c2_measles_mcv0",
+      "kind": "composite_detection",
+      "headline": "F1: 0.92 (P=1.00 R=0.84) · TP=76/FP=0/FN=14",
+      "detail": {
+        "taskId": "composite_c2_measles_mcv0",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 76,
+          "falsePositive": 0,
+          "falseNegative": 14,
+          "precision": 1,
+          "recall": 0.844,
+          "f1": 0.916
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 1",
+                "kind": "threshold_change"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 5,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 20,
+            "flagged": 20
+          },
+          "reference_rename": {
+            "total": 17,
+            "flagged": 17
+          },
+          "threshold_change": {
+            "total": 19,
+            "flagged": 18
+          },
+          "precondition_drop": {
+            "total": 17,
+            "flagged": 16
+          },
+          "comparator_flip": {
+            "total": 17,
+            "flagged": 5
+          }
+        }
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "composite_c2_measles_ongoing_tx",
+      "kind": "composite_detection",
+      "headline": "F1: 0.84 (P=0.84 R=0.83) · TP=75/FP=14/FN=15",
+      "detail": {
+        "taskId": "composite_c2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 75,
+          "falsePositive": 14,
+          "falseNegative": 15,
+          "precision": 0.843,
+          "recall": 0.833,
+          "f1": 0.838
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 2,
+            "truePositive": 1,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV1",
+                "kind": "precondition_drop"
+              }
+            ]
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV1 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 5,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV1 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 15,
+            "flagged": 15
+          },
+          "reference_rename": {
+            "total": 15,
+            "flagged": 11
+          },
+          "threshold_change": {
+            "total": 17,
+            "flagged": 17
+          },
+          "precondition_drop": {
+            "total": 15,
+            "flagged": 15
+          },
+          "comparator_flip": {
+            "total": 14,
+            "flagged": 3
+          },
+          "guidance_text_swap": {
+            "total": 14,
+            "flagged": 14
           }
         }
       }
@@ -7923,6 +10079,1323 @@
       }
     },
     {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "composite_c2_measles_mcv0",
+      "kind": "composite_detection",
+      "headline": "F1: 0.57 (P=0.97 R=0.40) · TP=36/FP=1/FN=54",
+      "detail": {
+        "taskId": "composite_c2_measles_mcv0",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 36,
+          "falsePositive": 1,
+          "falseNegative": 54,
+          "precision": 0.973,
+          "recall": 0.4,
+          "f1": 0.567
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 1",
+                "kind": "threshold_change"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Has Guidance",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 0,
+            "falsePositive": 1,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 3",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 1",
+                "kind": "threshold_change"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 1",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for MCV0",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 1",
+                "kind": "threshold_change"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 4,
+            "misses": [
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 3",
+                "kind": "threshold_change"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 3",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 4",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 1",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV0",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Consider MCV0.",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0 Case 2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 20,
+            "flagged": 10
+          },
+          "reference_rename": {
+            "total": 17,
+            "flagged": 6
+          },
+          "threshold_change": {
+            "total": 19,
+            "flagged": 11
+          },
+          "precondition_drop": {
+            "total": 17,
+            "flagged": 5
+          },
+          "comparator_flip": {
+            "total": 17,
+            "flagged": 4
+          }
+        }
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "composite_c2_measles_ongoing_tx",
+      "kind": "composite_detection",
+      "headline": "F1: 0.60 (P=0.80 R=0.48) · TP=43/FP=11/FN=47",
+      "detail": {
+        "taskId": "composite_c2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 43,
+          "falsePositive": 11,
+          "falseNegative": 47,
+          "precision": 0.796,
+          "recall": 0.478,
+          "f1": 0.597
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 0,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "boolean_op_flip"
+              }
+            ]
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is due for MCV2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 0,
+            "falsePositive": 1,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is due for MCV2",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for first dose of measles-containing vaccine (MCV1) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Measles primary series is complete",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 0,
+            "falsePositive": 2,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "kind": "comparator_flip"
+              }
+            ]
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "kind": "reference_rename"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 2,
+            "truePositive": 1,
+            "falsePositive": 1,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 4,
+            "misses": [
+              {
+                "define": "Client is due for MCV1",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is due for MCV2",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "boolean_op_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 2,
+            "falsePositive": 2,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for first dose of measles-containing vaccine (MCV1)",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV1",
+                "kind": "precondition_drop"
+              },
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "boolean_op_flip"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 3,
+            "misses": [
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "threshold_change"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "kind": "reference_rename"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for first dose of measles-containing vaccine (MCV1) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 15,
+            "flagged": 8
+          },
+          "reference_rename": {
+            "total": 15,
+            "flagged": 3
+          },
+          "threshold_change": {
+            "total": 17,
+            "flagged": 11
+          },
+          "precondition_drop": {
+            "total": 15,
+            "flagged": 4
+          },
+          "comparator_flip": {
+            "total": 14,
+            "flagged": 3
+          },
+          "guidance_text_swap": {
+            "total": 14,
+            "flagged": 14
+          }
+        }
+      }
+    },
+    {
       "agentId": "openai_gpt-5.5",
       "taskId": "A1_measles_low_tx",
       "kind": "authoring",
@@ -10323,6 +13796,1003 @@
           "comparator_flip": {
             "total": 14,
             "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 14,
+            "flagged": 14
+          }
+        }
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "composite_c2_measles_mcv0",
+      "kind": "composite_detection",
+      "headline": "F1: 0.92 (P=1.00 R=0.86) · TP=77/FP=0/FN=13",
+      "detail": {
+        "taskId": "composite_c2_measles_mcv0",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 77,
+          "falsePositive": 0,
+          "falseNegative": 13,
+          "precision": 1,
+          "recall": 0.856,
+          "f1": 0.922
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 5,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 2,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              },
+              {
+                "define": "Client is not due for MCV0",
+                "kind": "precondition_drop"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 20,
+            "flagged": 20
+          },
+          "reference_rename": {
+            "total": 17,
+            "flagged": 17
+          },
+          "threshold_change": {
+            "total": 19,
+            "flagged": 19
+          },
+          "precondition_drop": {
+            "total": 17,
+            "flagged": 16
+          },
+          "comparator_flip": {
+            "total": 17,
+            "flagged": 5
+          }
+        }
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "composite_c2_measles_ongoing_tx",
+      "kind": "composite_detection",
+      "headline": "F1: 0.86 (P=0.85 R=0.88) · TP=79/FP=14/FN=11",
+      "detail": {
+        "taskId": "composite_c2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "global": {
+          "truePositive": 79,
+          "falsePositive": 14,
+          "falseNegative": 11,
+          "precision": 0.849,
+          "recall": 0.878,
+          "f1": 0.863
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v02",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v03",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v04",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v05",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v06",
+            "truthBugCount": 0,
+            "agentFindingCount": 0,
+            "truePositive": 0,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v07",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v08",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v09",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v10",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v11",
+            "truthBugCount": 1,
+            "agentFindingCount": 1,
+            "truePositive": 1,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v12",
+            "truthBugCount": 1,
+            "agentFindingCount": 2,
+            "truePositive": 1,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v13",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v14",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v15",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v16",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v17",
+            "truthBugCount": 2,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v18",
+            "truthBugCount": 2,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v19",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v20",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v21",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 2,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v22",
+            "truthBugCount": 3,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v23",
+            "truthBugCount": 3,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v24",
+            "truthBugCount": 3,
+            "agentFindingCount": 2,
+            "truePositive": 2,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v25",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": []
+          },
+          {
+            "variantId": "v26",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v27",
+            "truthBugCount": 4,
+            "agentFindingCount": 3,
+            "truePositive": 3,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v28",
+            "truthBugCount": 4,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v29",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV1 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v30",
+            "truthBugCount": 4,
+            "agentFindingCount": 4,
+            "truePositive": 3,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v31",
+            "truthBugCount": 5,
+            "agentFindingCount": 4,
+            "truePositive": 4,
+            "falsePositive": 0,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": []
+          },
+          {
+            "variantId": "v32",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v33",
+            "truthBugCount": 5,
+            "agentFindingCount": 6,
+            "truePositive": 5,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v34",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Client is due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v35",
+            "truthBugCount": 5,
+            "agentFindingCount": 5,
+            "truePositive": 4,
+            "falsePositive": 1,
+            "falseNegative": 1,
+            "misses": [
+              {
+                "define": "Test Validation",
+                "kind": "comparator_flip"
+              }
+            ],
+            "spurious": [
+              {
+                "define": "Measles primary series is complete Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          },
+          {
+            "variantId": "v36",
+            "truthBugCount": 5,
+            "agentFindingCount": 6,
+            "truePositive": 5,
+            "falsePositive": 1,
+            "falseNegative": 0,
+            "misses": [],
+            "spurious": [
+              {
+                "define": "Client is not due for MCV2 Guidance",
+                "kind": "guidance_text_swap"
+              }
+            ]
+          }
+        ],
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 15,
+            "flagged": 15
+          },
+          "reference_rename": {
+            "total": 15,
+            "flagged": 15
+          },
+          "threshold_change": {
+            "total": 17,
+            "flagged": 17
+          },
+          "precondition_drop": {
+            "total": 15,
+            "flagged": 15
+          },
+          "comparator_flip": {
+            "total": 14,
+            "flagged": 3
           },
           "guidance_text_swap": {
             "total": 14,

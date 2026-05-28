@@ -23,7 +23,11 @@ import {
   buildC2OngoingTxFixture,
   buildC2SupplementaryFixture,
 } from './build_c2.js';
-import { buildCompositeC2Fixture } from './build_composite_c2.js';
+import {
+  buildCompositeC2Fixture,
+  buildCompositeC2Mcv0Fixture,
+  buildCompositeC2OngoingTxFixture,
+} from './build_composite_c2.js';
 import { buildC4Fixture } from './build_c4.js';
 import { gradeA1, type GradeA1Result } from './grade_a1.js';
 import { gradeAudit, type GradeAuditResult } from './grade_audit.js';
@@ -58,6 +62,8 @@ export const TASK_IDS = [
   'C2_measles_supplementary',
   'C2_anc_dt08',
   'composite_c2_measles_low_tx',
+  'composite_c2_measles_mcv0',
+  'composite_c2_measles_ongoing_tx',
   'C4_measles_low_tx',
   'audit_measles_low_tx',
   'audit_measles_mcv0',
@@ -121,6 +127,14 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
   buildCompositeC2Fixture({
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'composite_c2_measles_low_tx'),
+  });
+  buildCompositeC2Mcv0Fixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'composite_c2_measles_mcv0'),
+  });
+  buildCompositeC2OngoingTxFixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'composite_c2_measles_ongoing_tx'),
   });
   // Audit fixtures reuse the C2 L2 briefs (which are written by the C2
   // builders above), so they must run after the C2 fixtures.

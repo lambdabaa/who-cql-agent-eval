@@ -2,9 +2,9 @@
 
 You are given:
 
-- `inputs/L2_table.md` — the canonical L2 decision table for IMMZ.D2.DT.Measles.LowTransmission.
+- `inputs/L2_table.md` — the canonical L2 decision table for IMMZ.D2.DT.Measles.OngoingTransmission.
 - `inputs/deps/IMMZD2DTMeaslesEncounterElements.cql` — the dependency library the variants call into.
-- `inputs/variants/v01.cql` through `inputs/variants/v36.cql` — 36 candidate Logic libraries (`IMMZD2DTMeaslesLowTransmissionLogic`). Each has **0 to 5** injected bugs.
+- `inputs/variants/v01.cql` through `inputs/variants/v36.cql` — 36 candidate Logic libraries (`IMMZD2DTMeaslesOngoingTransmissionLogic`). Each has **0 to 5** injected bugs.
 
 Unlike the single-bug detection task, the number of bugs per variant is
 not fixed. Some variants are clean controls (empty `findings`); others
