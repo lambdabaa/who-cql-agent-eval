@@ -191,6 +191,11 @@ baseline
       if ('t1' in r) {
         const t3 = r.t3 ? ` · T3: ${r.t3.casesPassed}/${r.t3.casesTotal}` : '';
         console.log(`${g.agentId}/${g.taskId}: T1=${r.t1}${t3}`);
+      } else if ('detection' in r) {
+        const d = r.detection;
+        console.log(
+          `${g.agentId}/${g.taskId}: F1=${d.f1.toFixed(2)} (P=${d.precision.toFixed(2)} R=${d.recall.toFixed(2)})`,
+        );
       } else {
         console.log(`${g.agentId}/${g.taskId}: ${r.correctCells}/${r.totalCells}`);
       }

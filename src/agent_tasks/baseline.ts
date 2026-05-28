@@ -9,8 +9,10 @@ import {
 } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { buildA1Fixture } from './build_a1.js';
+import { buildC2Fixture } from './build_c2.js';
 import { buildC4Fixture } from './build_c4.js';
 import { gradeA1, type GradeA1Result } from './grade_a1.js';
+import { gradeC2, type GradeC2Result } from './grade_c2.js';
 import { gradeC4, type GradeC4Result } from './grade_c4.js';
 import { TaskSpecSchema, type TaskSpec } from './schema.js';
 import type { AgentRunner, AgentRunResult } from '../runners/types.js';
@@ -32,7 +34,7 @@ import { openaiRunner } from '../runners/openai.js';
  *   baselines/<date>/        frozen baseline JSON + summary
  */
 
-export const TASK_IDS = ['A1_measles_low_tx', 'C4_measles_low_tx'] as const;
+export const TASK_IDS = ['A1_measles_low_tx', 'C2_measles_low_tx', 'C4_measles_low_tx'] as const;
 export type TaskId = (typeof TASK_IDS)[number];
 
 export interface BaselinePaths {
@@ -64,6 +66,11 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
   buildA1Fixture({
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'A1_measles_low_tx'),
+  });
+  // C2 reuses the A1 L2 brief, so A1 must be built first.
+  buildC2Fixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'C2_measles_low_tx'),
   });
   await buildC4Fixture({
     dakRoot: paths.dakRoot,
@@ -150,7 +157,7 @@ export interface GradedRun {
   agentId: string;
   taskId: string;
   spec: TaskSpec;
-  result: GradeA1Result | GradeC4Result;
+  result: GradeA1Result | GradeC2Result | GradeC4Result;
 }
 
 /** Grade every agent run found under runs/. */
@@ -178,6 +185,9 @@ export async function gradeAllRuns(paths: BaselinePaths, opts: { jarPath?: strin
       } else if (spec.kind === 'prediction') {
         const result = gradeC4({ spec, taskDir: runDir, reportPath: join(runDir, 'grade.json') });
         out.push({ agentId: agentDir, taskId, spec, result });
+      } else if (spec.kind === 'detection') {
+        const result = gradeC2({ spec, taskDir: runDir, reportPath: join(runDir, 'grade.json') });
+        out.push({ agentId: agentDir, taskId, spec, result });
       }
     }
   }
@@ -195,7 +205,7 @@ export interface BaselineSummary {
     taskId: string;
     kind: TaskSpec['kind'];
     headline: string;
-    detail: GradeA1Result | GradeC4Result;
+    detail: GradeA1Result | GradeC2Result | GradeC4Result;
   }>;
 }
 
@@ -233,12 +243,18 @@ export function freezeBaseline(paths: BaselinePaths, graded: GradedRun[], dateIs
   return path;
 }
 
-function headline(r: GradeA1Result | GradeC4Result): string {
+function headline(r: GradeA1Result | GradeC2Result | GradeC4Result): string {
   if ('t1' in r) {
     if (!r.agentSubmitted) return 'no submission';
     if (r.t1 !== 'pass') return `T1: ${r.t1}`;
     const t3 = r.t3!;
     return `T1: pass · T3: ${t3.casesPassed}/${t3.casesTotal}`;
+  }
+  if ('detection' in r) {
+    if (r.parseError && !r.agentSubmitted) return 'no submission';
+    if (r.parseError) return `parse error: ${r.parseError}`;
+    const d = r.detection;
+    return `F1: ${d.f1.toFixed(2)} (P=${d.precision.toFixed(2)} R=${d.recall.toFixed(2)}) · loc: ${r.localization.defineCorrect}/${r.localization.flagged}`;
   }
   if (r.parseError) return `parse error: ${r.parseError}`;
   if (!r.agentSubmitted) return 'no submission';
