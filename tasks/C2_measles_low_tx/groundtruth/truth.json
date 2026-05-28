@@ -2,6 +2,9 @@
   "v01": {
     "kind": "boolean_op_flip",
     "define": "Client is not due for MCV1 Case 2",
+    "definesAffected": [
+      "Client is not due for MCV1 Case 2"
+    ],
     "approxLine": 49,
     "original": "    and Encounter.\"Live vaccine was administered in the last 4 weeks\"",
     "modified": "    or Encounter.\"Live vaccine was administered in the last 4 weeks\""
@@ -9,41 +12,59 @@
   "v02": {
     "kind": "boolean_op_flip",
     "define": "Client is due for MCV1",
+    "definesAffected": [
+      "Client is due for MCV1"
+    ],
     "approxLine": 82,
     "original": "    and Encounter.\"No live vaccine was administered in the last 4 weeks\"",
     "modified": "    or Encounter.\"No live vaccine was administered in the last 4 weeks\""
   },
   "v03": {
-    "kind": "boolean_op_flip",
-    "define": "Client is due for MCV1",
-    "approxLine": 81,
-    "original": "    and Encounter.\"Client's age is more than or equal to 12 months\"",
-    "modified": "    or Encounter.\"Client's age is more than or equal to 12 months\""
+    "kind": "reference_rename",
+    "define": "Client is due for MCV2",
+    "definesAffected": [
+      "Client is due for MCV2"
+    ],
+    "approxLine": 139,
+    "original": "  Encounter.\"MCV1 was administered\"",
+    "modified": "  Encounter.\"MCV2 was administered\""
   },
   "v04": {
     "kind": "reference_rename",
-    "define": "Client is not due for MCV2 Case 2",
-    "approxLine": 107,
-    "original": "    and Encounter.\"Client's age is more than or equal to 15 months\"",
-    "modified": "    and Encounter.\"Client's age is more than or equal to 12 months\""
+    "define": "Client is due for MCV1",
+    "definesAffected": [
+      "Client is due for MCV1"
+    ],
+    "approxLine": 82,
+    "original": "    and Encounter.\"No live vaccine was administered in the last 4 weeks\"",
+    "modified": "    and Encounter.\"Live vaccine was administered in the last 4 weeks\""
   },
   "v05": {
-    "kind": "reference_rename",
-    "define": "Client is not due for MCV2 Case 2",
-    "approxLine": 107,
-    "original": "    and Encounter.\"Client's age is more than or equal to 15 months\"",
-    "modified": "    and Encounter.\"Client's age is more than or equal to 12 months\""
+    "kind": "threshold_change",
+    "define": "Client is not due for MCV1 Case 1",
+    "definesAffected": [
+      "Client is not due for MCV1 Case 1"
+    ],
+    "approxLine": 40,
+    "original": "  Encounter.\"Client's age is less than 12 months\"",
+    "modified": "  Encounter.\"Client's age is less than 15 months\""
   },
   "v06": {
-    "kind": "reference_rename",
-    "define": "Measles primary series is complete",
-    "approxLine": 157,
-    "original": "  Encounter.\"MCV2 was administered\"",
-    "modified": "  Encounter.\"MCV1 was administered\""
+    "kind": "threshold_change",
+    "define": "Client is not due for MCV1 Case 1",
+    "definesAffected": [
+      "Client is not due for MCV1 Case 1"
+    ],
+    "approxLine": 40,
+    "original": "  Encounter.\"Client's age is less than 12 months\"",
+    "modified": "  Encounter.\"Client's age is less than 9 months\""
   },
   "v07": {
     "kind": "precondition_drop",
     "define": "Client is not due for MCV1 Case 2",
+    "definesAffected": [
+      "Client is not due for MCV1 Case 2"
+    ],
     "approxLine": 49,
     "original": "    and Encounter.\"Live vaccine was administered in the last 4 weeks\"",
     "modified": "<line removed>"
@@ -51,37 +72,54 @@
   "v08": {
     "kind": "precondition_drop",
     "define": "Client is due for MCV2",
+    "definesAffected": [
+      "Client is due for MCV2"
+    ],
     "approxLine": 140,
     "original": "    and Encounter.\"Client's age is more than or equal to 15 months\"",
     "modified": "<line removed>"
   },
   "v09": {
-    "kind": "precondition_drop",
-    "define": "Client is due for MCV1",
-    "approxLine": 82,
-    "original": "    and Encounter.\"No live vaccine was administered in the last 4 weeks\"",
-    "modified": "<line removed>"
-  },
-  "v10": {
     "kind": "comparator_flip",
     "define": "Has Guidance",
+    "definesAffected": [
+      "Has Guidance"
+    ],
     "approxLine": 33,
     "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
     "modified": "  \"Guidance\" is not null and \"Guidance\" = ''"
   },
-  "v11": {
+  "v10": {
     "kind": "comparator_flip",
     "define": "Has Guidance",
+    "definesAffected": [
+      "Has Guidance"
+    ],
     "approxLine": 33,
     "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
     "modified": "  \"Guidance\" is null and \"Guidance\" != ''"
   },
-  "v12": {
+  "v11": {
     "kind": "guidance_text_swap",
     "define": "Measles primary series is complete Guidance",
+    "definesAffected": [
+      "Measles primary series is complete Guidance",
+      "Client is due for MCV1 Guidance"
+    ],
     "approxLine": 165,
     "original": "Measles primary series is complete Guidance: 'Measles primary series is complete. Two measles primary series doses were admin…",
     "modified": "Measles primary series is complete Guidance: 'Should vaccinate client with MCV1 as no measles doses were administered, client…"
+  },
+  "v12": {
+    "kind": "guidance_text_swap",
+    "define": "Client is due for MCV2 Guidance",
+    "definesAffected": [
+      "Client is due for MCV2 Guidance",
+      "Client is due for MCV1 Guidance"
+    ],
+    "approxLine": 149,
+    "original": "Client is due for MCV2 Guidance: 'Should vaccinate client with MCV2 as client is within appropriate age range and…",
+    "modified": "Client is due for MCV2 Guidance: 'Should vaccinate client with MCV1 as no measles doses were administered, client…"
   },
   "v13": {
     "kind": "none"

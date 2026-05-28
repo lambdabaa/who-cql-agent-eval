@@ -1,0 +1,158 @@
+{
+  "v01": {
+    "kind": "boolean_op_flip",
+    "define": "Client is not due for MCV0 Case 2",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 2"
+    ],
+    "approxLine": 45,
+    "original": "    and Encounter.\"Client's age is between 6 months and 9 months\"",
+    "modified": "    or Encounter.\"Client's age is between 6 months and 9 months\""
+  },
+  "v02": {
+    "kind": "boolean_op_flip",
+    "define": "Client is not due for MCV0 Case 2",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 2"
+    ],
+    "approxLine": 46,
+    "original": "    and Encounter.\"Live vaccine was administered in the last 4 weeks\"",
+    "modified": "    or Encounter.\"Live vaccine was administered in the last 4 weeks\""
+  },
+  "v03": {
+    "kind": "boolean_op_flip",
+    "define": "Client is not due for MCV0",
+    "definesAffected": [
+      "Client is not due for MCV0"
+    ],
+    "approxLine": 68,
+    "original": "    or \"Client is not due for MCV0 Case 2\"",
+    "modified": "    and \"Client is not due for MCV0 Case 2\""
+  },
+  "v04": {
+    "kind": "reference_rename",
+    "define": "Client is not due for MCV0 Case 4",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 4"
+    ],
+    "approxLine": 60,
+    "original": "  Encounter.\"MCV0 was administered\"",
+    "modified": "  Encounter.\"MCV0 was not administered\""
+  },
+  "v05": {
+    "kind": "reference_rename",
+    "define": "Client is not due for MCV0 Case 2",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 2"
+    ],
+    "approxLine": 44,
+    "original": "  Encounter.\"MCV0 was not administered\"",
+    "modified": "  Encounter.\"MCV0 was administered\""
+  },
+  "v06": {
+    "kind": "threshold_change",
+    "define": "Client is not due for MCV0 Case 1",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 1"
+    ],
+    "approxLine": 37,
+    "original": "  Encounter.\"Client's age is less than 6 months\"",
+    "modified": "  Encounter.\"Client's age is less than 9 months\""
+  },
+  "v07": {
+    "kind": "threshold_change",
+    "define": "Client is not due for MCV0 Case 3",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 3"
+    ],
+    "approxLine": 53,
+    "original": "  Encounter.\"Client's age is more than or equal to 9 months\"",
+    "modified": "  Encounter.\"Client's age is more than or equal to 12 months\""
+  },
+  "v08": {
+    "kind": "precondition_drop",
+    "define": "Client is not due for MCV0 Case 2",
+    "definesAffected": [
+      "Client is not due for MCV0 Case 2"
+    ],
+    "approxLine": 45,
+    "original": "    and Encounter.\"Client's age is between 6 months and 9 months\"",
+    "modified": "<line removed>"
+  },
+  "v09": {
+    "kind": "precondition_drop",
+    "define": "Consider MCV0.",
+    "definesAffected": [
+      "Consider MCV0."
+    ],
+    "approxLine": 100,
+    "original": "    and Encounter.\"No live vaccine was administered in the last 4 weeks\"",
+    "modified": "<line removed>"
+  },
+  "v10": {
+    "kind": "precondition_drop",
+    "define": "Consider MCV0.",
+    "definesAffected": [
+      "Consider MCV0."
+    ],
+    "approxLine": 99,
+    "original": "    and Encounter.\"Client's age is between 6 months and 9 months\"",
+    "modified": "<line removed>"
+  },
+  "v11": {
+    "kind": "comparator_flip",
+    "define": "Has Guidance",
+    "definesAffected": [
+      "Has Guidance"
+    ],
+    "approxLine": 30,
+    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
+    "modified": "  \"Guidance\" is not null and \"Guidance\" = ''"
+  },
+  "v12": {
+    "kind": "comparator_flip",
+    "define": "Has Guidance",
+    "definesAffected": [
+      "Has Guidance"
+    ],
+    "approxLine": 30,
+    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
+    "modified": "  \"Guidance\" is null and \"Guidance\" != ''"
+  },
+  "v13": {
+    "kind": "none"
+  },
+  "v14": {
+    "kind": "none"
+  },
+  "v15": {
+    "kind": "none"
+  },
+  "v16": {
+    "kind": "none"
+  },
+  "v17": {
+    "kind": "none"
+  },
+  "v18": {
+    "kind": "none"
+  },
+  "v19": {
+    "kind": "none"
+  },
+  "v20": {
+    "kind": "none"
+  },
+  "v21": {
+    "kind": "none"
+  },
+  "v22": {
+    "kind": "none"
+  },
+  "v23": {
+    "kind": "none"
+  },
+  "v24": {
+    "kind": "none"
+  }
+}

@@ -7,6 +7,7 @@ import {
   mutatePreconditionDrop,
   mutateGuidanceTextSwap,
   mutateComparatorFlip,
+  mutateThresholdChange,
   seededRng,
 } from '../../src/agent_tasks/c2_mutators.js';
 
@@ -41,12 +42,21 @@ describe('c2_mutators', () => {
     expect(opOf(r.mutation.original)).not.toBe(opOf(r.mutation.modified));
   });
 
-  it('reference_rename swaps a known-valid Encounter helper', () => {
+  it('reference_rename swaps an entity helper (MCV1↔MCV2 etc.)', () => {
     const r = mutateReferenceRename(SOURCE, seededRng(2));
     expect(r.source).not.toBe(SOURCE);
     expect(r.mutation.kind).toBe('reference_rename');
-    // Both old and new references are valid identifiers (no broken quotes).
+    expect(r.mutation.definesAffected).toEqual([r.mutation.define]);
     expect(r.source.match(/Encounter\."[^"]+"/g)!.length).toBeGreaterThan(0);
+  });
+
+  it('threshold_change swaps a numeric age helper', () => {
+    const r = mutateThresholdChange(SOURCE, seededRng(2));
+    expect(r.source).not.toBe(SOURCE);
+    expect(r.mutation.kind).toBe('threshold_change');
+    // Mutation hit a "less than" or "more than or equal to" reference.
+    expect(r.mutation.original).toMatch(/Client's age is (less than|more than or equal to)/);
+    expect(r.mutation.modified).toMatch(/Client's age is (less than|more than or equal to)/);
   });
 
   it('precondition_drop removes one and-clause line and shortens the file', () => {
@@ -56,11 +66,12 @@ describe('c2_mutators', () => {
     expect(/^\s+and\s+/.test(r.mutation.original)).toBe(true);
   });
 
-  it('guidance_text_swap swaps two distinct guidance blocks', () => {
+  it('guidance_text_swap swaps two distinct guidance blocks and records both endpoints', () => {
     const r = mutateGuidanceTextSwap(SOURCE, seededRng(4));
     expect(r.mutation.kind).toBe('guidance_text_swap');
     expect(r.source).not.toBe(SOURCE);
-    // Both guidance defines still exist in the file (no orphaned names).
+    expect(r.mutation.definesAffected.length).toBe(2);
+    expect(r.mutation.definesAffected[0]).not.toBe(r.mutation.definesAffected[1]);
     expect(r.source).toMatch(/define "[^"]+ Guidance":/);
   });
 

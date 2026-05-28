@@ -78,7 +78,7 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
 */
 define "Client is due for MCV1":
   Encounter."No measles primary series doses were administered"
-    or Encounter."Client's age is more than or equal to 12 months"
+    and Encounter."Client's age is more than or equal to 12 months"
     and Encounter."No live vaccine was administered in the last 4 weeks"
 
 /*
@@ -136,7 +136,7 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
 @pseudocode: "Immunization recommendation status" = "Due"
 */
 define "Client is due for MCV2":
-  Encounter."MCV1 was administered"
+  Encounter."MCV2 was administered"
     and Encounter."Client's age is more than or equal to 15 months"
     and Encounter."No live vaccine was administered in the last 4 weeks"
 

@@ -30,7 +30,7 @@ define "Guidance":
   end
   
 define "Has Guidance":
-  "Guidance" is not null and "Guidance" = ''
+  "Guidance" is null and "Guidance" != ''
 
 /*
 @output: Client is not due for MCV1 Case 1

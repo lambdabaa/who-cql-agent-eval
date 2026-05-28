@@ -87,8 +87,8 @@ define "Client is due for MCV1":
 Check for contraindications.
 */
 define "Client is due for MCV1 Guidance":
-  'Measles primary series is complete. Two measles primary series doses were administered.
-Check if a measles supplementary dose is appropriate for the client.'
+  'Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+Check for contraindications.'
 
 /*
 @output: Client is not due for MCV2 Case 1
@@ -146,7 +146,7 @@ define "Client is due for MCV2":
 Check for contraindications.
 */
 define "Client is due for MCV2 Guidance":
-  'Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.
+  'Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
 Check for contraindications.'
 
 /*
@@ -162,8 +162,8 @@ define "Measles primary series is complete":
 Check if a measles supplementary dose is appropriate for the client.
 */
 define "Measles primary series is complete Guidance":
-  'Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
-Check for contraindications.'
+  'Measles primary series is complete. Two measles primary series doses were administered.
+Check if a measles supplementary dose is appropriate for the client.'
 
 
 /*

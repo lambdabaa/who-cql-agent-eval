@@ -37,7 +37,7 @@ define "Has Guidance":
 @pseudocode: "Immunization recommendation status" = "Not due"
 */
 define "Client is not due for MCV1 Case 1":
-  Encounter."Client's age is less than 12 months"
+  Encounter."Client's age is less than 9 months"
 
 /*
 @output: Client is not due for MCV1 Case 2
@@ -154,7 +154,7 @@ Check for contraindications.'
 @pseudocode: "Completed the primary vaccination series" = TRUE (where "Vaccine type" = "Measles-containing vaccines")
 */
 define "Measles primary series is complete":
-  Encounter."MCV1 was administered"
+  Encounter."MCV2 was administered"
 
 /*
 @output: Measles primary series is complete Guidance

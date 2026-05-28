@@ -37,7 +37,7 @@ define "Has Guidance":
 @pseudocode: "Immunization recommendation status" = "Not due"
 */
 define "Client is not due for MCV1 Case 1":
-  Encounter."Client's age is less than 12 months"
+  Encounter."Client's age is less than 15 months"
 
 /*
 @output: Client is not due for MCV1 Case 2
@@ -104,7 +104,7 @@ define "Client is not due for MCV2 Case 1":
 */
 define "Client is not due for MCV2 Case 2":
   Encounter."MCV1 was administered"
-    and Encounter."Client's age is more than or equal to 12 months"
+    and Encounter."Client's age is more than or equal to 15 months"
     and Encounter."Live vaccine was administered in the last 4 weeks"
 
 /*

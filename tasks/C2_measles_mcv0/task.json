@@ -1,8 +1,8 @@
 {
-  "id": "C2_measles_low_tx",
+  "id": "C2_measles_mcv0",
   "kind": "detection",
   "dak": "smart-immunizations",
-  "logicLibraryId": "IMMZD2DTMeaslesLowTransmissionLogic",
+  "logicLibraryId": "IMMZD2DTMeaslesMCVDose0Logic",
   "variantIds": [
     "v01",
     "v02",

@@ -9,7 +9,7 @@ import {
 } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { buildA1Fixture } from './build_a1.js';
-import { buildC2Fixture } from './build_c2.js';
+import { buildC2Fixture, buildC2McvDose0Fixture } from './build_c2.js';
 import { buildC4Fixture } from './build_c4.js';
 import { gradeA1, type GradeA1Result } from './grade_a1.js';
 import { gradeC2, type GradeC2Result } from './grade_c2.js';
@@ -34,7 +34,12 @@ import { openaiRunner } from '../runners/openai.js';
  *   baselines/<date>/        frozen baseline JSON + summary
  */
 
-export const TASK_IDS = ['A1_measles_low_tx', 'C2_measles_low_tx', 'C4_measles_low_tx'] as const;
+export const TASK_IDS = [
+  'A1_measles_low_tx',
+  'C2_measles_low_tx',
+  'C2_measles_mcv0',
+  'C4_measles_low_tx',
+] as const;
 export type TaskId = (typeof TASK_IDS)[number];
 
 export interface BaselinePaths {
@@ -67,10 +72,14 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'A1_measles_low_tx'),
   });
-  // C2 reuses the A1 L2 brief, so A1 must be built first.
+  // C2 (Low Tx) reuses the A1 L2 brief, so A1 must be built first.
   buildC2Fixture({
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'C2_measles_low_tx'),
+  });
+  buildC2McvDose0Fixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'C2_measles_mcv0'),
   });
   await buildC4Fixture({
     dakRoot: paths.dakRoot,

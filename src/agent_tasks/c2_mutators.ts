@@ -25,7 +25,19 @@ import type { MutationKind } from './schema.js';
 
 export interface Mutation {
   kind: MutationKind;
+  /**
+   * The define that holds the injected bug. For swap mutators (e.g.
+   * guidance_text_swap) that mutate two defines symmetrically, this is
+   * the "primary" anchor define; see `definesAffected` for the full set.
+   */
   define: string;
+  /**
+   * All defines whose body changed as a result of this mutation. For
+   * single-site mutators this equals `[define]`. For swap mutators this
+   * lists both endpoints — the grader treats any one as a correct
+   * localization.
+   */
+  definesAffected: string[];
   /** 1-based line in the mutated source (same as the original — mutations are in-place edits). */
   approxLine: number;
   original: string;
@@ -103,11 +115,13 @@ export function mutateBooleanOpFlip(source: string, rng: () => number): Mutation
   const modified = orig.replace(/^(\s+)(and|or)(\s+)/, (_, sp1, op, sp2) =>
     `${sp1}${op === 'and' ? 'or' : 'and'}${sp2}`,
   );
+  const def = enclosingDefine(lines, idx);
   return {
     source: replaceLine(source, idx, modified),
     mutation: {
       kind: 'boolean_op_flip',
-      define: enclosingDefine(lines, idx),
+      define: def,
+      definesAffected: [def],
       approxLine: idx + 1,
       original: orig,
       modified,
@@ -116,38 +130,93 @@ export function mutateBooleanOpFlip(source: string, rng: () => number): Mutation
 }
 
 /**
- * Swap one `Encounter."A"` reference for `Encounter."B"` where B is a
- * known sibling helper. Pairs are hand-picked to be valid identifiers in
- * IMMZD2DTMeaslesEncounterElements; the resulting library still compiles.
+ * Helper-relation facts about the Measles EncounterElements library. These
+ * pairs hold across every Logic library that uses the same helpers
+ * (LowTransmission, MCVDose0, OngoingTransmission, SupplementaryDose).
+ *
+ * `ENTITY_REFERENCE_PAIRS` — swaps that change the referenced *entity*
+ * (MCV1 ↔ MCV2, "administered" ↔ "not administered"). The numeric form
+ * is preserved; semantic referent changes.
+ *
+ * `THRESHOLD_PAIRS` — swaps that keep the predicate type ("less than N
+ * months") but change the numeric threshold. The semantic *referent* is
+ * the same kind of fact about the patient; the clinically meaningful
+ * number is what changed. This is the bug class that requires knowing
+ * the actual immunization schedule, not just matching shape.
  */
-const REFERENCE_SWAPS: Array<[string, string]> = [
-  ["Client's age is less than 12 months", "Client's age is less than 15 months"],
-  ["Client's age is more than or equal to 12 months", "Client's age is more than or equal to 15 months"],
+const ENTITY_REFERENCE_PAIRS: Array<[string, string]> = [
   ['MCV1 was administered', 'MCV2 was administered'],
   ['Live vaccine was administered in the last 4 weeks', 'No live vaccine was administered in the last 4 weeks'],
+  ['Live vaccine was administered in the past 4 weeks', 'No live vaccine was administered in the past 4 weeks'],
+  ['MCV0 was administered', 'MCV0 was not administered'],
+  ['Measles supplementary dose was administered', 'Measles supplementary dose was not administered'],
 ];
 
-export function mutateReferenceRename(source: string, rng: () => number): MutationResult {
+const THRESHOLD_PAIRS: Array<[string, string]> = [
+  // Cross-table age thresholds for the "less than N months" family.
+  ["Client's age is less than 6 months", "Client's age is less than 9 months"],
+  ["Client's age is less than 9 months", "Client's age is less than 12 months"],
+  ["Client's age is less than 12 months", "Client's age is less than 15 months"],
+  // "more than or equal to" family (note: there's no 6-month variant in helpers).
+  ["Client's age is more than or equal to 9 months", "Client's age is more than or equal to 12 months"],
+  ["Client's age is more than or equal to 12 months", "Client's age is more than or equal to 15 months"],
+];
+
+function findSwapSites(source: string, pairs: Array<[string, string]>): Array<{ lineIdx: number; from: string; to: string }> {
   const lines = source.split('\n');
-  type Site = { lineIdx: number; from: string; to: string };
-  const sites: Site[] = [];
-  for (const [a, b] of REFERENCE_SWAPS) {
+  const sites: Array<{ lineIdx: number; from: string; to: string }> = [];
+  for (const [a, b] of pairs) {
     for (let i = 0; i < lines.length; i += 1) {
       const line = lines[i]!;
-      // Only target Encounter."…" references, not the `\"X\" Guidance` aliases.
       if (line.includes(`Encounter."${a}"`)) sites.push({ lineIdx: i, from: a, to: b });
       if (line.includes(`Encounter."${b}"`)) sites.push({ lineIdx: i, from: b, to: a });
     }
   }
+  return sites;
+}
+
+export function mutateReferenceRename(source: string, rng: () => number): MutationResult {
+  const lines = source.split('\n');
+  const sites = findSwapSites(source, ENTITY_REFERENCE_PAIRS);
   if (sites.length === 0) throw new Error('reference_rename: no candidates');
   const site = pick(rng, sites);
   const orig = lines[site.lineIdx]!;
   const modified = orig.replace(`Encounter."${site.from}"`, `Encounter."${site.to}"`);
+  const def = enclosingDefine(lines, site.lineIdx);
   return {
     source: replaceLine(source, site.lineIdx, modified),
     mutation: {
       kind: 'reference_rename',
-      define: enclosingDefine(lines, site.lineIdx),
+      define: def,
+      definesAffected: [def],
+      approxLine: site.lineIdx + 1,
+      original: orig,
+      modified,
+    },
+  };
+}
+
+/**
+ * Threshold change: swap a numeric-threshold helper reference for another
+ * with a different number but the same predicate shape (e.g.
+ * `"…less than 12 months"` → `"…less than 15 months"`). All swap targets
+ * are known-existing helpers in `IMMZD2DTMeaslesEncounterElements`, so the
+ * library still compiles; only the clinical threshold is wrong.
+ */
+export function mutateThresholdChange(source: string, rng: () => number): MutationResult {
+  const lines = source.split('\n');
+  const sites = findSwapSites(source, THRESHOLD_PAIRS);
+  if (sites.length === 0) throw new Error('threshold_change: no candidates');
+  const site = pick(rng, sites);
+  const orig = lines[site.lineIdx]!;
+  const modified = orig.replace(`Encounter."${site.from}"`, `Encounter."${site.to}"`);
+  const def = enclosingDefine(lines, site.lineIdx);
+  return {
+    source: replaceLine(source, site.lineIdx, modified),
+    mutation: {
+      kind: 'threshold_change',
+      define: def,
+      definesAffected: [def],
       approxLine: site.lineIdx + 1,
       original: orig,
       modified,
@@ -176,11 +245,13 @@ export function mutatePreconditionDrop(source: string, rng: () => number): Mutat
   if (candidates.length === 0) throw new Error('precondition_drop: no candidates');
   const idx = pick(rng, candidates);
   const orig = lines[idx]!;
+  const def = enclosingDefine(lines, idx);
   return {
     source: removeLine(source, idx),
     mutation: {
       kind: 'precondition_drop',
-      define: enclosingDefine(lines, idx),
+      define: def,
+      definesAffected: [def],
       approxLine: idx + 1,
       original: orig,
       modified: '<line removed>',
@@ -278,6 +349,9 @@ export function mutateGuidanceTextSwap(source: string, rng: () => number): Mutat
     mutation: {
       kind: 'guidance_text_swap',
       define: a.define,
+      // Both endpoints of the swap mutate symmetrically — either is a valid
+      // localization.
+      definesAffected: [a.define, b.define],
       approxLine: a.startLine + 1,
       original: `${a.define}: ${a.text.trim().slice(0, 80)}…`,
       modified: `${a.define}: ${b.text.trim().slice(0, 80)}…`,
@@ -303,11 +377,13 @@ export function mutateComparatorFlip(source: string, rng: () => number): Mutatio
   const site = pick(rng, sites);
   const orig = lines[site.lineIdx]!;
   const modified = orig.replace(site.from, site.to);
+  const def = enclosingDefine(lines, site.lineIdx);
   return {
     source: replaceLine(source, site.lineIdx, modified),
     mutation: {
       kind: 'comparator_flip',
-      define: enclosingDefine(lines, site.lineIdx),
+      define: def,
+      definesAffected: [def],
       approxLine: site.lineIdx + 1,
       original: orig,
       modified,
@@ -315,10 +391,11 @@ export function mutateComparatorFlip(source: string, rng: () => number): Mutatio
   };
 }
 
-export const ALL_MUTATORS: Record<Exclude<MutationKind, 'none' | 'threshold_change'>, (s: string, r: () => number) => MutationResult> = {
+export const ALL_MUTATORS: Record<Exclude<MutationKind, 'none'>, (s: string, r: () => number) => MutationResult> = {
   boolean_op_flip: mutateBooleanOpFlip,
   reference_rename: mutateReferenceRename,
   precondition_drop: mutatePreconditionDrop,
   guidance_text_swap: mutateGuidanceTextSwap,
   comparator_flip: mutateComparatorFlip,
+  threshold_change: mutateThresholdChange,
 };

@@ -32,7 +32,14 @@ export interface GradeC2Options {
 
 interface TruthRecord {
   kind: MutationKind;
+  /** Primary localization anchor. */
   define?: string;
+  /**
+   * All defines whose body changed for this mutation. For swap mutators
+   * this lists two endpoints; either is a valid localization for grading.
+   * Older fixtures may omit this field — grader falls back to [define].
+   */
+  definesAffected?: string[];
   approxLine?: number;
 }
 
@@ -130,7 +137,12 @@ export function gradeC2(opts: GradeC2Options): GradeC2Result {
       // Localization / classification are only meaningful when both flagged.
       if (agentHasBug) {
         locFlagged += 1;
-        if (detection?.define && t.define && detection.define === t.define) {
+        const acceptable = t.definesAffected && t.definesAffected.length > 0
+          ? t.definesAffected
+          : t.define
+          ? [t.define]
+          : [];
+        if (detection?.define && acceptable.includes(detection.define)) {
           locCorrect += 1;
           localizationPass = true;
         } else {

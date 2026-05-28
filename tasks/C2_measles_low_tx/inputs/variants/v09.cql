@@ -30,7 +30,7 @@ define "Guidance":
   end
   
 define "Has Guidance":
-  "Guidance" is not null and "Guidance" != ''
+  "Guidance" is not null and "Guidance" = ''
 
 /*
 @output: Client is not due for MCV1 Case 1
@@ -79,6 +79,7 @@ Check for any vaccines due and inform the caregiver of when to come back for MCV
 define "Client is due for MCV1":
   Encounter."No measles primary series doses were administered"
     and Encounter."Client's age is more than or equal to 12 months"
+    and Encounter."No live vaccine was administered in the last 4 weeks"
 
 /*
 @output: Client is due for MCV1 Guidance

@@ -30,7 +30,7 @@ define "Guidance":
   end
   
 define "Has Guidance":
-  "Guidance" is null and "Guidance" != ''
+  "Guidance" is not null and "Guidance" != ''
 
 /*
 @output: Client is not due for MCV1 Case 1
@@ -87,8 +87,8 @@ define "Client is due for MCV1":
 Check for contraindications.
 */
 define "Client is due for MCV1 Guidance":
-  'Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
-Check for contraindications.'
+  'Measles primary series is complete. Two measles primary series doses were administered.
+Check if a measles supplementary dose is appropriate for the client.'
 
 /*
 @output: Client is not due for MCV2 Case 1
@@ -162,8 +162,8 @@ define "Measles primary series is complete":
 Check if a measles supplementary dose is appropriate for the client.
 */
 define "Measles primary series is complete Guidance":
-  'Measles primary series is complete. Two measles primary series doses were administered.
-Check if a measles supplementary dose is appropriate for the client.'
+  'Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.
+Check for contraindications.'
 
 
 /*

@@ -1,5 +1,5 @@
 {
-  "frozenAt": "2026-05-28T04:25:43.842Z",
+  "frozenAt": "2026-05-28T15:13:11.593Z",
   "panelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
   "sourceRevision": "smart-immunizations@b16245f71",
   "agents": [
@@ -9,6 +9,7 @@
   "tasks": [
     "A1_measles_low_tx",
     "C2_measles_low_tx",
+    "C2_measles_mcv0",
     "C4_measles_low_tx"
   ],
   "rows": [
@@ -361,7 +362,7 @@
       "agentId": "anthropic_claude-opus-4-7",
       "taskId": "C2_measles_low_tx",
       "kind": "detection",
-      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 11/12",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
       "detail": {
         "taskId": "C2_measles_low_tx",
         "agentSubmitted": true,
@@ -376,7 +377,7 @@
         },
         "localization": {
           "flagged": 12,
-          "defineCorrect": 11
+          "defineCorrect": 12
         },
         "classification": {
           "flagged": 12,
@@ -384,24 +385,28 @@
         },
         "perKindRecall": {
           "boolean_op_flip": {
-            "total": 3,
-            "flagged": 3
+            "total": 2,
+            "flagged": 2
           },
           "reference_rename": {
-            "total": 3,
-            "flagged": 3
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
           },
           "precondition_drop": {
-            "total": 3,
-            "flagged": 3
+            "total": 2,
+            "flagged": 2
           },
           "comparator_flip": {
             "total": 2,
             "flagged": 2
           },
           "guidance_text_swap": {
-            "total": 1,
-            "flagged": 1
+            "total": 2,
+            "flagged": 2
           }
         },
         "perVariant": [
@@ -432,11 +437,11 @@
           {
             "variantId": "v03",
             "truthHasBug": true,
-            "truthKind": "boolean_op_flip",
-            "truthDefine": "Client is due for MCV1",
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1",
-            "agentKind": "boolean_op_flip",
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -445,9 +450,9 @@
             "variantId": "v04",
             "truthHasBug": true,
             "truthKind": "reference_rename",
-            "truthDefine": "Client is not due for MCV2 Case 2",
+            "truthDefine": "Client is due for MCV1",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV2 Case 2",
+            "agentDefine": "Client is due for MCV1",
             "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
@@ -456,11 +461,11 @@
           {
             "variantId": "v05",
             "truthHasBug": true,
-            "truthKind": "reference_rename",
-            "truthDefine": "Client is not due for MCV2 Case 2",
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV2 Case 2",
-            "agentKind": "reference_rename",
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -468,11 +473,11 @@
           {
             "variantId": "v06",
             "truthHasBug": true,
-            "truthKind": "reference_rename",
-            "truthDefine": "Measles primary series is complete",
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
             "agentHasBug": true,
-            "agentDefine": "Measles primary series is complete",
-            "agentKind": "reference_rename",
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -504,11 +509,11 @@
           {
             "variantId": "v09",
             "truthHasBug": true,
-            "truthKind": "precondition_drop",
-            "truthDefine": "Client is due for MCV1",
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1",
-            "agentKind": "precondition_drop",
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -528,6 +533,285 @@
           {
             "variantId": "v11",
             "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is due for MCV2 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "C2_measles_mcv0",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_mcv0",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 3
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 4",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 4",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 3",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 3",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
             "truthKind": "comparator_flip",
             "truthDefine": "Has Guidance",
             "agentHasBug": true,
@@ -540,13 +824,13 @@
           {
             "variantId": "v12",
             "truthHasBug": true,
-            "truthKind": "guidance_text_swap",
-            "truthDefine": "Measles primary series is complete Guidance",
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1 Guidance",
-            "agentKind": "guidance_text_swap",
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
-            "localizationPass": false,
+            "localizationPass": true,
             "classificationPass": true
           },
           {
@@ -1041,7 +1325,7 @@
       "agentId": "openai_gpt-5.5",
       "taskId": "C2_measles_low_tx",
       "kind": "detection",
-      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 11/12",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
       "detail": {
         "taskId": "C2_measles_low_tx",
         "agentSubmitted": true,
@@ -1056,7 +1340,7 @@
         },
         "localization": {
           "flagged": 12,
-          "defineCorrect": 11
+          "defineCorrect": 12
         },
         "classification": {
           "flagged": 12,
@@ -1064,24 +1348,28 @@
         },
         "perKindRecall": {
           "boolean_op_flip": {
-            "total": 3,
-            "flagged": 3
+            "total": 2,
+            "flagged": 2
           },
           "reference_rename": {
-            "total": 3,
-            "flagged": 3
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
           },
           "precondition_drop": {
-            "total": 3,
-            "flagged": 3
+            "total": 2,
+            "flagged": 2
           },
           "comparator_flip": {
             "total": 2,
             "flagged": 2
           },
           "guidance_text_swap": {
-            "total": 1,
-            "flagged": 1
+            "total": 2,
+            "flagged": 2
           }
         },
         "perVariant": [
@@ -1112,11 +1400,11 @@
           {
             "variantId": "v03",
             "truthHasBug": true,
-            "truthKind": "boolean_op_flip",
-            "truthDefine": "Client is due for MCV1",
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1",
-            "agentKind": "boolean_op_flip",
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -1125,9 +1413,9 @@
             "variantId": "v04",
             "truthHasBug": true,
             "truthKind": "reference_rename",
-            "truthDefine": "Client is not due for MCV2 Case 2",
+            "truthDefine": "Client is due for MCV1",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV2 Case 2",
+            "agentDefine": "Client is due for MCV1",
             "agentKind": "reference_rename",
             "detectionPass": true,
             "localizationPass": true,
@@ -1136,11 +1424,11 @@
           {
             "variantId": "v05",
             "truthHasBug": true,
-            "truthKind": "reference_rename",
-            "truthDefine": "Client is not due for MCV2 Case 2",
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
             "agentHasBug": true,
-            "agentDefine": "Client is not due for MCV2 Case 2",
-            "agentKind": "reference_rename",
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -1148,11 +1436,11 @@
           {
             "variantId": "v06",
             "truthHasBug": true,
-            "truthKind": "reference_rename",
-            "truthDefine": "Measles primary series is complete",
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
             "agentHasBug": true,
-            "agentDefine": "Measles primary series is complete",
-            "agentKind": "reference_rename",
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -1184,11 +1472,11 @@
           {
             "variantId": "v09",
             "truthHasBug": true,
-            "truthKind": "precondition_drop",
-            "truthDefine": "Client is due for MCV1",
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1",
-            "agentKind": "precondition_drop",
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -1208,6 +1496,285 @@
           {
             "variantId": "v11",
             "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is due for MCV2 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "C2_measles_mcv0",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_mcv0",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 3
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 4",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 4",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 3",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 3",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
             "truthKind": "comparator_flip",
             "truthDefine": "Has Guidance",
             "agentHasBug": true,
@@ -1220,13 +1787,13 @@
           {
             "variantId": "v12",
             "truthHasBug": true,
-            "truthKind": "guidance_text_swap",
-            "truthDefine": "Measles primary series is complete Guidance",
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
             "agentHasBug": true,
-            "agentDefine": "Client is due for MCV1 Guidance",
-            "agentKind": "guidance_text_swap",
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
             "detectionPass": true,
-            "localizationPass": false,
+            "localizationPass": true,
             "classificationPass": true
           },
           {
