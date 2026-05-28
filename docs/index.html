@@ -122,14 +122,14 @@
       </div>
     </footer>
 
-    <!-- Per-cell drilldown drawer. Opens when any matrix cell is clicked. -->
-    <div class="drilldown-overlay" id="drilldown-overlay" hidden></div>
+    <!-- Per-cell drilldown drawer. Closed by default; openDrilldown() in
+         app.js toggles `.is-open` to slide it in from the right. -->
+    <div class="drilldown-overlay" id="drilldown-overlay"></div>
     <aside
       class="drilldown"
       id="drilldown"
       aria-labelledby="drilldown-title"
       aria-hidden="true"
-      hidden
     >
       <header class="drilldown-header">
         <div class="drilldown-titles">

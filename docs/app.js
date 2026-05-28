@@ -664,9 +664,9 @@ function openDrilldown(agentId, taskId) {
 
   const drawer = document.getElementById('drilldown');
   const overlay = document.getElementById('drilldown-overlay');
-  drawer.hidden = false;
+  drawer.classList.add('is-open');
   drawer.setAttribute('aria-hidden', 'false');
-  overlay.hidden = false;
+  overlay.classList.add('is-open');
   drawer.scrollTop = 0;
   body.scrollTop = 0;
 }
@@ -674,10 +674,10 @@ function openDrilldown(agentId, taskId) {
 function closeDrilldown() {
   const drawer = document.getElementById('drilldown');
   const overlay = document.getElementById('drilldown-overlay');
-  if (drawer.hidden) return;
-  drawer.hidden = true;
+  if (!drawer.classList.contains('is-open')) return;
+  drawer.classList.remove('is-open');
   drawer.setAttribute('aria-hidden', 'true');
-  overlay.hidden = true;
+  overlay.classList.remove('is-open');
 }
 
 function renderDrilldown(row) {
