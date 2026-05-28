@@ -1,0 +1,160 @@
+{
+  "v01": {
+    "kind": "boolean_op_flip",
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "definesAffected": [
+      "Consider measles supplementary dose. Create a clinical note"
+    ],
+    "approxLine": 58,
+    "original": "    and Encounter.\"No live vaccine was administered in the past 4 weeks\"",
+    "modified": "    or Encounter.\"No live vaccine was administered in the past 4 weeks\""
+  },
+  "v02": {
+    "kind": "boolean_op_flip",
+    "define": "Client is not due for measles supplementary dose",
+    "definesAffected": [
+      "Client is not due for measles supplementary dose"
+    ],
+    "approxLine": 39,
+    "original": "    and Encounter.\"Measles routine immunization schedule is complete\"",
+    "modified": "    or Encounter.\"Measles routine immunization schedule is complete\""
+  },
+  "v03": {
+    "kind": "boolean_op_flip",
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "definesAffected": [
+      "Consider measles supplementary dose. Create a clinical note"
+    ],
+    "approxLine": 57,
+    "original": "    and Encounter.\"Measles routine immunization schedule is complete\"",
+    "modified": "    or Encounter.\"Measles routine immunization schedule is complete\""
+  },
+  "v04": {
+    "kind": "reference_rename",
+    "define": "Client is not due for measles supplementary dose",
+    "definesAffected": [
+      "Client is not due for measles supplementary dose"
+    ],
+    "approxLine": 38,
+    "original": "  Encounter.\"Measles supplementary dose was not administered\"",
+    "modified": "  Encounter.\"Measles supplementary dose was administered\""
+  },
+  "v05": {
+    "kind": "reference_rename",
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "definesAffected": [
+      "Consider measles supplementary dose. Create a clinical note"
+    ],
+    "approxLine": 58,
+    "original": "    and Encounter.\"No live vaccine was administered in the past 4 weeks\"",
+    "modified": "    and Encounter.\"Live vaccine was administered in the past 4 weeks\""
+  },
+  "v06": {
+    "kind": "precondition_drop",
+    "define": "Client is not due for measles supplementary dose",
+    "definesAffected": [
+      "Client is not due for measles supplementary dose"
+    ],
+    "approxLine": 39,
+    "original": "    and Encounter.\"Measles routine immunization schedule is complete\"",
+    "modified": "<line removed>"
+  },
+  "v07": {
+    "kind": "precondition_drop",
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "definesAffected": [
+      "Consider measles supplementary dose. Create a clinical note"
+    ],
+    "approxLine": 58,
+    "original": "    and Encounter.\"No live vaccine was administered in the past 4 weeks\"",
+    "modified": "<line removed>"
+  },
+  "v08": {
+    "kind": "precondition_drop",
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "definesAffected": [
+      "Consider measles supplementary dose. Create a clinical note"
+    ],
+    "approxLine": 57,
+    "original": "    and Encounter.\"Measles routine immunization schedule is complete\"",
+    "modified": "<line removed>"
+  },
+  "v09": {
+    "kind": "comparator_flip",
+    "define": "Has Guidance",
+    "definesAffected": [
+      "Has Guidance"
+    ],
+    "approxLine": 31,
+    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
+    "modified": "  \"Guidance\" is not null and \"Guidance\" = ''"
+  },
+  "v10": {
+    "kind": "comparator_flip",
+    "define": "Has Guidance",
+    "definesAffected": [
+      "Has Guidance"
+    ],
+    "approxLine": 31,
+    "original": "  \"Guidance\" is not null and \"Guidance\" != ''",
+    "modified": "  \"Guidance\" is null and \"Guidance\" != ''"
+  },
+  "v11": {
+    "kind": "guidance_text_swap",
+    "define": "Measles immunization schedule is complete Guidance",
+    "definesAffected": [
+      "Measles immunization schedule is complete Guidance",
+      "Client is not due for measles supplementary dose Guidance"
+    ],
+    "approxLine": 81,
+    "original": "Measles immunization schedule is complete Guidance: 'Measles immunization schedule is complete. Measles supplementary dose was admin…",
+    "modified": "Measles immunization schedule is complete Guidance: 'Should not vaccinate client with measles supplementary dose as live vaccine was…"
+  },
+  "v12": {
+    "kind": "guidance_text_swap",
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "definesAffected": [
+      "Client is not due for measles supplementary dose Guidance",
+      "Consider measles supplementary dose. Create a clinical note Guidance"
+    ],
+    "approxLine": 48,
+    "original": "Client is not due for measles supplementary dose Guidance: 'Should not vaccinate client with measles supplementary dose as live vaccine was…",
+    "modified": "Client is not due for measles supplementary dose Guidance: 'May vaccinate client with measles supplementary dose as supplementary dose was …"
+  },
+  "v13": {
+    "kind": "none"
+  },
+  "v14": {
+    "kind": "none"
+  },
+  "v15": {
+    "kind": "none"
+  },
+  "v16": {
+    "kind": "none"
+  },
+  "v17": {
+    "kind": "none"
+  },
+  "v18": {
+    "kind": "none"
+  },
+  "v19": {
+    "kind": "none"
+  },
+  "v20": {
+    "kind": "none"
+  },
+  "v21": {
+    "kind": "none"
+  },
+  "v22": {
+    "kind": "none"
+  },
+  "v23": {
+    "kind": "none"
+  },
+  "v24": {
+    "kind": "none"
+  }
+}

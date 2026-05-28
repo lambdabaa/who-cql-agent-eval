@@ -278,6 +278,218 @@ export function buildC2McvDose0Fixture(opts: BuildC2Options): { taskDir: string;
   });
 }
 
+export function buildC2OngoingTxFixture(opts: BuildC2Options): { taskDir: string; spec: DetectionTaskSpec } {
+  return buildC2FixtureForLibrary({
+    taskId: 'C2_measles_ongoing_tx',
+    libraryName: 'IMMZD2DTMeaslesOngoingTransmissionLogic',
+    l2RowFamily: 'IMMZ.D2.DT.Measles.OngoingTransmission',
+    l2BriefContent: ONGOING_TX_L2_BRIEF,
+    variantPlan: ONGOING_TX_VARIANT_PLAN,
+    dakRoot: opts.dakRoot,
+    taskDir: opts.taskDir,
+  });
+}
+
+export function buildC2SupplementaryFixture(opts: BuildC2Options): { taskDir: string; spec: DetectionTaskSpec } {
+  return buildC2FixtureForLibrary({
+    taskId: 'C2_measles_supplementary',
+    libraryName: 'IMMZD2DTMeaslesSupplementaryDoseLogic',
+    l2RowFamily: 'IMMZ.D2.DT.Measles.SupplementaryDose',
+    l2BriefContent: SUPPLEMENTARY_L2_BRIEF,
+    variantPlan: SUPPLEMENTARY_VARIANT_PLAN,
+    dakRoot: opts.dakRoot,
+    taskDir: opts.taskDir,
+  });
+}
+
+const ONGOING_TX_VARIANT_PLAN: VariantPlan[] = [
+  // 12 mutated, 2 per kind across all 6 kinds.
+  { id: 'v01', kind: 'boolean_op_flip', seed: 3001 },
+  { id: 'v02', kind: 'boolean_op_flip', seed: 3002 },
+  { id: 'v03', kind: 'reference_rename', seed: 3101 },
+  { id: 'v04', kind: 'reference_rename', seed: 3102 },
+  { id: 'v05', kind: 'threshold_change', seed: 3501 },
+  { id: 'v06', kind: 'threshold_change', seed: 3502 },
+  { id: 'v07', kind: 'precondition_drop', seed: 3201 },
+  { id: 'v08', kind: 'precondition_drop', seed: 3202 },
+  { id: 'v09', kind: 'comparator_flip', seed: 3301 },
+  { id: 'v10', kind: 'comparator_flip', seed: 3302 },
+  { id: 'v11', kind: 'guidance_text_swap', seed: 3401 },
+  { id: 'v12', kind: 'guidance_text_swap', seed: 3402 },
+  // 12 controls
+  { id: 'v13', kind: 'none', seed: 0 },
+  { id: 'v14', kind: 'none', seed: 0 },
+  { id: 'v15', kind: 'none', seed: 0 },
+  { id: 'v16', kind: 'none', seed: 0 },
+  { id: 'v17', kind: 'none', seed: 0 },
+  { id: 'v18', kind: 'none', seed: 0 },
+  { id: 'v19', kind: 'none', seed: 0 },
+  { id: 'v20', kind: 'none', seed: 0 },
+  { id: 'v21', kind: 'none', seed: 0 },
+  { id: 'v22', kind: 'none', seed: 0 },
+  { id: 'v23', kind: 'none', seed: 0 },
+  { id: 'v24', kind: 'none', seed: 0 },
+];
+
+const SUPPLEMENTARY_VARIANT_PLAN: VariantPlan[] = [
+  // 12 mutated. No threshold_change: the supplementary-dose library uses no
+  // age helpers, only "supplementary dose was/was not administered" and
+  // "live vaccine in past 4 weeks" pairs.
+  { id: 'v01', kind: 'boolean_op_flip', seed: 4001 },
+  { id: 'v02', kind: 'boolean_op_flip', seed: 4002 },
+  { id: 'v03', kind: 'boolean_op_flip', seed: 4003 },
+  { id: 'v04', kind: 'reference_rename', seed: 4101 },
+  { id: 'v05', kind: 'reference_rename', seed: 4102 },
+  { id: 'v06', kind: 'precondition_drop', seed: 4201 },
+  { id: 'v07', kind: 'precondition_drop', seed: 4202 },
+  { id: 'v08', kind: 'precondition_drop', seed: 4203 },
+  { id: 'v09', kind: 'comparator_flip', seed: 4301 },
+  { id: 'v10', kind: 'comparator_flip', seed: 4302 },
+  { id: 'v11', kind: 'guidance_text_swap', seed: 4401 },
+  { id: 'v12', kind: 'guidance_text_swap', seed: 4402 },
+  // 12 controls
+  { id: 'v13', kind: 'none', seed: 0 },
+  { id: 'v14', kind: 'none', seed: 0 },
+  { id: 'v15', kind: 'none', seed: 0 },
+  { id: 'v16', kind: 'none', seed: 0 },
+  { id: 'v17', kind: 'none', seed: 0 },
+  { id: 'v18', kind: 'none', seed: 0 },
+  { id: 'v19', kind: 'none', seed: 0 },
+  { id: 'v20', kind: 'none', seed: 0 },
+  { id: 'v21', kind: 'none', seed: 0 },
+  { id: 'v22', kind: 'none', seed: 0 },
+  { id: 'v23', kind: 'none', seed: 0 },
+  { id: 'v24', kind: 'none', seed: 0 },
+];
+
+const ONGOING_TX_L2_BRIEF = `# IMMZ.D2.DT.Measles.OngoingTransmission — Decision Table
+
+**Setting:** Countries with ongoing measles transmission and high mortality risk.
+**Schedule:** MCV1 at 9 months, MCV2 at 15 months.
+**Trigger:** \`IMMZ.D2\` — determine required vaccination(s) if any.
+
+All preconditions reference defines exposed by the
+\`IMMZD2DTMeaslesEncounterElements\` library (alias as \`Encounter\`). See
+\`inputs/deps/IMMZD2DTMeaslesEncounterElements.cql\` for the exact names.
+
+## Rows
+
+### Row R1 — \`Client is not due for first dose of measles-containing vaccine (MCV1)\`
+
+- Precondition: \`Encounter."Client's age is less than 9 months"\`
+- Output define (Boolean): \`Client is not due for first dose of measles-containing vaccine (MCV1)\`
+- Guidance: \`Should not vaccinate client as client's age is less than 9 months.\\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1.\`
+
+### Row R2 — \`Client is due for MCV1\`
+
+- Preconditions (AND):
+  - \`Encounter."No measles primary series doses were administered"\`
+  - \`Encounter."Client's age is more than or equal to 9 months"\`
+  - \`Encounter."No live vaccine was administered in the last 4 weeks"\`
+- Output define (Boolean): \`Client is due for MCV1\`
+- Guidance: \`Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine administered in the past 4 weeks.\\nCheck for contraindications.\`
+
+### Row R3 — \`Client is not due for MCV1\`
+
+- Preconditions (AND):
+  - \`Encounter."No measles primary series doses were administered"\`
+  - \`Encounter."Client's age is more than or equal to 9 months"\`
+  - \`Encounter."Live vaccine was administered in the last 4 weeks"\`
+- Output define (Boolean): \`Client is not due for MCV1\`
+- Guidance: \`Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.\\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1.\`
+
+### Row R4 — \`Client is not due for second dose of measles-containing vaccine (MCV2)\`
+
+- Preconditions (AND):
+  - \`Encounter."MCV1 was administered"\`
+  - \`Encounter."Client's age is less than 15 months"\`
+- Output define (Boolean): \`Client is not due for second dose of measles-containing vaccine (MCV2)\`
+- Guidance: \`Should not vaccinate client with MCV2 as client's age is less than 15 months.\\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2.\`
+
+### Row R5 — \`Client is due for MCV2\`
+
+- Preconditions (AND):
+  - \`Encounter."MCV1 was administered"\`
+  - \`Encounter."Client's age is more than or equal to 15 months"\`
+  - \`Encounter."No live vaccine was administered in the last 4 weeks"\`
+- Output define (Boolean): \`Client is due for MCV2\`
+- Guidance: \`Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.\\nCheck for contraindications.\`
+
+### Row R6 — \`Client is not due for MCV2\`
+
+- Preconditions (AND):
+  - \`Encounter."MCV1 was administered"\`
+  - \`Encounter."Client's age is more than or equal to 15 months"\`
+  - \`Encounter."Live vaccine was administered in the last 4 weeks"\`
+- Output define (Boolean): \`Client is not due for MCV2\`
+- Guidance: \`Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.\\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2.\`
+
+### Row R7 — \`Measles primary series is complete\`
+
+- Precondition: \`Encounter."MCV2 was administered"\`
+- Output define (Boolean): \`Measles primary series is complete\`
+- Guidance: \`Measles primary series is complete. Two measles primary series doses were administered.\\nCheck if a measles supplementary dose is appropriate for the client.\`
+
+## Aggregator defines
+
+- \`Guidance\` — case-expression selecting the appropriate row's guidance string. Precedence: not-due-MCV1-Case1 (age) → due-MCV1 → not-due-MCV1 (live-vaccine) → not-due-MCV2-Case1 (age) → due-MCV2 → not-due-MCV2 (live-vaccine) → primary-series-complete → empty.
+- \`Has Guidance\` = \`"Guidance" is not null and "Guidance" != ''\`.
+
+Each row's guidance literal is published as its own \`<row output> Guidance\`
+string define (no case-aggregator wrapping like LowTransmission has, because
+the cases are distinguished by referenced define name rather than by a
+shared "Case 1 / Case 2" naming pattern).
+`;
+
+const SUPPLEMENTARY_L2_BRIEF = `# IMMZ.D2.DT.Measles.SupplementaryDose — Decision Table
+
+**Setting:** Determine whether a measles supplementary dose should be administered.
+**Trigger:** \`IMMZ.D2\` — determine required vaccination(s) if any.
+
+This decision table runs *after* the primary series is complete. There are no
+age preconditions — only "has the supplementary dose already been given?",
+"is the routine schedule complete?", and "was a live vaccine given in the
+past 4 weeks?".
+
+All preconditions reference defines exposed by the
+\`IMMZD2DTMeaslesEncounterElements\` library (alias as \`Encounter\`).
+
+## Rows
+
+### Row R1 — \`Client is not due for measles supplementary dose\`
+
+- Preconditions (AND):
+  - \`Encounter."Measles supplementary dose was not administered"\`
+  - \`Encounter."Measles routine immunization schedule is complete"\`
+  - \`Encounter."Live vaccine was administered in the past 4 weeks"\`
+- Output define (Boolean): \`Client is not due for measles supplementary dose\`
+- Guidance: \`Should not vaccinate client with measles supplementary dose as live vaccine was administered in the past 4 weeks.\\nCheck for any vaccines due and inform the caregiver of when to come back for supplementary dose.\`
+
+### Row R2 — \`Consider measles supplementary dose. Create a clinical note\`
+
+- Preconditions (AND):
+  - \`Encounter."Measles supplementary dose was not administered"\`
+  - \`Encounter."Measles routine immunization schedule is complete"\`
+  - \`Encounter."No live vaccine was administered in the past 4 weeks"\`
+- Output define (Boolean): \`Consider measles supplementary dose. Create a clinical note\` (the trailing period is part of the literal name)
+- Guidance: \`May vaccinate client with measles supplementary dose as supplementary dose was not administered, measles routine immunization schedule is complete and no live vaccine administered in the past 4 weeks.\\nCheck if one of the measles supplementary dose specific scenarios is applicable.\`
+
+### Row R3 — \`Measles immunization schedule is complete\`
+
+- Precondition: \`Encounter."Measles supplementary dose was administered"\`
+- Output define (Boolean): \`Measles immunization schedule is complete\`
+- Guidance: \`Measles immunization schedule is complete. Measles supplementary dose was administered.\`
+
+## Aggregator defines
+
+- \`Guidance\` — case-expression selecting the active row's guidance string.
+  Precedence: not-due → consider → schedule-complete → empty.
+- \`Has Guidance\` = \`"Guidance" is not null and "Guidance" != ''\`.
+
+Each row's guidance literal is published as its own \`<row output> Guidance\`
+string define (no case-aggregator wrapping).
+`;
+
 const MCV0_L2_BRIEF = `# IMMZ.D2.DT.Measles.MCV0 — Decision Table
 
 **Setting:** Determine if the client is due for measles-containing vaccine dose 0 (MCV0).

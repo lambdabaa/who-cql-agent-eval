@@ -9,7 +9,12 @@ import {
 } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { buildA1Fixture } from './build_a1.js';
-import { buildC2Fixture, buildC2McvDose0Fixture } from './build_c2.js';
+import {
+  buildC2Fixture,
+  buildC2McvDose0Fixture,
+  buildC2OngoingTxFixture,
+  buildC2SupplementaryFixture,
+} from './build_c2.js';
 import { buildC4Fixture } from './build_c4.js';
 import { gradeA1, type GradeA1Result } from './grade_a1.js';
 import { gradeC2, type GradeC2Result } from './grade_c2.js';
@@ -38,6 +43,8 @@ export const TASK_IDS = [
   'A1_measles_low_tx',
   'C2_measles_low_tx',
   'C2_measles_mcv0',
+  'C2_measles_ongoing_tx',
+  'C2_measles_supplementary',
   'C4_measles_low_tx',
 ] as const;
 export type TaskId = (typeof TASK_IDS)[number];
@@ -80,6 +87,14 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
   buildC2McvDose0Fixture({
     dakRoot: paths.dakRoot,
     taskDir: join(paths.tasksRoot, 'C2_measles_mcv0'),
+  });
+  buildC2OngoingTxFixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'C2_measles_ongoing_tx'),
+  });
+  buildC2SupplementaryFixture({
+    dakRoot: paths.dakRoot,
+    taskDir: join(paths.tasksRoot, 'C2_measles_supplementary'),
   });
   await buildC4Fixture({
     dakRoot: paths.dakRoot,

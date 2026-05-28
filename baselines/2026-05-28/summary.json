@@ -1,5 +1,5 @@
 {
-  "frozenAt": "2026-05-28T15:32:04.188Z",
+  "frozenAt": "2026-05-28T21:08:29.262Z",
   "panelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
   "sourceRevision": "smart-immunizations@b16245f71",
   "agents": [
@@ -12,6 +12,8 @@
     "A1_measles_low_tx",
     "C2_measles_low_tx",
     "C2_measles_mcv0",
+    "C2_measles_ongoing_tx",
+    "C2_measles_supplementary",
     "C4_measles_low_tx"
   ],
   "rows": [
@@ -924,6 +926,568 @@
     },
     {
       "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "C2_measles_ongoing_tx",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for MCV1 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "C2_measles_supplementary",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_supplementary",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 3
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles immunization schedule is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
       "taskId": "C4_measles_low_tx",
       "kind": "prediction",
       "headline": "14/77 predictions correct",
@@ -2179,6 +2743,568 @@
             "agentHasBug": true,
             "agentDefine": "Has Guidance",
             "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "C2_measles_ongoing_tx",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for MCV1 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "C2_measles_supplementary",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_supplementary",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 3
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles immunization schedule is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true
@@ -2905,6 +4031,560 @@
     },
     {
       "agentId": "openai_gpt-5.4-nano",
+      "taskId": "C2_measles_ongoing_tx",
+      "kind": "detection",
+      "headline": "F1: 0.83 (P=0.83 R=0.83) · loc: 7/10",
+      "detail": {
+        "taskId": "C2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 10,
+          "falsePositive": 2,
+          "trueNegative": 10,
+          "falseNegative": 2,
+          "precision": 0.833,
+          "recall": 0.833,
+          "f1": 0.833
+        },
+        "localization": {
+          "flagged": 10,
+          "defineCorrect": 7
+        },
+        "classification": {
+          "flagged": 10,
+          "kindCorrect": 10
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 1
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 1
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentHasBug": false,
+            "detectionPass": false
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": false,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": false,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": false,
+            "detectionPass": false
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for MCV1 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for first dose of measles-containing vaccine (MCV1) Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": false,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for first dose of measles-containing vaccine (MCV1) Guidance",
+            "agentKind": "reference_rename",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "C2_measles_supplementary",
+      "kind": "detection",
+      "headline": "F1: 0.83 (P=0.83 R=0.83) · loc: 9/10",
+      "detail": {
+        "taskId": "C2_measles_supplementary",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 10,
+          "falsePositive": 2,
+          "trueNegative": 10,
+          "falseNegative": 2,
+          "precision": 0.833,
+          "recall": 0.833,
+          "f1": 0.833
+        },
+        "localization": {
+          "flagged": 10,
+          "defineCorrect": 9
+        },
+        "classification": {
+          "flagged": 10,
+          "kindCorrect": 8
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 1
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": false,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": false,
+            "detectionPass": false
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": false,
+            "detectionPass": false
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles immunization schedule is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Test Validation",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
       "taskId": "C4_measles_low_tx",
       "kind": "prediction",
       "headline": "14/77 predictions correct",
@@ -4160,6 +5840,568 @@
             "agentHasBug": true,
             "agentDefine": "Has Guidance",
             "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "C2_measles_ongoing_tx",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2)",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for second dose of measles-containing vaccine (MCV2) Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for MCV1 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "C2_measles_supplementary",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_supplementary",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 3
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for measles supplementary dose",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentHasBug": true,
+            "agentDefine": "Consider measles supplementary dose. Create a clinical note",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles immunization schedule is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for measles supplementary dose Guidance",
+            "agentKind": "guidance_text_swap",
             "detectionPass": true,
             "localizationPass": true,
             "classificationPass": true

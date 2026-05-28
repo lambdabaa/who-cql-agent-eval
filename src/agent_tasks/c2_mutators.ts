@@ -280,14 +280,19 @@ export function mutateGuidanceTextSwap(source: string, rng: () => number): Mutat
   while (i < lines.length) {
     const defM = lines[i]!.match(/^define\s+"([^"]+)"\s*:/);
     if (defM && defM[1]!.endsWith(' Guidance')) {
-      // Find the string literal on subsequent lines: starts with `'` and
-      // ends with a line containing a closing `'`.
+      // Look for an immediate single-quoted literal (skipping only blank
+      // lines). If the first non-blank line in the define body is a
+      // `case`/expression/identifier instead, this define isn't a
+      // simple-literal guidance block and we skip it. This prevents the
+      // forward scan from grabbing the next define's literal.
       let start = -1;
-      for (let j = i + 1; j < Math.min(lines.length, i + 20); j += 1) {
-        if (/^\s*'/.test(lines[j]!) && !/^\s*case\b/.test(lines[j]!)) {
+      for (let j = i + 1; j < lines.length; j += 1) {
+        const line = lines[j]!;
+        if (line.trim() === '') continue;
+        if (/^\s*'/.test(line)) {
           start = j;
-          break;
         }
+        break;
       }
       if (start !== -1) {
         let end = start;
