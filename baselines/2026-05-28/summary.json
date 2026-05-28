@@ -1,9 +1,11 @@
 {
-  "frozenAt": "2026-05-28T15:13:11.593Z",
+  "frozenAt": "2026-05-28T15:32:04.188Z",
   "panelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
   "sourceRevision": "smart-immunizations@b16245f71",
   "agents": [
+    "anthropic_claude-haiku-4-5",
     "anthropic_claude-opus-4-7",
+    "openai_gpt-5.4-nano",
     "openai_gpt-5.5"
   ],
   "tasks": [
@@ -13,6 +15,1354 @@
     "C4_measles_low_tx"
   ],
   "rows": [
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "A1_measles_low_tx",
+      "kind": "authoring",
+      "headline": "T1: pass · T3: 7/7",
+      "detail": {
+        "taskId": "A1_measles_low_tx",
+        "agentSubmitted": true,
+        "t1": "pass",
+        "t1Errors": [],
+        "t3": {
+          "casesTotal": 7,
+          "casesPassed": 7,
+          "perCase": [
+            {
+              "patientId": "Measles22.1",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Client is not due for MCV1 Case 1",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is not due for MCV1",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is due for MCV1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Measles primary series is complete",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Should not vaccinate client with MCV1 as client's age is less than 12 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+                  },
+                  "actual": "Should not vaccinate client with MCV1 as client's age is less than 12 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+                }
+              ],
+              "runtimeErrors": []
+            },
+            {
+              "patientId": "Measles23.3",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Client is due for MCV1",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is not due for MCV1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV1 Case 1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV1 Case 2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Measles primary series is complete",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.\nCheck for contraindications."
+                  },
+                  "actual": "Should vaccinate client with MCV1 as no measles doses were administered, client is within appropriate age range and no live vaccine was administered in the past 4 weeks.\nCheck for contraindications."
+                }
+              ],
+              "runtimeErrors": []
+            },
+            {
+              "patientId": "Measles24.3",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Client is not due for MCV1 Case 2",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is not due for MCV1",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is due for MCV1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+                  },
+                  "actual": "Should not vaccinate client with MCV1 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV1."
+                }
+              ],
+              "runtimeErrors": []
+            },
+            {
+              "patientId": "Measles25.2",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Client is not due for MCV2 Case 1",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is not due for MCV2",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Should not vaccinate client with MCV2 as client's age is less than 15 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+                  },
+                  "actual": "Should not vaccinate client with MCV2 as client's age is less than 15 months.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+                }
+              ],
+              "runtimeErrors": []
+            },
+            {
+              "patientId": "Measles26.3",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Client is due for MCV2",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is not due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV2 Case 1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV2 Case 2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Measles primary series is complete",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.\nCheck for contraindications."
+                  },
+                  "actual": "Should vaccinate client with MCV2 as client is within appropriate age range and no live vaccine administered in the past 4 weeks.\nCheck for contraindications."
+                }
+              ],
+              "runtimeErrors": []
+            },
+            {
+              "patientId": "Measles27.3",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Client is not due for MCV2 Case 2",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is not due for MCV2",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+                  },
+                  "actual": "Should not vaccinate client with MCV2 as live vaccine was administered in the past 4 weeks.\nCheck for any vaccines due and inform the caregiver of when to come back for MCV2."
+                }
+              ],
+              "runtimeErrors": []
+            },
+            {
+              "patientId": "Measles28.1",
+              "passed": true,
+              "comparisons": [
+                {
+                  "define": "Measles primary series is complete",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Client is due for MCV1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV1",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Client is not due for MCV2",
+                  "pass": true,
+                  "expected": false,
+                  "actual": false
+                },
+                {
+                  "define": "Has Guidance",
+                  "pass": true,
+                  "expected": true,
+                  "actual": true
+                },
+                {
+                  "define": "Guidance",
+                  "pass": true,
+                  "expected": {
+                    "equals": "Measles primary series is complete. Two measles primary series doses were administered.\nCheck if a measles supplementary dose is appropriate for the client."
+                  },
+                  "actual": "Measles primary series is complete. Two measles primary series doses were administered.\nCheck if a measles supplementary dose is appropriate for the client."
+                }
+              ],
+              "runtimeErrors": []
+            }
+          ]
+        }
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "C2_measles_low_tx",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_low_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 9
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV1 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV1 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is due for MCV2 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "C2_measles_mcv0",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 12/12",
+      "detail": {
+        "taskId": "C2_measles_mcv0",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 12
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 12
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 3
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 4",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 4",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 3",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 3",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "C4_measles_low_tx",
+      "kind": "prediction",
+      "headline": "14/77 predictions correct",
+      "detail": {
+        "taskId": "C4_measles_low_tx",
+        "agentSubmitted": true,
+        "totalCells": 77,
+        "correctCells": 14,
+        "perPatient": [
+          {
+            "patientId": "Measles22.1",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles23.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles24.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles25.2",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles26.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles27.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles28.1",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          }
+        ]
+      }
+    },
     {
       "agentId": "anthropic_claude-opus-4-7",
       "taskId": "A1_measles_low_tx",
@@ -972,6 +2322,1024 @@
             "correct": 11,
             "total": 11,
             "misses": []
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "A1_measles_low_tx",
+      "kind": "authoring",
+      "headline": "T1: fail",
+      "detail": {
+        "taskId": "A1_measles_low_tx",
+        "agentSubmitted": true,
+        "t1": "fail",
+        "t1Errors": [
+          "/Users/ari/Documents/github/who-cql-agent-eval/runs/openai_gpt-5.4-nano/A1_measles_low_tx/_grade/cql/IMMZD2DTMeaslesLowTransmissionLogic.cql: translator did not emit IMMZD2DTMeaslesLowTransmissionLogic.json",
+          "translator did not emit ELM for IMMZD2DTMeaslesLowTransmissionLogic"
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "C2_measles_low_tx",
+      "kind": "detection",
+      "headline": "F1: 1.00 (P=1.00 R=1.00) · loc: 11/12",
+      "detail": {
+        "taskId": "C2_measles_low_tx",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 12,
+          "falsePositive": 0,
+          "trueNegative": 12,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1
+        },
+        "localization": {
+          "flagged": 12,
+          "defineCorrect": 11
+        },
+        "classification": {
+          "flagged": 12,
+          "kindCorrect": 7
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 2,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          },
+          "guidance_text_swap": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV1 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is due for MCV1",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV1 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 1",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV1 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV1 Case 2",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is due for MCV2",
+            "agentHasBug": true,
+            "agentDefine": "Test Validation",
+            "agentKind": "none",
+            "detectionPass": true,
+            "localizationPass": false,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Measles primary series is complete Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "guidance_text_swap",
+            "truthDefine": "Client is due for MCV2 Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Client is due for MCV1 Guidance",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "C2_measles_mcv0",
+      "kind": "detection",
+      "headline": "F1: 0.88 (P=0.85 R=0.92) · loc: 11/11",
+      "detail": {
+        "taskId": "C2_measles_mcv0",
+        "agentSubmitted": true,
+        "detection": {
+          "truePositive": 11,
+          "falsePositive": 2,
+          "trueNegative": 10,
+          "falseNegative": 1,
+          "precision": 0.846,
+          "recall": 0.917,
+          "f1": 0.88
+        },
+        "localization": {
+          "flagged": 11,
+          "defineCorrect": 11
+        },
+        "classification": {
+          "flagged": 11,
+          "kindCorrect": 9
+        },
+        "perKindRecall": {
+          "boolean_op_flip": {
+            "total": 3,
+            "flagged": 3
+          },
+          "reference_rename": {
+            "total": 2,
+            "flagged": 2
+          },
+          "threshold_change": {
+            "total": 2,
+            "flagged": 2
+          },
+          "precondition_drop": {
+            "total": 3,
+            "flagged": 2
+          },
+          "comparator_flip": {
+            "total": 2,
+            "flagged": 2
+          }
+        },
+        "perVariant": [
+          {
+            "variantId": "v01",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v02",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v03",
+            "truthHasBug": true,
+            "truthKind": "boolean_op_flip",
+            "truthDefine": "Client is not due for MCV0",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0",
+            "agentKind": "boolean_op_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v04",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 4",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 4",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v05",
+            "truthHasBug": true,
+            "truthKind": "reference_rename",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 2",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v06",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 1",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 1",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v07",
+            "truthHasBug": true,
+            "truthKind": "threshold_change",
+            "truthDefine": "Client is not due for MCV0 Case 3",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Case 3",
+            "agentKind": "threshold_change",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v08",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Client is not due for MCV0 Case 2",
+            "agentHasBug": false,
+            "detectionPass": false
+          },
+          {
+            "variantId": "v09",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "precondition_drop",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v10",
+            "truthHasBug": true,
+            "truthKind": "precondition_drop",
+            "truthDefine": "Consider MCV0.",
+            "agentHasBug": true,
+            "agentDefine": "Consider MCV0.",
+            "agentKind": "reference_rename",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": false
+          },
+          {
+            "variantId": "v11",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v12",
+            "truthHasBug": true,
+            "truthKind": "comparator_flip",
+            "truthDefine": "Has Guidance",
+            "agentHasBug": true,
+            "agentDefine": "Has Guidance",
+            "agentKind": "comparator_flip",
+            "detectionPass": true,
+            "localizationPass": true,
+            "classificationPass": true
+          },
+          {
+            "variantId": "v13",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v14",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v15",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v16",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v17",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v18",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v19",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v20",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": true,
+            "agentDefine": "Client is not due for MCV0 Guidance",
+            "agentKind": "guidance_text_swap",
+            "detectionPass": false
+          },
+          {
+            "variantId": "v21",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v22",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v23",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          },
+          {
+            "variantId": "v24",
+            "truthHasBug": false,
+            "truthKind": "none",
+            "agentHasBug": false,
+            "detectionPass": true
+          }
+        ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "C4_measles_low_tx",
+      "kind": "prediction",
+      "headline": "14/77 predictions correct",
+      "detail": {
+        "taskId": "C4_measles_low_tx",
+        "agentSubmitted": true,
+        "totalCells": 77,
+        "correctCells": 14,
+        "perPatient": [
+          {
+            "patientId": "Measles22.1",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles23.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles24.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles25.2",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles26.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles27.3",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Measles primary series is complete",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
+          },
+          {
+            "patientId": "Measles28.1",
+            "correct": 2,
+            "total": 11,
+            "misses": [
+              {
+                "define": "Client is not due for MCV1 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 1",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2 Case 2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is not due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Client is due for MCV2",
+                "expected": false,
+                "actual": null,
+                "reason": "missing prediction"
+              },
+              {
+                "define": "Has Guidance",
+                "expected": true,
+                "actual": null,
+                "reason": "missing prediction"
+              }
+            ]
           }
         ]
       }
