@@ -1,0 +1,10 @@
+{
+  "id": "audit_anc_dt08",
+  "kind": "audit",
+  "dak": "smart-anc",
+  "logicLibraryId": "ANCDT08",
+  "l2RowFamily": "ANC.DT.08 — HIV testing",
+  "outputFiles": [
+    "findings.json"
+  ]
+}

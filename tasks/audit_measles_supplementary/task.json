@@ -1,0 +1,10 @@
+{
+  "id": "audit_measles_supplementary",
+  "kind": "audit",
+  "dak": "smart-immunizations",
+  "logicLibraryId": "IMMZD2DTMeaslesSupplementaryDoseLogic",
+  "l2RowFamily": "IMMZ.D2.DT.Measles.SupplementaryDose",
+  "outputFiles": [
+    "findings.json"
+  ]
+}

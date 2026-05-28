@@ -1,0 +1,10 @@
+{
+  "id": "audit_measles_mcv0",
+  "kind": "audit",
+  "dak": "smart-immunizations",
+  "logicLibraryId": "IMMZD2DTMeaslesMCVDose0Logic",
+  "l2RowFamily": "IMMZ.D2.DT.Measles.MCV0",
+  "outputFiles": [
+    "findings.json"
+  ]
+}

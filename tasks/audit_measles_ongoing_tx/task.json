@@ -1,0 +1,10 @@
+{
+  "id": "audit_measles_ongoing_tx",
+  "kind": "audit",
+  "dak": "smart-immunizations",
+  "logicLibraryId": "IMMZD2DTMeaslesOngoingTransmissionLogic",
+  "l2RowFamily": "IMMZ.D2.DT.Measles.OngoingTransmission",
+  "outputFiles": [
+    "findings.json"
+  ]
+}

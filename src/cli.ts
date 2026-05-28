@@ -196,6 +196,8 @@ baseline
         console.log(
           `${g.agentId}/${g.taskId}: F1=${d.f1.toFixed(2)} (P=${d.precision.toFixed(2)} R=${d.recall.toFixed(2)})`,
         );
+      } else if ('findingsCount' in r) {
+        console.log(`${g.agentId}/${g.taskId}: ${r.findingsCount} finding(s)`);
       } else {
         console.log(`${g.agentId}/${g.taskId}: ${r.correctCells}/${r.totalCells}`);
       }

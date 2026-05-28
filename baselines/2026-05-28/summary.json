@@ -1,5 +1,5 @@
 {
-  "frozenAt": "2026-05-28T21:37:14.328Z",
+  "frozenAt": "2026-05-28T21:51:41.188Z",
   "panelYaml": "tests/dak/IMMZD2DTMeaslesLowTransmissionLogic.yaml",
   "sourceRevision": "smart-immunizations@b16245f71",
   "agents": [
@@ -15,7 +15,12 @@
     "C2_measles_mcv0",
     "C2_measles_ongoing_tx",
     "C2_measles_supplementary",
-    "C4_measles_low_tx"
+    "C4_measles_low_tx",
+    "audit_anc_dt08",
+    "audit_measles_low_tx",
+    "audit_measles_mcv0",
+    "audit_measles_ongoing_tx",
+    "audit_measles_supplementary"
   ],
   "rows": [
     {
@@ -2204,6 +2209,67 @@
       }
     },
     {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "audit_anc_dt08",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_anc_dt08",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "audit_measles_low_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_low_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "audit_measles_mcv0",
+      "kind": "audit",
+      "headline": "no submission",
+      "detail": {
+        "taskId": "audit_measles_mcv0",
+        "agentSubmitted": false,
+        "findingsCount": 0,
+        "findings": [],
+        "parseError": "no submission"
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "audit_measles_ongoing_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-haiku-4-5",
+      "taskId": "audit_measles_supplementary",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_supplementary",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
       "agentId": "anthropic_claude-opus-4-7",
       "taskId": "A1_measles_low_tx",
       "kind": "authoring",
@@ -4005,6 +4071,66 @@
             "misses": []
           }
         ]
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "audit_anc_dt08",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_anc_dt08",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "audit_measles_low_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_low_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "audit_measles_mcv0",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_mcv0",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "audit_measles_ongoing_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "anthropic_claude-opus-4-7",
+      "taskId": "audit_measles_supplementary",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_supplementary",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
       }
     },
     {
@@ -5847,6 +5973,66 @@
       }
     },
     {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "audit_anc_dt08",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_anc_dt08",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "audit_measles_low_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_low_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "audit_measles_mcv0",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_mcv0",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "audit_measles_ongoing_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.4-nano",
+      "taskId": "audit_measles_supplementary",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_supplementary",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
       "agentId": "openai_gpt-5.5",
       "taskId": "A1_measles_low_tx",
       "kind": "authoring",
@@ -7648,6 +7834,66 @@
             "misses": []
           }
         ]
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "audit_anc_dt08",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_anc_dt08",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "audit_measles_low_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_low_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "audit_measles_mcv0",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_mcv0",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "audit_measles_ongoing_tx",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_ongoing_tx",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
+      }
+    },
+    {
+      "agentId": "openai_gpt-5.5",
+      "taskId": "audit_measles_supplementary",
+      "kind": "audit",
+      "headline": "clean (no findings)",
+      "detail": {
+        "taskId": "audit_measles_supplementary",
+        "agentSubmitted": true,
+        "findingsCount": 0,
+        "findings": []
       }
     }
   ]

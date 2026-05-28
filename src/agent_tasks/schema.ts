@@ -85,16 +85,65 @@ export const DetectionTaskSpecSchema = z
   })
   .strict();
 
+/**
+ * Audit task: agent is given one *real, unmodified* Logic library and its
+ * L2 brief. Asked to flag any inconsistencies it sees. No truth file —
+ * the brief was derived from the published CQL, so a perfect-match output
+ * is the expected default. Any flagged finding is either a transcription
+ * error in the brief, a model false positive, or (rarely) a real
+ * L2↔L3 mismatch hiding in the WHO content.
+ *
+ * The interesting metrics for audit are:
+ *  - per-agent false-positive rate (how readily does each model invent bugs?)
+ *  - cross-agent consensus (a finding flagged by ≥2 agents is more
+ *    plausibly real than one flagged by a single agent).
+ */
+export const AuditTaskSpecSchema = z
+  .object({
+    id: z.string(),
+    kind: z.literal('audit'),
+    dak: z.string(),
+    logicLibraryId: z.string(),
+    /** Human label for the row family (e.g. `IMMZ.D2.DT.Measles.LowTransmission`). */
+    l2RowFamily: z.string(),
+    outputFiles: z.array(z.string()).min(1),
+  })
+  .strict();
+
 export const TaskSpecSchema = z.discriminatedUnion('kind', [
   AuthoringTaskSpecSchema,
   PredictionTaskSpecSchema,
   DetectionTaskSpecSchema,
+  AuditTaskSpecSchema,
 ]);
 
 export type AuthoringTaskSpec = z.infer<typeof AuthoringTaskSpecSchema>;
 export type PredictionTaskSpec = z.infer<typeof PredictionTaskSpecSchema>;
 export type DetectionTaskSpec = z.infer<typeof DetectionTaskSpecSchema>;
+export type AuditTaskSpec = z.infer<typeof AuditTaskSpecSchema>;
 export type TaskSpec = z.infer<typeof TaskSpecSchema>;
+
+/**
+ * Per-finding record the agent writes to outputs/findings.json for an
+ * audit task. Empty findings array means "no inconsistencies found".
+ */
+export const AuditFindingSchema = z
+  .object({
+    define: z.string(),
+    approximateLine: z.number().int().nullable().optional(),
+    description: z.string(),
+    severity: z.enum(['low', 'medium', 'high']).optional(),
+  })
+  .strict();
+
+export const AuditFindingsFileSchema = z
+  .object({
+    findings: z.array(AuditFindingSchema),
+  })
+  .strict();
+
+export type AuditFinding = z.infer<typeof AuditFindingSchema>;
+export type AuditFindingsFile = z.infer<typeof AuditFindingsFileSchema>;
 
 /**
  * Per-variant detection record — the shape the agent writes for C2 tasks.
