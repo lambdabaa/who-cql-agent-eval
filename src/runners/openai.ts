@@ -27,6 +27,12 @@ export interface OpenAIRunnerOptions {
   baseURL?: string;
   /** Prefix used in the agent id surfaced to graders/baselines. Defaults to `openai`. */
   idPrefix?: string;
+  /**
+   * Optional string prepended to the user message before sending. Useful for
+   * provider-specific directives (e.g. Qwen3's `/no_think` to disable its
+   * reasoning trace and recover output-token budget for the actual answer).
+   */
+  userPromptPrefix?: string;
 }
 
 export function openaiRunner(options: OpenAIRunnerOptions): AgentRunner {
@@ -49,13 +55,14 @@ export function openaiRunner(options: OpenAIRunnerOptions): AgentRunner {
       const startedAt = new Date().toISOString();
       const startMs = Date.now();
       const { system, user } = composePrompt(taskDir, spec);
+      const userMessage = options.userPromptPrefix ? `${options.userPromptPrefix}${user}` : user;
 
       const resp = await client.chat.completions.create({
         model: options.model,
         max_completion_tokens: maxTokens,
         messages: [
           { role: 'system', content: system },
-          { role: 'user', content: user },
+          { role: 'user', content: userMessage },
         ],
       });
 

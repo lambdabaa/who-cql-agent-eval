@@ -178,6 +178,10 @@ interface OpenAICompatConfig {
    *  ignore the auth header but where the OpenAI SDK still requires
    *  *some* string. */
   apiKey?: string;
+  /** Per-provider override of max_completion_tokens. Local reasoning models
+   *  spend the budget on `<think>` tokens before reaching structured
+   *  output, so the default 16k is too tight. */
+  maxTokens?: number;
 }
 
 const OPENAI_COMPATIBLE_PROVIDERS: Record<string, OpenAICompatConfig> = {
@@ -185,9 +189,23 @@ const OPENAI_COMPATIBLE_PROVIDERS: Record<string, OpenAICompatConfig> = {
   kimi: { baseURL: 'https://api.moonshot.ai/v1', apiKeyEnvVar: 'MOONSHOT_API_KEY' },
   qwen: { baseURL: 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1', apiKeyEnvVar: 'DASHSCOPE_API_KEY' },
   // Local Ollama. No auth; the OpenAI SDK requires a non-empty apiKey,
-  // so we pass a sentinel value that the daemon ignores.
-  ollama: { baseURL: 'http://localhost:11434/v1', apiKey: 'ollama' },
+  // so we pass a sentinel value that the daemon ignores. The 64k token
+  // budget gives reasoning models (R1 distill, Qwen3 thinking) enough
+  // headroom for `<think>` + structured output combined.
+  ollama: { baseURL: 'http://localhost:11434/v1', apiKey: 'ollama', maxTokens: 64_000 },
 };
+
+/**
+ * Model-specific prompt prefixes, applied in runnerFromId after the
+ * provider config is picked. Qwen3 supports the `/no_think` directive
+ * that suppresses the reasoning trace and frees the full output-token
+ * budget for the actual answer — important for our long-prompt
+ * detection tasks where the trace would otherwise eat the whole budget.
+ */
+function modelPromptPrefix(provider: string, model: string): string | undefined {
+  if (provider === 'ollama' && /^qwen3(\b|[.:-])/i.test(model)) return '/no_think\n\n';
+  return undefined;
+}
 
 export function runnerFromId(spec: string): AgentRunner {
   const [provider, ...rest] = spec.split(':');
@@ -197,11 +215,14 @@ export function runnerFromId(spec: string): AgentRunner {
   if (provider === 'openai') return openaiRunner({ model });
   const compat = OPENAI_COMPATIBLE_PROVIDERS[provider];
   if (compat) {
+    const prefix = modelPromptPrefix(provider, model);
     return openaiRunner({
       model,
       baseURL: compat.baseURL,
       ...(compat.apiKey ? { apiKey: compat.apiKey } : {}),
       ...(compat.apiKeyEnvVar ? { apiKeyEnvVar: compat.apiKeyEnvVar } : {}),
+      ...(compat.maxTokens ? { maxTokens: compat.maxTokens } : {}),
+      ...(prefix ? { userPromptPrefix: prefix } : {}),
       idPrefix: provider,
     });
   }
