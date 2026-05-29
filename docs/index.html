@@ -94,16 +94,165 @@
       <section class="legend-section" aria-labelledby="legend-h">
         <h2 id="legend-h">How scoring works</h2>
         <dl class="legend">
+
           <dt>Authoring</dt>
-          <dd>50% if the CQL compiles (T1 pass) + 50% × fraction of patient cases that match expected outputs (T3).</dd>
+          <dd>
+            50% if the CQL compiles (T1 pass) + 50% × fraction of patient cases that match expected outputs (T3).
+            <details class="legend-example">
+              <summary>Example prompt &amp; response</summary>
+              <div class="legend-example-body">
+                <h4>Prompt excerpt</h4>
+                <pre><code>You are authoring one CQL Logic library for the WHO SMART
+Guidelines IMMZ DAK against the L3 CQL SOP. Output a single
+file: IMMZD2DTMeaslesLowTransmissionLogic.cql.
+
+inputs/L2_table.md describes 7 rows with preconditions and
+guidance strings. Use Encounter."..." helper references from
+inputs/deps/IMMZD2DTMeaslesEncounterElements.cql.
+
+Conventions: library IMMZD2DTMeaslesLowTransmissionLogic
+(no version), using FHIR version '4.0.1', @output/@guidance
+JSDoc-style annotations, parameter Today Date default Today(),
+context Patient.</code></pre>
+                <h4>Sample response</h4>
+                <pre><code>library IMMZD2DTMeaslesLowTransmissionLogic
+using FHIR version '4.0.1'
+include FHIRHelpers version '4.0.1'
+include IMMZD2DTMeaslesEncounterElements called Encounter
+parameter Today Date default Today()
+context Patient
+
+/*
+@output: Client is not due for MCV1 Case 1
+*/
+define "Client is not due for MCV1 Case 1":
+  Encounter."Client's age is less than 12 months"
+
+/* ...7 row defines + guidance strings + aggregators... */</code></pre>
+              </div>
+            </details>
+          </dd>
+
           <dt>Detection</dt>
-          <dd>F1 × 100 on detecting injected bugs in a library; localization shown alongside.</dd>
+          <dd>
+            F1 × 100 on detecting injected bugs in a library; localization shown alongside.
+            <details class="legend-example">
+              <summary>Example prompt &amp; response</summary>
+              <div class="legend-example-body">
+                <h4>Prompt excerpt</h4>
+                <pre><code>You are given 24 candidate Logic libraries (v01..v24). Each
+is either byte-identical to a known-good reference, or has
+exactly one injected bug from this taxonomy: boolean_op_flip,
+reference_rename, threshold_change, precondition_drop,
+comparator_flip, guidance_text_swap, or none.
+
+For each variant, decide whether it diverges from the L2 brief.
+If yes, identify the define, an approximate line number, and
+(optionally) the bug kind. Output: detections.json.</code></pre>
+                <h4>Sample response</h4>
+                <pre><code>{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 49,
+    "mutationKind": "boolean_op_flip",
+    "description": "first 'and' between conjuncts flipped to 'or'"
+  },
+  "v13": { "hasBug": false }
+}</code></pre>
+              </div>
+            </details>
+          </dd>
+
           <dt>Prediction</dt>
-          <dd>Fraction of expected output cells the agent correctly predicted across the patient panel.</dd>
+          <dd>
+            Fraction of expected output cells the agent correctly predicted across the patient panel.
+            <details class="legend-example">
+              <summary>Example prompt &amp; response</summary>
+              <div class="legend-example-body">
+                <h4>Prompt excerpt</h4>
+                <pre><code>You are given one Logic library and 7 patient FHIR Bundles.
+For each patient, predict the value of every define listed
+in task.json.
+
+You may not run code. Reason through the CQL by hand. Today
+is fixed to 2026-01-15. EncounterId is null. Patient context.</code></pre>
+                <h4>Sample response</h4>
+                <pre><code>{
+  "Measles22.1": {
+    "Client is not due for MCV1 Case 1": true,
+    "Client is not due for MCV1": true,
+    "Client is due for MCV1": false,
+    "Has Guidance": true,
+    "Guidance": "Should not vaccinate client with MCV1 as client's age is less than 12 months..."
+  },
+  "Measles23.3": { "Client is due for MCV1": true, "...": "..." }
+}</code></pre>
+              </div>
+            </details>
+          </dd>
+
           <dt>Audit</dt>
-          <dd>Unmodified WHO content. Clean (no false positives) → 100. Findings reported lower the score.</dd>
+          <dd>
+            Unmodified WHO content. Clean (no false positives) → 100. Findings reported lower the score.
+            <details class="legend-example">
+              <summary>Example prompt &amp; response</summary>
+              <div class="legend-example-body">
+                <h4>Prompt excerpt</h4>
+                <pre><code>You are given one real, unmodified WHO Logic library
+(inputs/library.cql) and its L2 brief. Flag any inconsistency
+you see.
+
+Important: this is NOT a test corpus. The library is the
+actual production CQL. The L2 brief was transcribed from its
+own annotations, so a perfect match is the EXPECTED default.
+Do not invent inconsistencies. If everything matches, return
+an empty findings array.</code></pre>
+                <h4>Sample response</h4>
+                <pre><code>{ "findings": [] }</code></pre>
+                <p class="legend-example-note">
+                  All four baseline agents returned <code>{ "findings": [] }</code>
+                  on every audit fixture, confirming the prompt's "do not
+                  invent bugs" prior holds at the frontier level. See
+                  <code>baselines/2026-05-28/audit_report.md</code> for caveats.
+                </p>
+              </div>
+            </details>
+          </dd>
+
           <dt>Composite detection</dt>
-          <dd>F1 × 100 on detecting variable counts of injected bugs (the frontier-discriminating axis).</dd>
+          <dd>
+            F1 × 100 on detecting variable counts of injected bugs (the frontier-discriminating axis).
+            <details class="legend-example">
+              <summary>Example prompt &amp; response</summary>
+              <div class="legend-example-body">
+                <h4>Prompt excerpt</h4>
+                <pre><code>You are given 36 candidate Logic libraries. Each has 0 to 5
+injected bugs from the same taxonomy as Detection.
+
+Unlike single-bug detection, the number of bugs per variant
+is not fixed. Some variants are clean controls (empty
+findings); others have multiple independent bugs you must
+each flag separately. Output: detections.json with a findings
+array per variant.</code></pre>
+                <h4>Sample response</h4>
+                <pre><code>{
+  "v01": { "findings": [] },
+  "v19": {
+    "findings": [
+      { "define": "Client is due for MCV1",
+        "mutationKind": "boolean_op_flip" },
+      { "define": "Client is not due for MCV2",
+        "mutationKind": "threshold_change" },
+      { "define": "Client is due for MCV2",
+        "mutationKind": "reference_rename" }
+    ]
+  }
+}</code></pre>
+              </div>
+            </details>
+          </dd>
+
         </dl>
       </section>
     </main>
