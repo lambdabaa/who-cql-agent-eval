@@ -158,17 +158,55 @@ export async function buildTaskFixtures(paths: BaselinePaths, opts: { jarPath?: 
 }
 
 /**
- * Construct an AgentRunner from a colon-delimited id ("anthropic:claude-opus-4-7"
- * or "openai:gpt-5.5"). Throws if the provider isn't recognised or the
- * required API-key env var is missing.
+ * Construct an AgentRunner from a colon-delimited id. Supported providers:
+ *   - `anthropic:<model>`         Anthropic API (ANTHROPIC_API_KEY)
+ *   - `openai:<model>`            OpenAI API (OPENAI_API_KEY)
+ *   - `deepseek:<model>`          DeepSeek OpenAI-compatible API (DEEPSEEK_API_KEY)
+ *   - `kimi:<model>`              Moonshot/Kimi OpenAI-compatible API (MOONSHOT_API_KEY)
+ *   - `qwen:<model>`              Alibaba DashScope OpenAI-compatible API (DASHSCOPE_API_KEY)
+ *
+ * DeepSeek/Kimi/Qwen all expose `/v1/chat/completions` with the same shape
+ * OpenAI does, so they route through the openaiRunner with a custom
+ * baseURL and idPrefix. Adding a new OpenAI-compatible provider is a
+ * one-entry change here.
  */
+interface OpenAICompatConfig {
+  baseURL: string;
+  /** Env var name; omitted means no key is required (local serving). */
+  apiKeyEnvVar?: string;
+  /** Hard-coded API key value to send. Used for endpoints (Ollama) that
+   *  ignore the auth header but where the OpenAI SDK still requires
+   *  *some* string. */
+  apiKey?: string;
+}
+
+const OPENAI_COMPATIBLE_PROVIDERS: Record<string, OpenAICompatConfig> = {
+  deepseek: { baseURL: 'https://api.deepseek.com', apiKeyEnvVar: 'DEEPSEEK_API_KEY' },
+  kimi: { baseURL: 'https://api.moonshot.ai/v1', apiKeyEnvVar: 'MOONSHOT_API_KEY' },
+  qwen: { baseURL: 'https://dashscope-intl.aliyuncs.com/compatible-mode/v1', apiKeyEnvVar: 'DASHSCOPE_API_KEY' },
+  // Local Ollama. No auth; the OpenAI SDK requires a non-empty apiKey,
+  // so we pass a sentinel value that the daemon ignores.
+  ollama: { baseURL: 'http://localhost:11434/v1', apiKey: 'ollama' },
+};
+
 export function runnerFromId(spec: string): AgentRunner {
   const [provider, ...rest] = spec.split(':');
   const model = rest.join(':');
   if (!provider || !model) throw new Error(`agent spec must be "<provider>:<model>", got "${spec}"`);
   if (provider === 'anthropic') return anthropicRunner({ model });
   if (provider === 'openai') return openaiRunner({ model });
-  throw new Error(`unknown provider "${provider}" (supported: anthropic, openai)`);
+  const compat = OPENAI_COMPATIBLE_PROVIDERS[provider];
+  if (compat) {
+    return openaiRunner({
+      model,
+      baseURL: compat.baseURL,
+      ...(compat.apiKey ? { apiKey: compat.apiKey } : {}),
+      ...(compat.apiKeyEnvVar ? { apiKeyEnvVar: compat.apiKeyEnvVar } : {}),
+      idPrefix: provider,
+    });
+  }
+  const supported = ['anthropic', 'openai', ...Object.keys(OPENAI_COMPATIBLE_PROVIDERS)].join(', ');
+  throw new Error(`unknown provider "${provider}" (supported: ${supported})`);
 }
 
 /**

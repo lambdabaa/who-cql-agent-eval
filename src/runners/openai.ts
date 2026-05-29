@@ -5,23 +5,41 @@ import { composePrompt, parseFencedOutputs, writeOutputs } from './common.js';
 
 const DEFAULT_MAX_TOKENS = 16_000;
 
+/**
+ * Generic OpenAI-compatible runner. Works against the OpenAI API by
+ * default; pass `baseURL` to point at DeepSeek, Kimi/Moonshot, Qwen, or
+ * any other provider that exposes a compatible `/v1/chat/completions`
+ * surface. The agent id surfaced to grading / baselines uses `idPrefix`
+ * so reports group runs by provider (e.g. `deepseek/deepseek-chat`).
+ */
 export interface OpenAIRunnerOptions {
-  /** Model id, e.g. `gpt-5.5`. */
+  /** Model id passed to the provider, e.g. `gpt-5.5` or `deepseek-reasoner`. */
   model: string;
   /** Optional display label. */
   label?: string;
   /** Max output tokens (default 16k). */
   maxTokens?: number;
-  /** Override API key (else uses OPENAI_API_KEY env). */
+  /** Override API key. */
   apiKey?: string;
+  /** Env var to read API key from when `apiKey` is unset. Defaults to `OPENAI_API_KEY`. */
+  apiKeyEnvVar?: string;
+  /** OpenAI-compatible base URL. Omit for canonical OpenAI. */
+  baseURL?: string;
+  /** Prefix used in the agent id surfaced to graders/baselines. Defaults to `openai`. */
+  idPrefix?: string;
 }
 
 export function openaiRunner(options: OpenAIRunnerOptions): AgentRunner {
-  const apiKey = options.apiKey ?? process.env.OPENAI_API_KEY;
-  if (!apiKey) throw new Error('OPENAI_API_KEY not set; cannot run OpenAI agent');
-  const client = new OpenAI({ apiKey });
+  const envVar = options.apiKeyEnvVar ?? 'OPENAI_API_KEY';
+  const apiKey = options.apiKey ?? process.env[envVar];
+  if (!apiKey) throw new Error(`${envVar} not set; cannot run ${options.idPrefix ?? 'OpenAI'} agent`);
+  const client = new OpenAI({
+    apiKey,
+    ...(options.baseURL ? { baseURL: options.baseURL } : {}),
+  });
   const maxTokens = options.maxTokens ?? DEFAULT_MAX_TOKENS;
-  const id = `openai/${options.model}`;
+  const prefix = options.idPrefix ?? 'openai';
+  const id = `${prefix}/${options.model}`;
 
   return {
     id,
