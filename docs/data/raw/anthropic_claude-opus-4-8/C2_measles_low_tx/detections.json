@@ -1,0 +1,114 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 49,
+    "mutationKind": "boolean_op_flip",
+    "description": "third conjunct joined with 'or' instead of 'and'"
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 94,
+    "mutationKind": "boolean_op_flip",
+    "description": "no-live-vaccine conjunct joined with 'or' instead of 'and'"
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 168,
+    "mutationKind": "reference_rename",
+    "description": "references 'MCV2 was administered' instead of 'MCV1 was administered'"
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is due for MCV1",
+    "approximateLine": 96,
+    "mutationKind": "reference_rename",
+    "description": "references 'Live vaccine was administered in the last 4 weeks' instead of the negated form"
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 1",
+    "approximateLine": 39,
+    "mutationKind": "threshold_change",
+    "description": "uses 'less than 15 months' instead of 'less than 12 months'"
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 1",
+    "approximateLine": 39,
+    "mutationKind": "threshold_change",
+    "description": "uses 'less than 9 months' instead of 'less than 12 months'"
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Client is not due for MCV1 Case 2",
+    "approximateLine": 47,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'Live vaccine was administered in the last 4 weeks' conjunct"
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Client is due for MCV2",
+    "approximateLine": 167,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'Client's age is more than or equal to 15 months' conjunct"
+  },
+  "v09": {
+    "hasBug": false
+  },
+  "v10": {
+    "hasBug": false
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is due for MCV1 Guidance",
+    "approximateLine": 104,
+    "mutationKind": "guidance_text_swap",
+    "description": "contains primary-series-complete guidance text instead of MCV1 due text"
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is due for MCV1 Guidance",
+    "approximateLine": 104,
+    "mutationKind": "guidance_text_swap",
+    "description": "contains MCV2 due guidance text instead of MCV1 due text"
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

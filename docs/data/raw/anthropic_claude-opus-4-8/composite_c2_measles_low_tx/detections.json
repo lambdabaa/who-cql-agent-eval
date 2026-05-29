@@ -1,0 +1,635 @@
+{
+  "v01": { "findings": [] },
+  "v02": { "findings": [] },
+  "v03": { "findings": [] },
+  "v04": { "findings": [] },
+  "v05": { "findings": [] },
+  "v06": { "findings": [] },
+  "v07": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 110,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' on MCV1 conjunct"
+      }
+    ]
+  },
+  "v08": {
+    "findings": [
+      {
+        "define": "Client is due for MCV2",
+        "approximateLine": 180,
+        "mutationKind": "reference_rename",
+        "description": "MCV1 was administered swapped for MCV2 was administered"
+      }
+    ]
+  },
+  "v09": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 110,
+        "mutationKind": "threshold_change",
+        "description": "Client's age is less than 15 months swapped for less than 12 months"
+      }
+    ]
+  },
+  "v10": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 110,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is less than 15 months' conjunct"
+      }
+    ]
+  },
+  "v11": { "findings": [] },
+  "v12": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v13": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 15 months"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 115,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'"
+      }
+    ]
+  },
+  "v14": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'No live vaccine was administered in the last 4 weeks' conjunct"
+      },
+      {
+        "define": "Measles primary series is complete",
+        "approximateLine": 195,
+        "mutationKind": "reference_rename",
+        "description": "MCV2 was administered swapped for MCV1 was administered"
+      }
+    ]
+  },
+  "v15": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v16": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 9 months"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 115,
+        "mutationKind": "reference_rename",
+        "description": "MCV1 was administered swapped for MCV2 was administered"
+      }
+    ]
+  },
+  "v17": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'No live vaccine was administered in the last 4 weeks' conjunct"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' before Live vaccine conjunct"
+      }
+    ]
+  },
+  "v18": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 9 months"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 175,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v19": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 1",
+        "approximateLine": 45,
+        "mutationKind": "threshold_change",
+        "description": "Client's age less than 12 months swapped for less than 9 months"
+      },
+      {
+        "define": "Client is not due for MCV2",
+        "approximateLine": 130,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' between Case 1 and Case 2"
+      }
+    ]
+  },
+  "v20": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is more than or equal to 12 months' conjunct"
+      },
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "comparator_flip",
+        "description": "No live vaccine swapped for Live vaccine reference (predicate flip)"
+      }
+    ]
+  },
+  "v21": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 15 months swapped for >= 12 months"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 175,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v22": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 9 months"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "precondition_drop",
+        "description": "Missing age conjunct; 'and' flipped to 'or' with Live vaccine"
+      }
+    ]
+  },
+  "v23": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is more than or equal to 12 months' conjunct"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 175,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      },
+      {
+        "define": "Measles primary series is complete",
+        "approximateLine": 195,
+        "mutationKind": "reference_rename",
+        "description": "MCV2 was administered swapped for MCV1 was administered"
+      }
+    ]
+  },
+  "v24": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 1",
+        "approximateLine": 45,
+        "mutationKind": "threshold_change",
+        "description": "Client's age less than 12 months swapped for less than 15 months"
+      },
+      {
+        "define": "Client is not due for MCV2",
+        "approximateLine": 130,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' between Case 1 and Case 2"
+      }
+    ]
+  },
+  "v25": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "precondition_drop",
+        "description": "Missing No live vaccine conjunct and threshold >= 9 months"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 110,
+        "mutationKind": "reference_rename",
+        "description": "MCV1 was administered swapped for MCV2 was administered"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' before Live vaccine conjunct"
+      }
+    ]
+  },
+  "v26": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 9 months"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 110,
+        "mutationKind": "reference_rename",
+        "description": "MCV1 was administered swapped for MCV2 was administered"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 175,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v27": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "'is not null' flipped to 'is null'"
+      },
+      {
+        "define": "Client is not due for MCV1",
+        "approximateLine": 65,
+        "mutationKind": "boolean_op_flip",
+        "description": "'or' flipped to 'and' between Case 1 and Case 2"
+      },
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 15 months"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is more than or equal to 15 months' conjunct"
+      }
+    ]
+  },
+  "v28": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' before No live vaccine conjunct"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 110,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is less than 15 months' conjunct"
+      },
+      {
+        "define": "Client is due for MCV2",
+        "approximateLine": 180,
+        "mutationKind": "comparator_flip",
+        "description": "No live vaccine swapped for Live vaccine (predicate flip)"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v29": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "comparator_flip",
+        "description": "No live vaccine swapped for Live vaccine (predicate flip)"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 1",
+        "approximateLine": 110,
+        "mutationKind": "threshold_change",
+        "description": "Client's age less than 15 months swapped for less than 12 months"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v30": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Live vaccine was administered in the last 4 weeks' conjunct"
+      },
+      {
+        "define": "Client is due for MCV2",
+        "approximateLine": 180,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' before No live vaccine conjunct"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 185,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      }
+    ]
+  },
+  "v31": {
+    "findings": [
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is more than or equal to 12 months' conjunct"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or'; also predicate uses No live vaccine"
+      }
+    ]
+  },
+  "v32": {
+    "findings": [
+      {
+        "define": "Has Guidance",
+        "approximateLine": 30,
+        "mutationKind": "comparator_flip",
+        "description": "'!= ' flipped to '=' (Guidance = '')"
+      },
+      {
+        "define": "Client is not due for MCV1 Case 1",
+        "approximateLine": 45,
+        "mutationKind": "threshold_change",
+        "description": "Client's age less than 12 months swapped for less than 15 months"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Live vaccine was administered in the last 4 weeks' conjunct"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 175,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v33": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' after No measles conjunct"
+      },
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "comparator_flip",
+        "description": "No live vaccine swapped for Live vaccine; missing age conjunct"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v34": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' after No measles conjunct"
+      },
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 9 months"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      },
+      {
+        "define": "Client is not due for MCV2 Case 2",
+        "approximateLine": 115,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Live vaccine was administered in the last 4 weeks' conjunct"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 175,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  },
+  "v35": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 9 months"
+      },
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' after No measles conjunct"
+      },
+      {
+        "define": "Client is due for MCV2",
+        "approximateLine": 180,
+        "mutationKind": "reference_rename",
+        "description": "MCV1 was administered swapped for MCV2 was administered"
+      },
+      {
+        "define": "Client is due for MCV2 Guidance",
+        "approximateLine": 185,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV2 text"
+      }
+    ]
+  },
+  "v36": {
+    "findings": [
+      {
+        "define": "Client is not due for MCV1 Case 2",
+        "approximateLine": 55,
+        "mutationKind": "threshold_change",
+        "description": "Client's age >= 12 months swapped for >= 15 months"
+      },
+      {
+        "define": "Client is due for MCV1",
+        "approximateLine": 100,
+        "mutationKind": "precondition_drop",
+        "description": "Missing 'Client's age is more than or equal to 12 months' conjunct"
+      },
+      {
+        "define": "Client is due for MCV1 Guidance",
+        "approximateLine": 105,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with primary series complete text"
+      },
+      {
+        "define": "Client is due for MCV2",
+        "approximateLine": 180,
+        "mutationKind": "boolean_op_flip",
+        "description": "'and' flipped to 'or' before No live vaccine conjunct"
+      },
+      {
+        "define": "Measles primary series is complete",
+        "approximateLine": 195,
+        "mutationKind": "reference_rename",
+        "description": "MCV2 was administered swapped for MCV1 was administered"
+      },
+      {
+        "define": "Measles primary series is complete Guidance",
+        "approximateLine": 200,
+        "mutationKind": "guidance_text_swap",
+        "description": "Guidance text swapped with due MCV1 text"
+      }
+    ]
+  }
+}

@@ -99,6 +99,56 @@
       "detections.json"
     ]
   },
+  "anthropic_claude-opus-4-8": {
+    "A1_measles_low_tx": [
+      "IMMZD2DTMeaslesLowTransmissionLogic.cql"
+    ],
+    "C2_anc_dt08": [
+      "detections.json"
+    ],
+    "C2_measles_low_tx": [
+      "detections.json"
+    ],
+    "C2_measles_mcv0": [
+      "detections.json"
+    ],
+    "C2_measles_ongoing_tx": [
+      "detections.json"
+    ],
+    "C2_measles_supplementary": [
+      "detections.json"
+    ],
+    "C4_measles_low_tx": [
+      "predictions.json"
+    ],
+    "audit_anc_dt08": [
+      "findings.json"
+    ],
+    "audit_measles_low_tx": [
+      "findings.json"
+    ],
+    "audit_measles_mcv0": [
+      "findings.json"
+    ],
+    "audit_measles_ongoing_tx": [
+      "findings.json"
+    ],
+    "audit_measles_supplementary": [
+      "findings.json"
+    ],
+    "composite_c2_measles_low_tx": [
+      "detections.json"
+    ],
+    "composite_c2_measles_mcv0": [
+      "detections.json"
+    ],
+    "composite_c2_measles_ongoing_tx": [
+      "detections.json"
+    ],
+    "composite_c2_measles_supplementary": [
+      "detections.json"
+    ]
+  },
   "ollama_deepseek-r1_14b": {
     "A1_measles_low_tx": [
       "IMMZD2DTMeaslesLowTransmissionLogic.cql"

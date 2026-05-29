@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 65,
+    "mutationKind": "boolean_op_flip",
+    "description": "third conjunct joined with 'or' instead of 'and'"
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 47,
+    "mutationKind": "boolean_op_flip",
+    "description": "first 'and' between conjuncts flipped to 'or'"
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 64,
+    "mutationKind": "boolean_op_flip",
+    "description": "first 'and' between conjuncts flipped to 'or'"
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 46,
+    "mutationKind": "reference_rename",
+    "description": "first conjunct uses 'Measles supplementary dose was administered' instead of 'was not administered' (polarity flip)"
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 65,
+    "mutationKind": "reference_rename",
+    "description": "third conjunct uses 'Live vaccine was administered in the past 4 weeks' instead of 'No live vaccine...' (polarity flip)"
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose",
+    "approximateLine": 46,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'Measles routine immunization schedule is complete' conjunct"
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 64,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'No live vaccine was administered in the past 4 weeks' conjunct"
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Consider measles supplementary dose. Create a clinical note",
+    "approximateLine": 64,
+    "mutationKind": "precondition_drop",
+    "description": "missing 'Measles routine immunization schedule is complete' conjunct"
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 121,
+    "mutationKind": "comparator_flip",
+    "description": "Measles49.3 guidance comparison uses '!=' instead of '='"
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Test Validation",
+    "approximateLine": 123,
+    "mutationKind": "comparator_flip",
+    "description": "Measles50.1 Patient.id check uses '!=' instead of '='"
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "approximateLine": 54,
+    "mutationKind": "guidance_text_swap",
+    "description": "R1 guidance and R3 guidance literals swapped"
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Client is not due for measles supplementary dose Guidance",
+    "approximateLine": 54,
+    "mutationKind": "guidance_text_swap",
+    "description": "R1 guidance and R2 guidance literals swapped"
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}

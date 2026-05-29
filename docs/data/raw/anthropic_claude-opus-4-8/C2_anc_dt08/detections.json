@@ -1,0 +1,122 @@
+{
+  "v01": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 32,
+    "mutationKind": "boolean_op_flip",
+    "description": "third conjunct 'and' before HIV status flipped to 'or'"
+  },
+  "v02": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 31,
+    "mutationKind": "boolean_op_flip",
+    "description": "first conjunct 'and' flipped to 'or'"
+  },
+  "v03": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 33,
+    "mutationKind": "precondition_drop",
+    "description": "missing HIV negative status conjunct"
+  },
+  "v04": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 19,
+    "mutationKind": "precondition_drop",
+    "description": "missing ANC contact number = 1 conjunct"
+  },
+  "v05": {
+    "hasBug": true,
+    "define": "Should HIV test is optional",
+    "approximateLine": 41,
+    "mutationKind": "comparator_flip",
+    "description": "'< 5 %' changed to '<= 5 %'"
+  },
+  "v06": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 20,
+    "mutationKind": "comparator_flip",
+    "description": "'= 1' flipped to '!= 1'"
+  },
+  "v07": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 19,
+    "mutationKind": "comparator_flip",
+    "description": "'>= 5 %' changed to '> 5 %'"
+  },
+  "v08": {
+    "hasBug": true,
+    "define": "Should HIV test is not required",
+    "approximateLine": 47,
+    "mutationKind": "reference_rename",
+    "description": "HIV positive Choices swapped for HIV negative Choices"
+  },
+  "v09": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 33,
+    "mutationKind": "reference_rename",
+    "description": "HIV negative Choices swapped for HIV positive Choices"
+  },
+  "v10": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test",
+    "approximateLine": 19,
+    "mutationKind": "threshold_change",
+    "description": "prevalence threshold changed from 5 % to 6 %"
+  },
+  "v11": {
+    "hasBug": true,
+    "define": "Should HIV test is optional",
+    "approximateLine": 41,
+    "mutationKind": "threshold_change",
+    "description": "prevalence threshold changed from 5 % to 6 %"
+  },
+  "v12": {
+    "hasBug": true,
+    "define": "Should Conduct HIV test 2",
+    "approximateLine": 31,
+    "mutationKind": "threshold_change",
+    "description": "prevalence threshold changed from 5 % to 6 %"
+  },
+  "v13": {
+    "hasBug": false
+  },
+  "v14": {
+    "hasBug": false
+  },
+  "v15": {
+    "hasBug": false
+  },
+  "v16": {
+    "hasBug": false
+  },
+  "v17": {
+    "hasBug": false
+  },
+  "v18": {
+    "hasBug": false
+  },
+  "v19": {
+    "hasBug": false
+  },
+  "v20": {
+    "hasBug": false
+  },
+  "v21": {
+    "hasBug": false
+  },
+  "v22": {
+    "hasBug": false
+  },
+  "v23": {
+    "hasBug": false
+  },
+  "v24": {
+    "hasBug": false
+  }
+}
