@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-28T23:14:22.936Z",
+  "generatedAt": "2026-05-29T18:42:43.894Z",
   "baselines": [
     {
       "date": "2026-05-27",
@@ -10,7 +10,12 @@
       "date": "2026-05-28",
       "file": "2026-05-28.json",
       "rawIndex": "2026-05-28.raw-index.json"
+    },
+    {
+      "date": "2026-05-29",
+      "file": "2026-05-29.json",
+      "rawIndex": "2026-05-29.raw-index.json"
     }
   ],
-  "latest": "2026-05-28"
+  "latest": "2026-05-29"
 }
