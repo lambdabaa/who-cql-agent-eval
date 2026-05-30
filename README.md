@@ -8,7 +8,7 @@ WHO SMART Guidelines CQL. The v0 slice targets the
 `WorldHealthOrganization/smart-immunizations`.
 
 See [`docs/PLAN.md`](docs/PLAN.md) for the design document and rationale.
-Live leaderboard: <https://lambdabaa.github.io/who-cql-agent-eval/>.
+Live leaderboard: <https://lambdabaa.com/who-cql-agent-eval/>.
 
 ## Leaderboard
 
